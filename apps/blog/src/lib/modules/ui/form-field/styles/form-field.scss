@@ -1,0 +1,11 @@
+.form-field.primary {
+	--active-color: var(--primary-color);
+}
+
+.form-field.accent {
+	--active-color: var(--accent-color);
+}
+
+.form-field {
+	--active-color: var(--accent-color);
+}

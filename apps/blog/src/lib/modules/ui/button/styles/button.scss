@@ -1,0 +1,114 @@
+@use '../../icon/icon';
+
+.button {
+	text-align: center;
+	padding: 8px 15px;
+
+	transition-property: background, box-shadow;
+
+	--color: var(--primary-text-color);
+	--hover-color: var(--primary-text-color);
+	--active-color: var(--primary-text-color);
+}
+
+a.button {
+	display: inline-block;
+}
+
+.button.primary {
+	--color: var(--primary-color);
+	--hover-color: var(--primary-hover-color);
+	--active-color: var(--primary-active-color);
+}
+
+.button.accent {
+	--color: var(--accent-color);
+	--hover-color: var(--accent-hover-color);
+	--active-color: var(--accent-active-color);
+}
+
+.button.raised {
+	background: var(--color);
+	color: var(--alter-text-color);
+	border-radius: var(--button-radius, 10%);
+	box-shadow: var(--button-shadow);
+
+	&:hover {
+		background: var(--hover-color);
+	}
+
+	&:active {
+		background: var(--active-color);
+		box-shadow: var(--button-active-shadow);
+	}
+
+	@include icon.icon {
+		font-size: 1.5rem;
+	}
+}
+
+.button.outlined {
+	border: 1px solid var(--color);
+	color: var(--color);
+	border-radius: var(--button-radius, 10%);
+	box-shadow: var(--button-shadow);
+
+	&:hover {
+		border: 1px solid var(--hover-color);
+		color: var(--hover-color);
+	}
+
+	&:active {
+		border: 1px solid var(--active-color);
+		box-shadow: var(--button-active-shadow);
+		color: var(--active-color);
+	}
+
+	@include icon.icon {
+		font-size: 1.5rem;
+	}
+}
+
+.button.basic {
+	color: var(--color);
+	border-radius: var(--button-radius, 10%);
+	background: transparent;
+	display: flex;
+	align-items: center;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color), transparent 90%);
+	}
+
+	&:active {
+		background: color-mix(in srgb, var(--color), transparent 80%);
+	}
+
+	@include icon.icon {
+		font-size: 1.5rem;
+	}
+}
+
+.button.icon {
+	display: grid;
+	place-content: center;
+	color: var(--color);
+	border-radius: 50%;
+	background: transparent;
+	width: 2.5rem;
+	aspect-ratio: 1;
+	padding: 0.1rem;
+	font-size: 1.5rem;
+
+	&:hover {
+		background: color-mix(in srgb, var(--color), transparent 90%);
+	}
+
+	&:active {
+		background: color-mix(in srgb, var(--color), transparent 80%);
+	}
+
+	@include icon.icon {
+		font-size: 1.5rem;
+	}
+}
