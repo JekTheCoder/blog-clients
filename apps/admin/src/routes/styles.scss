@@ -1,0 +1,9 @@
+@use '~ui/src/theme/theme';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	@include theme.theme();
+}
