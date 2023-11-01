@@ -1,6 +1,4 @@
 <script lang="ts">
-	import MatButton from '$lib/modules/ui/button/components/MatButton.svelte';
-	import { ButtonDesign } from '$lib/modules/ui/button/type';
 	import Icon from '$lib/modules/ui/icon/Icon.svelte';
 	import { createEventDispatcher } from 'svelte';
 
@@ -22,21 +20,21 @@
 </script>
 
 <div class="w-full flex gap-x-2">
-	<MatButton design={ButtonDesign.Icon}>
+	<button class="button icon">
 		<Icon icon="iconamoon:like-thin" />
-	</MatButton>
+	</button>
 
-	<MatButton design={ButtonDesign.Icon}>
+	<button class="button icon">
 		<Icon icon="iconamoon:dislike-thin" />
-	</MatButton>
+	</button>
 
-	<MatButton on:click={(e) => dispatch('replyClick', e)}>Reply</MatButton>
+	<button class="button basic" on:click={(e) => dispatch('replyClick', e)}>Reply</button>
 
-	<MatButton on:click={onRepliesClick} disabled={!hasReplies}>
+	<button class="button basic" on:click={onRepliesClick} disabled={!hasReplies}>
 		<Icon
 			icon="mdi:menu-down"
 			class={'transition-transform ' + (repliesChecked ? 'rotate-0' : 'rotate-180')}
 		/>
 		Replies
-	</MatButton>
+	</button>
 </div>

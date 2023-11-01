@@ -1,10 +1,11 @@
-@use '~ui/src/theme/theme';
+@use '~ui/src/theme';
 @forward '~ui/src/button';
+@forward '~ui/src/link';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-	@include theme.theme();
+	@include theme.colors();
 }

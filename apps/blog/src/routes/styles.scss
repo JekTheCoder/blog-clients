@@ -1,5 +1,8 @@
+@use '~ui/src/theme';
+
+@forward '~ui/src/button';
+
 @forward '../lib/modules/ui/form-field/styles/form-field.scss';
-@forward '../lib/modules/ui/button/styles/button.scss';
 @forward '../lib/modules/ui/link/styles/link.scss';
 @forward '../lib/modules/ui/font/styles.scss';
 
@@ -8,43 +11,5 @@
 @tailwind utilities;
 
 :root {
-	--primary-color: theme('colors.violet.600');
-	--primary-light-color: theme('colors.violet.400');
-	--primary-disabled-color: theme('colors.violet.100');
-	--primary-hover-color: theme('colors.violet.700');
-	--primary-active-color: theme('colors.violet.800');
-
-	--accent-color: theme('colors.ubuntu.500');
-	--accent-light-color: theme('colors.ubuntu.400');
-	--accent-disabled-color: theme('colors.ubuntu.100');
-	--accent-hover-color: theme('colors.ubuntu.700');
-	--accent-active-color: theme('colors.ubuntu.800');
-
-	--disabled-color: theme('colors.gray.400');
-
-	--warning-color: theme('colors.red.500');
-	--inactive-color: theme('colors.gray.200');
-
-	--primary-text-color: theme('colors.black');
-	--primary-disabled-text-color: theme('colors.gray.400');
-
-	--secondary-text-color: theme('colors.gray.600');
-	--secondary-disabled-text-color: theme('colors.gray.400');
-
-
-	--alter-text-color: theme('colors.white');
-	--alter-disabled-text-color: theme('colors.gray.400');
-
-	--alter-secondary-text-color: theme('colors.gray.600');
-	--alter-secondary-disabled-text-color: theme('colors.gray.400');
-
-	--app-bg-color: theme('colors.bone');
-
-	--card-bg-color: theme('colors.white');
-	--card-radius: 10px;
-	--card-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-	--button-radius: 40px;
-	--button-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	--button-active-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+	@include theme.colors();
 }

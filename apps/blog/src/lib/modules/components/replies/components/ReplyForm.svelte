@@ -1,10 +1,7 @@
 <script lang="ts">
 	import type { ReplyCreate } from '$lib/backend/api/blogs/comments/replies/create-one-reply';
-	import MatButton from '$lib/modules/ui/button/components/MatButton.svelte';
-	import { ButtonDesign } from '$lib/modules/ui/button/type';
 	import OutlineFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
 	import Textarea from '$lib/modules/ui/text-field/components/Textarea.svelte';
-	import { ThemeColor } from '$lib/modules/ui/theme/type';
 	import { createEventDispatcher } from 'svelte';
 	import type { FormEventHandler } from 'svelte/elements';
 
@@ -34,9 +31,9 @@
 	</OutlineFormField>
 
 	<footer class="flex justify-end gap-x-2">
-		<MatButton type="button" on:click={(e) => dispatch('cancel', e)}>Cancel</MatButton>
-		<MatButton color={ThemeColor.Primary} design={ButtonDesign.Raised} type="submit"
-			>Reply</MatButton
-		>
+		<button class="button basic" type="button" on:click={(e) => dispatch('cancel', e)}>
+			Cancel
+		</button>
+		<button class="button raised primary" type="submit">Reply</button>
 	</footer>
 </form>

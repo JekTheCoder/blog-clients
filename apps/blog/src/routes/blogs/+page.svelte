@@ -3,9 +3,7 @@
 	import type { PageData } from './$types';
 	import Header from '$lib/modules/ui/main-layout/Header.svelte';
 	import PageLayout from '$lib/modules/ui/main-layout/PageLayout.svelte';
-	import MatButton from '$lib/modules/ui/button/components/MatButton.svelte';
 	import Icon from '$lib/modules/ui/icon/Icon.svelte';
-	import { ButtonDesign } from '$lib/modules/ui/button/type';
 	import { page as svPage } from '$app/stores';
 	import { getAllBlogs } from '$lib/backend/api/blogs/get-all-blogs';
 	import { PAGE_SIZE } from './data';
@@ -49,13 +47,12 @@
 	</div>
 
 	<footer class="container mx-auto my-8" slot="footer">
-		<MatButton design={ButtonDesign.Icon} on:click={() => updatePage(page - 1)}>
+		<button class="button icon" on:click={() => updatePage(page - 1)}>
 			<Icon icon="ooui:next-rtl" />
-		</MatButton>
-
-		<MatButton design={ButtonDesign.Icon} on:click={() => updatePage(page + 1)}>
+		</button>
+		<button class="button icon" on:click={() => updatePage(page - 1)}>
 			<Icon icon="ooui:next-ltr" />
-		</MatButton>
+		</button>
 	</footer>
 </PageLayout>
 

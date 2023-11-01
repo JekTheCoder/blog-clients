@@ -1,4 +1,4 @@
-@mixin theme() {
+@mixin colors() {
   --primary-color: theme('colors.violet.700');
   --primary-hover-color: theme('colors.violet.600');
   --primary-active-color: theme('colors.violet.800');
