@@ -1,15 +1,15 @@
 @mixin theme() {
-  --primary-color: theme('colors.violet.600');
+  --primary-color: theme('colors.violet.700');
+  --primary-hover-color: theme('colors.violet.600');
+  --primary-active-color: theme('colors.violet.800');
   --primary-light-color: theme('colors.violet.400');
   --primary-disabled-color: theme('colors.violet.100');
-  --primary-hover-color: theme('colors.violet.700');
-  --primary-active-color: theme('colors.violet.800');
 
   --accent-color: theme('colors.ubuntu.500');
+  --accent-hover-color: theme('colors.ubuntu.400');
+  --accent-active-color: theme('colors.ubuntu.600');
   --accent-light-color: theme('colors.ubuntu.400');
   --accent-disabled-color: theme('colors.ubuntu.100');
-  --accent-hover-color: theme('colors.ubuntu.700');
-  --accent-active-color: theme('colors.ubuntu.800');
 
   --disabled-color: theme('colors.gray.400');
 
@@ -35,6 +35,4 @@
   --card-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   --button-radius: 40px;
-  --button-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  --button-active-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }

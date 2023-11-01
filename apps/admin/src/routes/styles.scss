@@ -1,4 +1,5 @@
 @use '~ui/src/theme/theme';
+@forward '~ui/src/button';
 
 @tailwind base;
 @tailwind components;
