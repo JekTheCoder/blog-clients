@@ -22,7 +22,7 @@
 			>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea officiis aliquam odio
 			consequuntur distinctio dolore omnis quo necessitatibus! Neque, doloribus?</button
 		>
-		<a class="button primary outlined"
+		<a class="button primary outlined" href={null}
 			>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea officiis aliquam odio
 			consequuntur distinctio dolore omnis quo necessitatibus! Neque, doloribus?</a
 		>
