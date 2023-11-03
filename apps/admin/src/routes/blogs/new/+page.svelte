@@ -2,6 +2,8 @@
 	import { buildWs } from '$lib/backend/api';
 	import { onMount } from 'svelte';
 
+	import { BlogFrame } from 'blog-frame';
+
 	let content = '';
 
 	onMount(() => {
@@ -14,5 +16,5 @@
 </script>
 
 <main class="container mx-auto">
-	{@html content}
+	<BlogFrame {content} />
 </main>
