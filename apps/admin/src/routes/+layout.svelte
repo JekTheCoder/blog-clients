@@ -1,5 +1,13 @@
 <script>
 	import './styles.scss';
+	import { setAuthHandler } from 'backend';
+
+	setAuthHandler({
+		redirectLogin: () => {
+
+
+		}
+	})
 </script>
 
 <header class="container mx-auto">
