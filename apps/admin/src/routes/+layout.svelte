@@ -1,5 +1,16 @@
 <script>
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import './styles.scss';
+	import { setAuthHandler } from 'backend';
+
+	setAuthHandler({
+		redirectLogin: () => {
+			const pathname = $page.url.pathname;
+			const parsed = encodeURI(pathname);
+			return goto('/auth/sign-in?redirect=' + parsed);
+		}
+	})
 </script>
 
 <header class="container mx-auto">
