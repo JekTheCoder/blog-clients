@@ -17,13 +17,16 @@
     "eslint-config-custom": "*"
   },
   "exports": {
-		".": "./src/index.ts",
+    ".": "./src/index.ts",
     "./*": "./src/routes/*/index.ts"
   },
   "typesVersions": {
     "*": {
+      "categories": [
+        "./src/routes/categories//index.ts"
+      ],
       "*": [
-        "./src/routes/*/index.ts"
+        "./src/index.ts"
       ]
     }
   }
