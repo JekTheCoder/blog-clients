@@ -17,7 +17,8 @@
 	},
 	"dependencies": {
 		"ui": "workspace:*",
-		"blog-frame": "workspace:*"
+		"blog-frame": "workspace:*",
+		"backend": "workspace:*"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",

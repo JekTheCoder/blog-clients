@@ -5,6 +5,7 @@
 	import { BlogFrame } from 'blog-frame';
 	import type { MessageResult, WRequest } from './type';
 	import { blog } from './blog';
+	import { getAll } from 'backend/categories';
 
 	let content = blog;
 
@@ -43,6 +44,8 @@
 
 		ws.send(JSON.stringify(req));
 	};
+
+	const categories = getAll().then(console.log);
 </script>
 
 <header class="container mx-auto">
