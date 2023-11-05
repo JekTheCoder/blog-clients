@@ -3,7 +3,7 @@
 	export let content: string;
 </script>
 
-<article>
+<article class="blog-frame">
 	{@html content} 
 </article>
 
