@@ -15,12 +15,7 @@
     "svelte": "^3.9.2"
   },
   "exports": {
-    ".": {
-      "require": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts",
-      "types": "./src/index.ts"
-    },
+    ".": "./src/index.ts",
     "./*": {
       "require": "./src/*/index.ts",
       "import": "./src/*/index.ts",
