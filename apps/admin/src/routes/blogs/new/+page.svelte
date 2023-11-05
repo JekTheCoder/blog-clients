@@ -47,13 +47,6 @@
 
 	const categories = getAll().then(console.log);
 </script>
-
-<header class="container mx-auto">
-	<nav class="flex gap-x-2 p-4">
-		<a href="/" class="link">Home</a>
-	</nav>
-</header>
-
 <section />
 
 <main class="container mx-auto">
