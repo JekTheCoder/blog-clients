@@ -1,13 +1,17 @@
 import { tokens, type AccessToken, setTokens } from 'globals/user';
 import type { InternalAxiosRequestConfig } from 'axios';
-import { deserializeJwt } from '../jwt/deserialize';
-import { refresh } from '../routes/auth/refresh';
+import { refresh } from '../../routes/auth/refresh';
+import { deserializeJwt } from '../../jwt/deserialize';
+
+import {} from 'svelte';
+import { authHandler } from './auth-handler';
 
 export const authInterceptor: (
   config: InternalAxiosRequestConfig
 ) => Promise<InternalAxiosRequestConfig> = async (config) => {
+
   if (!tokens) {
-    redirectToLogin();
+		authHandler.redirectLogin()
     return Promise.reject();
   }
 
@@ -22,8 +26,7 @@ export const authInterceptor: (
 
       setTokens(token, refreshToken);
     } catch (e) {
-      const pathname = '';
-      redirectToLogin(pathname);
+			authHandler.redirectLogin()
     }
   }
 
@@ -31,7 +34,3 @@ export const authInterceptor: (
 
   return config;
 };
-
-function redirectToLogin(pathname = '/') {
-	''
-}

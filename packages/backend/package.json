@@ -14,10 +14,10 @@
     "globals": "workspace:*"
   },
   "devDependencies": {
-    "eslint-config-custom": "*",
-    "svelte": "^3.9.2"
+    "eslint-config-custom": "*"
   },
   "exports": {
+		".": "./src/index.ts",
     "./*": "./src/routes/*/index.ts"
   },
   "typesVersions": {
