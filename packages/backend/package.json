@@ -23,10 +23,10 @@
   "typesVersions": {
     "*": {
       "categories": [
-        "./src/routes/categories//index.ts"
+        "./src/routes/categories/index.ts"
       ],
 			"auth/login": [
-				"./src/routes/auth/login.ts",
+				"./src/routes/auth/login.ts"
 			],
       "*": [
         "./src/index.ts"
