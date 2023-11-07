@@ -38,7 +38,7 @@
 </script>
 
 <main class="grid place-content-center h-screen">
-	<article class="card">
+	<article class="card card-padding">
 		<header>
 			<h1>Sign in</h1>
 
