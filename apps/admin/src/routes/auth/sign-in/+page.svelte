@@ -4,13 +4,7 @@
 	import type { FormEventHandler } from 'svelte/elements';
 	import { goto } from '$app/navigation';
 	import { setTokens, user } from 'globals/user';
-
-	type LoginResponse = {
-		[key: string]: any;
-	}
-	function login(...args: any) {
-		return Promise.resolve({} as any);
-	}
+	import { login, type LoginResponse } from 'backend/auth/login';
 
 	const redirectUrl = $page.url.searchParams.get('redirect') ?? '/';
 
@@ -28,12 +22,9 @@
 		const username = formData.get('username')?.toString() ?? '';
 		const password = formData.get('password')?.toString() ?? '';
 
-		login(username, password).then((result) =>
-			result.match({
-				ok: handleLogin,
-				err: () => (invalid = true)
-			})
-		);
+		login(username, password)
+			.then(handleLogin)
+			.catch(() => (invalid = true));
 	};
 </script>
 
