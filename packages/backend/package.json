@@ -25,6 +25,9 @@
       "categories": [
         "./src/routes/categories//index.ts"
       ],
+			"auth/login": [
+				"./src/routes/auth/login.ts",
+			],
       "*": [
         "./src/index.ts"
       ]
