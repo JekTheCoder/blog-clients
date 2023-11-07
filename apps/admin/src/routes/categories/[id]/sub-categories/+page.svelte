@@ -4,7 +4,6 @@
 	import { create } from 'backend/categories';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
-	import CategoryPromise from './CategoryPromise.svelte';
 
 	export let data: PageData;
 
@@ -58,20 +57,14 @@
 	<ul>
 		{#each $creationCategories as category (category.key)}
 			<li>
-				<CategoryPromise status={category.status} name={category.data.name} />
+				<!-- <CategoryPromise status={category.status} name={category.data.name} /> -->
 			</li>
 		{/each}
 
-		{#each data.categories as category (category.id)}
-			<li class="flex justify-between">
-				<span>
-					{category.name}
-				</span>
-
-				<div>
-					<a href="categories/{category.id}/sub-categories" class="link"> SubCategories </a>
-				</div>
-			</li>
-		{/each}
+		<!-- {#each data.categories as category (category.id)} -->
+		<!-- 	<li class="flex justify-between"> -->
+		<!-- 		{category.name} -->
+		<!-- 	</li> -->
+		<!-- {/each} -->
 	</ul>
 </main>
