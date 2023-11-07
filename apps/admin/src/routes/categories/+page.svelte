@@ -4,6 +4,8 @@
 	import { create } from 'backend/categories';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
+	import { FlashingDots } from 'ui/dots';
+	import CategoryPromise from './CategoryPromise.svelte';
 
 	export let data: PageData;
 
@@ -37,6 +39,8 @@
 
 			return categories;
 		});
+
+		form.reset();
 	};
 </script>
 
@@ -55,23 +59,13 @@
 	<ul>
 		{#each $creationCategories as category (category.key)}
 			<li>
-				<span>
-					{category.data.name}
-				</span>
-
-				<span>
-					{#await category.status}
-						...
-					{:then result}
-						{result}
-					{/await}
-				</span>
+				<CategoryPromise status={category.status} name={category.data.name} />
 			</li>
 		{/each}
 
-		{#each data.categories as category}
+		{#each data.categories as category (category.id)}
 			<li>
-				{category}
+				{category.name}
 			</li>
 		{/each}
 	</ul>
