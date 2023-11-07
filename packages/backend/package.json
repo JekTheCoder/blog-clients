@@ -18,6 +18,7 @@
   },
   "exports": {
     ".": "./src/index.ts",
+		"./auth/*": "./src/routes/auth/*",
     "./*": "./src/routes/*/index.ts"
   },
   "typesVersions": {
