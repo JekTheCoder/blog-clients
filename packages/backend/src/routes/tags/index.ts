@@ -13,6 +13,7 @@ export function getAll(categoryId: string) {
 
 export type TagRequest = {
   name: string;
+	color: string
 };
 
 export function createOne(categoryId: string, payload: TagRequest) {
