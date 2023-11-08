@@ -44,6 +44,8 @@
 </script>
 
 <main class="container mx-auto grid gap-4">
+	<h1>Categories</h1>
+
 	<form class="grid gap-4" on:submit|preventDefault={handleSubmit}>
 		<OutlineFormField>
 			<label for="">Name</label>
@@ -68,8 +70,9 @@
 					{category.name}
 				</span>
 
-				<div>
+				<div class="flex gap-x-2">
 					<a href="categories/{category.id}/sub-categories" class="link"> SubCategories </a>
+					<a href="categories/{category.id}/tags" class="link"> Tags </a>
 				</div>
 			</li>
 		{/each}

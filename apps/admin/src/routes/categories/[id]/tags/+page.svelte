@@ -43,7 +43,7 @@
 </script>
 
 <main class="container mx-auto grid gap-4">
-	<h1>SubCategories</h1>
+	<h1>Tags</h1>
 
 	<form class="grid gap-4" on:submit|preventDefault={handleSubmit}>
 		<OutlineFormField>
