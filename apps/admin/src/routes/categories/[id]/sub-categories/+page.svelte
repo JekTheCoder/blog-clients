@@ -1,11 +1,14 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { OutlineFormField } from 'ui/form-field';
-	import { create } from 'backend/categories';
+	import { createOne } from 'backend/sub-categories';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
+	import { page } from '$app/stores';
+	import CategoryPromise from '$lib/components/category/CategoryPromise.svelte';
 
 	export let data: PageData;
+	let categoryId = $page.params.id;
 
 	type CategoryCreation = {
 		key: number;
@@ -22,7 +25,7 @@
 		const name = formData.get('name');
 		if (!name) return;
 
-		const createReq = create({
+		const createReq = createOne(categoryId, {
 			name: name.toString()
 		});
 
@@ -59,14 +62,14 @@
 	<ul>
 		{#each $creationCategories as category (category.key)}
 			<li>
-				<!-- <CategoryPromise status={category.status} name={category.data.name} /> -->
+				<CategoryPromise status={category.status} name={category.data.name} />
 			</li>
 		{/each}
 
-		<!-- {#each data.categories as category (category.id)} -->
-		<!-- 	<li class="flex justify-between"> -->
-		<!-- 		{category.name} -->
-		<!-- 	</li> -->
-		<!-- {/each} -->
+		{#each data.subCategories as subCategory (subCategory.id)}
+			<li class="flex justify-between">
+				{subCategory.name}
+			</li>
+		{/each}
 	</ul>
 </main>

@@ -4,7 +4,7 @@
 	import { create } from 'backend/categories';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
-	import CategoryPromise from './CategoryPromise.svelte';
+	import CategoryPromise from '$lib/components/category/CategoryPromise.svelte';
 
 	export let data: PageData;
 
