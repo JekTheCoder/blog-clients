@@ -19,3 +19,11 @@ export type CategoryRequest = {
 export function create(category: CategoryRequest) {
   return authClient.post<IdReturn>(apiUrl + '/categories', category);
 }
+
+export function update(id: string, category: CategoryRequest) {
+	return authClient.put<IdReturn>(apiUrl + '/categories/' + id, category);
+}
+
+export function deleteOne(id: string) {
+	return authClient.delete<IdReturn>(apiUrl + '/categories/' + id);	
+}
