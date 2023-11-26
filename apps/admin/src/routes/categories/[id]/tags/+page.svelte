@@ -5,6 +5,7 @@
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
 	import { page } from '$app/stores';
+	import TagPromise from './TagPromise.svelte';
 
 	export let data: PageData;
 	let id = $page.params.id;
@@ -15,7 +16,7 @@
 		data: TagRequest;
 	};
 
-	const creationCategories = writable<CategoryCreation[]>([]);
+	const creationTags = writable<CategoryCreation[]>([]);
 
 	const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = ({ currentTarget: form }) => {
 		const formData = new FormData(form);
@@ -29,7 +30,7 @@
 		};
 		const createReq = createOne(id, req);
 
-		creationCategories.update((categories) => {
+		creationTags.update((categories) => {
 			categories.push({
 				key: Math.random(),
 				status: createReq,
@@ -65,9 +66,9 @@
 	</form>
 
 	<ul>
-		{#each $creationCategories as category (category.key)}
+		{#each $creationTags as tag (tag.key)}
 			<li>
-				<!-- <CategoryPromise status={category.status} name={category.data.name} /> -->
+				<TagPromise status={tag.status} name={tag.data.name} color={tag.data.color} />
 			</li>
 		{/each}
 
