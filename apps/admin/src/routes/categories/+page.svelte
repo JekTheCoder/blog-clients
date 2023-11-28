@@ -44,7 +44,13 @@
 	};
 
 	const spawnDelete = ({ id }: Category) => {
-		deleteOne(id);
+		const i = data.categories.findIndex((c) => c.id === id);
+		if (i === -1) return;
+
+		deleteOne(id).then(() => {
+			data.categories.splice(i, 1);
+			data.categories = data.categories;
+		});
 	};
 </script>
 
