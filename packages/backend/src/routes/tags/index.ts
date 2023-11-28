@@ -19,3 +19,7 @@ export type TagRequest = {
 export function createOne(categoryId: string, payload: TagRequest) {
   return axios.post(`${apiUrl}/categories/${categoryId}/tags/`, payload);
 }
+
+export function deleteOne(id: string) {
+	return axios.delete(`${apiUrl}/tags/${id}`);
+}

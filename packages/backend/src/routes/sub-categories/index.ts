@@ -17,3 +17,7 @@ export type SubCategoryRequest = {
 export function createOne(categoryId: string, payload: SubCategoryRequest) {
   return axios.post(`${apiUrl}/categories/${categoryId}/sub-categories/`, payload);
 }
+
+export function deleteOne(subCategoryId: string) {
+	return axios.delete(`${apiUrl}/sub-categories/${subCategoryId}/`);
+}
