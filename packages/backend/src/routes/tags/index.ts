@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { apiUrl } from '../../config';
+import { authClient } from '../../client';
 
 export type Tag = {
   id: string;
@@ -17,9 +18,9 @@ export type TagRequest = {
 };
 
 export function createOne(categoryId: string, payload: TagRequest) {
-  return axios.post(`${apiUrl}/categories/${categoryId}/tags/`, payload);
+  return authClient.post(`${apiUrl}/categories/${categoryId}/tags/`, payload);
 }
 
 export function deleteOne(id: string) {
-	return axios.delete(`${apiUrl}/tags/${id}`);
+	return authClient.delete(`${apiUrl}/tags/${id}`);
 }

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { apiUrl } from '../../config';
+import { authClient } from '../../client';
 
 export type SubCategory = {
   id: string;
@@ -15,9 +16,9 @@ export type SubCategoryRequest = {
 };
 
 export function createOne(categoryId: string, payload: SubCategoryRequest) {
-  return axios.post(`${apiUrl}/categories/${categoryId}/sub-categories/`, payload);
+  return authClient.post(`${apiUrl}/categories/${categoryId}/sub-categories/`, payload);
 }
 
 export function deleteOne(subCategoryId: string) {
-	return axios.delete(`${apiUrl}/sub-categories/${subCategoryId}/`);
+  return authClient.delete(`${apiUrl}/sub-categories/${subCategoryId}/`);
 }
