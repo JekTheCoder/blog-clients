@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { OutlineFormField } from 'ui/form-field';
-	import { createOne } from 'backend/sub-categories';
+	import { createOne, type SubCategory, deleteOne } from 'backend/sub-categories';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
 	import { page } from '$app/stores';
 	import CategoryPromise from '$lib/components/category/CategoryPromise.svelte';
+	import { Icon } from 'ui/icon';
 
 	export let data: PageData;
 	let categoryId = $page.params.id;
@@ -43,6 +44,16 @@
 
 		form.reset();
 	};
+
+	const spawnDelete = ({ id }: SubCategory) => {
+		const i = data.subCategories.findIndex((c) => c.id === id);
+		if (i === -1) return;
+
+		deleteOne(id).then(() => {
+			data.subCategories.splice(i, 1);
+			data.subCategories = data.subCategories;
+		});
+	};
 </script>
 
 <main class="container mx-auto grid gap-4">
@@ -68,7 +79,19 @@
 
 		{#each data.subCategories as subCategory (subCategory.id)}
 			<li class="flex justify-between">
-				{subCategory.name}
+				<span>
+					{subCategory.name}
+				</span>
+
+				<div class="flex gap-x-2">
+					<button class="button icon accent">
+						<Icon icon="material-symbols:edit" />
+					</button>
+
+					<button class="button icon warn" on:click={() => spawnDelete(subCategory)}>
+						<Icon icon="material-symbols:delete" />
+					</button>
+				</div>
 			</li>
 		{/each}
 	</ul>

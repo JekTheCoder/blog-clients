@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { OutlineFormField } from 'ui/form-field';
-	import { createOne, type TagRequest } from 'backend/tags';
+	import { createOne, type Tag, type TagRequest, deleteOne } from 'backend/tags';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
 	import { page } from '$app/stores';
 	import TagPromise from './TagPromise.svelte';
+	import { Icon } from 'ui/icon';
 
 	export let data: PageData;
 	let id = $page.params.id;
@@ -42,6 +43,16 @@
 
 		form.reset();
 	};
+
+	const spawnDelete = ({ id }: Tag) => {
+		const i = data.tags.findIndex((c) => c.id === id);
+		if (i === -1) return;
+
+		deleteOne(id).then(() => {
+			data.tags.splice(i, 1);
+			data.tags = data.tags;
+		});
+	};
 </script>
 
 <main class="container mx-auto grid gap-4">
@@ -74,7 +85,19 @@
 
 		{#each data.tags as tag (tag.id)}
 			<li class="flex justify-between">
-				{tag.name}
+				<span>
+					{tag.name}
+				</span>
+
+				<div class="flex gap-x-2">
+					<button class="button icon accent">
+						<Icon icon="material-symbols:edit" />
+					</button>
+
+					<button class="button icon warn" on:click={() => spawnDelete(tag)}>
+						<Icon icon="material-symbols:delete" />
+					</button>
+				</div>
 			</li>
 		{/each}
 	</ul>
