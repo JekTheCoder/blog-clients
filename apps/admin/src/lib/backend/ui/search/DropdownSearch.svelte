@@ -51,6 +51,8 @@
 
 	const actionHandler: EventHandler<KeyboardEvent, HTMLInputElement> = (e) => {
 		if (e.key !== 'Enter') return;
+
+		e.preventDefault();
 		const [first] = filtered;
 
 		if (!first) return;
@@ -70,7 +72,7 @@
 		on:focusin={() => (focus = true)}
 		on:focusout={() => (focus = false)}
 		bind:value={content}
-		on:keyup={actionHandler}
+		on:keydown={actionHandler}
 		bind:this={input}
 	/>
 
