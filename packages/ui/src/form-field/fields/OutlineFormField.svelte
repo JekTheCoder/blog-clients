@@ -1,40 +1,46 @@
 <script lang="ts">
-	import '../styles/form-field.scss';
-	let klass = '';
-	export { klass as class };
+  import '../styles/form-field.scss';
+  let klass = '';
+  export { klass as class };
 </script>
 
 <div class={'form-field grid ' + klass}>
-	<slot />
+  <div class="wrapper">
+    <slot />
+  </div>
 </div>
 
 <style lang="scss">
-	@mixin outline() {
-		border-radius: var(--radius, 0.5rem);
-		outline: 1px solid var(--inactive-color);
+  @mixin outline() {
+    border-radius: var(--radius, 0.5rem);
+    outline: 1px solid var(--inactive-color);
 
-		padding: 0.2rem 0.5rem;
-	}
+    padding: 0.2rem 0.5rem;
+  }
 
-	@mixin focus-outline() {
-		outline: 2px solid var(--active-color);
-	}
+  @mixin focus-outline() {
+    outline: 2px solid var(--active-color);
+  }
 
-	.form-field :global(> input) {
-		@include outline();
+  .wrapper {
+    @include outline();
+    display: grid;
 
-		&:active,
-		&:focus {
-			@include focus-outline();
+    &:focus-within {
+      @include focus-outline();
+    }
+  }
+
+  .form-field {
+    :global(input),
+    :global(textarea),
+    :global(select) {
+      outline: none;
+      border: none;
+    }
+
+		:global(select) {
+		background-color: transparent;	
 		}
-	}
-
-	.form-field :global(> textarea) {
-		@include outline();
-
-		&:active,
-		&:focus {
-			@include focus-outline();
-		}
-	}
+  }
 </style>
