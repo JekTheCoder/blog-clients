@@ -12,6 +12,7 @@
 	import { getAll as getAllSubCategories, type SubCategory } from 'backend/sub-categories';
 	import DropdownSearch from '$lib/backend/ui/search/DropdownSearch.svelte';
 	import { getAll as getAllTags, type Tag } from 'backend/tags';
+	import ItemSelectorList from './ItemSelectorList.svelte';
 
 	export let data: PageData;
 	let content = blog;
@@ -55,7 +56,10 @@
 	const categorySelected = writable(data.categories[0]?.id ?? null);
 
 	let subCategories: SubCategory[] = [];
+	let subCategoriesSelected: SubCategory[] = [];
 	$: {
+		subCategoriesSelected.length = 0;
+
 		if ($categorySelected) {
 			subCategories.length = 0;
 			getAllSubCategories($categorySelected).then((res) => {
@@ -65,7 +69,10 @@
 	}
 
 	let tags: Tag[] = [];
+	let tagsSelected: Tag[] = [];
 	$: {
+		tagsSelected.length = 0;
+
 		if ($categorySelected) {
 			tags.length = 0;
 			getAllTags($categorySelected).then((res) => {
@@ -74,43 +81,39 @@
 		}
 	}
 
-
-	const onSubmit: EventHandler<SubmitEvent, HTMLFormElement> = (e) => {};
+	const onSubmit: EventHandler<SubmitEvent, HTMLFormElement> = (e) => {
+		console.log({ tagsSelected, subCategoriesSelected });
+	};
 </script>
 
 <section />
 
 <main class="container mx-auto grid gap-4">
-	<BlogFrame {content} />
+	<BlogFrame {content} class="min-w-0" />
 
 	<hr />
 
-	<form action="" class="grid grid-cols-3 gap-x-4" on:submit|preventDefault={onSubmit}>
-		<OutlineFormField>
-			<select name="categoryId" on:change={(e) => categorySelected.set(e.target?.value ?? null)}>
-				{#each data.categories as category (category.id)}
-					<option value={category.id}>{category.name}</option>
-				{/each}
-			</select>
-		</OutlineFormField>
+	<form class="grid gap-4" on:submit|preventDefault={onSubmit}>
+		<div class="grid grid-cols-3 gap-x-4">
+			<div>
+				<OutlineFormField>
+					<select
+						name="categoryId"
+						on:change={(e) => categorySelected.set(e.target?.value ?? null)}
+					>
+						{#each data.categories as category (category.id)}
+							<option value={category.id}>{category.name}</option>
+						{/each}
+					</select>
+				</OutlineFormField>
+			</div>
 
-		<div>
-			<OutlineFormField>
-				<DropdownSearch items={subCategories} />
-			</OutlineFormField>
-			<ul />
+			<ItemSelectorList items={subCategories} bind:selected={subCategoriesSelected} />
+			<ItemSelectorList items={tags} bind:selected={tagsSelected} />
 		</div>
 
-		<div>
-			<OutlineFormField>
-				<DropdownSearch items={tags} />
-			</OutlineFormField>
-
-			<ul />
-		</div>
+		<footer class="flex justify-end">
+			<button type="submit" class="button primary raised">Save</button>
+		</footer>
 	</form>
-
-	<footer class="flex justify-end">
-		<button class="button primary raised" on:click={handleSave}>Save</button>
-	</footer>
 </main>
