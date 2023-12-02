@@ -1,57 +1,33 @@
 <script lang="ts">
-	import { buildWs } from '$lib/backend/api';
 	import { onMount } from 'svelte';
 
 	import { BlogFrame } from 'blog-frame';
-	import type { MessageResult, WRequest } from './type';
 	import { blog } from './blog';
 	import type { PageData } from './$types';
 	import { OutlineFormField } from 'ui/form-field';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
 	import { getAll as getAllSubCategories, type SubCategory } from 'backend/sub-categories';
-	import DropdownSearch from '$lib/backend/ui/search/DropdownSearch.svelte';
 	import { getAll as getAllTags, type Tag } from 'backend/tags';
 	import ItemSelectorList from './ItemSelectorList.svelte';
+	import { BlogRwClient } from '$lib/blogs/blog-rw-client';
 
 	export let data: PageData;
 	let content = blog;
 
-	let ws: WebSocket;
+	let client: BlogRwClient;
 
-	// onMount(() => {
-	// 	ws = buildWs();
-	//
-	// 	ws.addEventListener('message', (event) => {
-	// 		handleMessage(JSON.parse(event.data));
-	// 	});
-	//
-	// 	return () => ws.close();
-	// });
+	onMount(() => {
+		client = new BlogRwClient();
+		const onHtml = client.onHtml();
 
-	const handleMessage = (result: MessageResult) => {
-		switch (result.type) {
-			case 'ok':
-				switch (result.value.type) {
-					case 'html':
-						content = result.value.value;
-						break;
-					case 'content':
-						break;
-				}
-				break;
-			case 'err':
-				break;
-		}
-	};
+		const sub = onHtml.subscribe((html) => (content = html));
 
-	const handleSave = () => {
-		let req: WRequest = {
-			type: 'getContent'
+		return () => {
+			client.close();
+			sub();
 		};
-
-		ws.send(JSON.stringify(req));
-	};
+	});
 
 	const categorySelected = writable(data.categories[0]?.id ?? null);
 
@@ -81,8 +57,13 @@
 		}
 	}
 
+	const spawnSave = async () => {
+		const content = await client.getContent();
+		console.log({ tagsSelected, subCategoriesSelected, content });
+	};
+
 	const onSubmit: EventHandler<SubmitEvent, HTMLFormElement> = (e) => {
-		console.log({ tagsSelected, subCategoriesSelected });
+		spawnSave();
 	};
 </script>
 
