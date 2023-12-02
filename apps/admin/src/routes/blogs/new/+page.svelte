@@ -11,11 +11,14 @@
 	import { getAll as getAllTags, type Tag } from 'backend/tags';
 	import ItemSelectorList from './ItemSelectorList.svelte';
 	import { BlogRwClient } from '$lib/blogs/blog-rw-client';
+	import { createOne } from 'backend/blogs';
 
 	export let data: PageData;
 	let content = blog;
 
 	let client: BlogRwClient;
+
+	let save: Promise<unknown> | null = null;
 
 	onMount(() => {
 		client = new BlogRwClient();
@@ -57,13 +60,27 @@
 		}
 	}
 
-	const spawnSave = async () => {
+	const spawnSave = async (categoryId: string, tags: Tag[], subCategories: SubCategory[]) => {
 		const content = await client.getContent();
-		console.log({ tagsSelected, subCategoriesSelected, content });
+
+		return createOne({
+			content,
+			categoryId,
+			tags: tags.map((tag) => tag.id),
+			subCategories: subCategories.map((subCategory) => subCategory.id)
+		});
 	};
 
 	const onSubmit: EventHandler<SubmitEvent, HTMLFormElement> = (e) => {
-		spawnSave();
+		if (subCategoriesSelected.length === 0 || tagsSelected.length === 0) {
+			return;
+		}
+
+		const data = new FormData(e.currentTarget);
+		const categoryId = data.get('categoryId')?.toString();
+		if (!categoryId) return;
+
+		save = spawnSave(categoryId, tagsSelected, subCategoriesSelected);
 	};
 </script>
 
@@ -93,7 +110,18 @@
 			<ItemSelectorList items={tags} bind:selected={tagsSelected} />
 		</div>
 
-		<footer class="flex justify-end">
+		<footer class="grid grid-cols-[1fr,auto]">
+			<div>
+				{#if save}
+					{#await save}
+						<p>Saving...</p>
+					{:then}
+						<p>Saved!</p>
+					{:catch}
+						<p>Failed to save</p>
+					{/await}
+				{/if}
+			</div>
 			<button type="submit" class="button primary raised">Save</button>
 		</footer>
 	</form>
