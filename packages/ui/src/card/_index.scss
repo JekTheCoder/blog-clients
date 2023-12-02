@@ -1,0 +1,18 @@
+@use 'card';
+
+.card {
+  @include card.card;
+}
+
+.card-x-padding {
+	@include card.card-x-padding;
+}
+
+.card-y-padding {
+	@include card.card-y-padding;
+}
+
+.card-padding {
+	@include card.card-x-padding;
+	@include card.card-y-padding;
+}

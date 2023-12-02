@@ -1,58 +1,100 @@
 <script lang="ts">
-	import { buildWs } from '$lib/backend/api';
 	import { onMount } from 'svelte';
 
 	import { BlogFrame } from 'blog-frame';
-	import type { MessageResult, WRequest } from './type';
 	import { blog } from './blog';
-	import { getAll } from 'backend/categories';
+	import type { PageData } from './$types';
+	import { OutlineFormField } from 'ui/form-field';
+	import type { EventHandler } from 'svelte/elements';
+	import { writable } from 'svelte/store';
+	import { getAll as getAllSubCategories, type SubCategory } from 'backend/sub-categories';
+	import { getAll as getAllTags, type Tag } from 'backend/tags';
+	import ItemSelectorList from './ItemSelectorList.svelte';
+	import { BlogRwClient } from '$lib/blogs/blog-rw-client';
 
+	export let data: PageData;
 	let content = blog;
 
-	let ws: WebSocket;
+	let client: BlogRwClient;
 
-	// onMount(() => {
-	// 	ws = buildWs();
-	//
-	// 	ws.addEventListener('message', (event) => {
-	// 		handleMessage(JSON.parse(event.data));
-	// 	});
-	//
-	// 	return () => ws.close();
-	// });
+	onMount(() => {
+		client = new BlogRwClient();
+		const onHtml = client.onHtml();
 
-	const handleMessage = (result: MessageResult) => {
-		switch (result.type) {
-			case 'ok':
-				switch (result.value.type) {
-					case 'html':
-						content = result.value.value;
-						break;
-					case 'content':
-						break;
-				}
-				break;
-			case 'err':
-				break;
-		}
-	};
+		const sub = onHtml.subscribe((html) => (content = html));
 
-	const handleSave = () => {
-		let req: WRequest = {
-			type: 'getContent'
+		return () => {
+			client.close();
+			sub();
 		};
+	});
 
-		ws.send(JSON.stringify(req));
+	const categorySelected = writable(data.categories[0]?.id ?? null);
+
+	let subCategories: SubCategory[] = [];
+	let subCategoriesSelected: SubCategory[] = [];
+	$: {
+		subCategoriesSelected.length = 0;
+
+		if ($categorySelected) {
+			subCategories.length = 0;
+			getAllSubCategories($categorySelected).then((res) => {
+				subCategories = res.data;
+			});
+		}
+	}
+
+	let tags: Tag[] = [];
+	let tagsSelected: Tag[] = [];
+	$: {
+		tagsSelected.length = 0;
+
+		if ($categorySelected) {
+			tags.length = 0;
+			getAllTags($categorySelected).then((res) => {
+				tags = res.data;
+			});
+		}
+	}
+
+	const spawnSave = async () => {
+		const content = await client.getContent();
+		console.log({ tagsSelected, subCategoriesSelected, content });
 	};
 
-	const categories = getAll().then(console.log);
+	const onSubmit: EventHandler<SubmitEvent, HTMLFormElement> = (e) => {
+		spawnSave();
+	};
 </script>
+
 <section />
 
-<main class="container mx-auto">
-	<BlogFrame {content} />
-</main>
+<main class="container mx-auto grid gap-4">
+	<BlogFrame {content} class="min-w-0" />
 
-<footer>
-	<button class="button primary raised" on:click={handleSave}>Save</button>
-</footer>
+	<hr />
+
+	<form class="grid gap-4" on:submit|preventDefault={onSubmit}>
+		<div class="grid grid-cols-3 gap-x-4">
+			<div>
+				<OutlineFormField>
+					<select
+						name="categoryId"
+						on:change={(e) => categorySelected.set(e.target?.value ?? null)}
+					>
+						{#each data.categories as category (category.id)}
+							<option value={category.id}>{category.name}</option>
+						{/each}
+					</select>
+				</OutlineFormField>
+			</div>
+
+			<ItemSelectorList items={subCategories} bind:selected={subCategoriesSelected} />
+			<ItemSelectorList items={tags} bind:selected={tagsSelected} />
+		</div>
+
+		<footer class="flex justify-end">
+			<button type="submit" class="button primary raised">Save</button>
+		</footer>
+	</form>
+</main>

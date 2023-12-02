@@ -1,13 +1,15 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { OutlineFormField } from 'ui/form-field';
-	import { create, type Category, deleteOne } from 'backend/categories';
+	import { createOne, type SubCategory, deleteOne } from 'backend/sub-categories';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
+	import { page } from '$app/stores';
 	import CategoryPromise from '$lib/components/category/CategoryPromise.svelte';
 	import { Icon } from 'ui/icon';
 
 	export let data: PageData;
+	let categoryId = $page.params.id;
 
 	type CategoryCreation = {
 		key: number;
@@ -24,7 +26,7 @@
 		const name = formData.get('name');
 		if (!name) return;
 
-		const createReq = create({
+		const createReq = createOne(categoryId, {
 			name: name.toString()
 		});
 
@@ -43,19 +45,19 @@
 		form.reset();
 	};
 
-	const spawnDelete = ({ id }: Category) => {
-		const i = data.categories.findIndex((c) => c.id === id);
+	const spawnDelete = ({ id }: SubCategory) => {
+		const i = data.subCategories.findIndex((c) => c.id === id);
 		if (i === -1) return;
 
 		deleteOne(id).then(() => {
-			data.categories.splice(i, 1);
-			data.categories = data.categories;
+			data.subCategories.splice(i, 1);
+			data.subCategories = data.subCategories;
 		});
 	};
 </script>
 
 <main class="container mx-auto grid gap-4">
-	<h1>Categories</h1>
+	<h1>SubCategories</h1>
 
 	<form class="grid gap-4" on:submit|preventDefault={handleSubmit}>
 		<OutlineFormField>
@@ -75,10 +77,10 @@
 			</li>
 		{/each}
 
-		{#each data.categories as category (category.id)}
+		{#each data.subCategories as subCategory (subCategory.id)}
 			<li class="flex justify-between">
 				<span>
-					{category.name}
+					{subCategory.name}
 				</span>
 
 				<div class="flex gap-x-2">
@@ -86,14 +88,9 @@
 						<Icon icon="material-symbols:edit" />
 					</button>
 
-					<button class="button icon warn" on:click={() => spawnDelete(category)}>
+					<button class="button icon warn" on:click={() => spawnDelete(subCategory)}>
 						<Icon icon="material-symbols:delete" />
 					</button>
-
-					|
-
-					<a href="categories/{category.id}/sub-categories" class="link"> SubCategories </a>
-					<a href="categories/{category.id}/tags" class="link"> Tags </a>
 				</div>
 			</li>
 		{/each}

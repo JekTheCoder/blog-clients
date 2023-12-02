@@ -1,6 +1,7 @@
 @use '~ui/src/theme';
 @forward '~ui/src/button';
 @forward '~ui/src/link';
+@forward '~ui/src/card';
 
 @tailwind base;
 @tailwind components;

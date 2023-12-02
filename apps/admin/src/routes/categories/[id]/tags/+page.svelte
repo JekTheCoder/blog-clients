@@ -1,40 +1,41 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { OutlineFormField } from 'ui/form-field';
-	import { create, type Category, deleteOne } from 'backend/categories';
+	import { createOne, type Tag, type TagRequest, deleteOne } from 'backend/tags';
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
-	import CategoryPromise from '$lib/components/category/CategoryPromise.svelte';
+	import { page } from '$app/stores';
+	import TagPromise from './TagPromise.svelte';
 	import { Icon } from 'ui/icon';
 
 	export let data: PageData;
+	let id = $page.params.id;
 
 	type CategoryCreation = {
 		key: number;
 		status: Promise<unknown>;
-		data: {
-			name: string;
-		};
+		data: TagRequest;
 	};
 
-	const creationCategories = writable<CategoryCreation[]>([]);
+	const creationTags = writable<CategoryCreation[]>([]);
 
 	const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = ({ currentTarget: form }) => {
 		const formData = new FormData(form);
 		const name = formData.get('name');
-		if (!name) return;
+		const color = formData.get('color');
+		if (!name || !color) return;
 
-		const createReq = create({
-			name: name.toString()
-		});
+		const req = {
+			name: name.toString(),
+			color: color.toString()
+		};
+		const createReq = createOne(id, req);
 
-		creationCategories.update((categories) => {
+		creationTags.update((categories) => {
 			categories.push({
 				key: Math.random(),
 				status: createReq,
-				data: {
-					name: name.toString()
-				}
+				data: req
 			});
 
 			return categories;
@@ -43,25 +44,32 @@
 		form.reset();
 	};
 
-	const spawnDelete = ({ id }: Category) => {
-		const i = data.categories.findIndex((c) => c.id === id);
+	const spawnDelete = ({ id }: Tag) => {
+		const i = data.tags.findIndex((c) => c.id === id);
 		if (i === -1) return;
 
 		deleteOne(id).then(() => {
-			data.categories.splice(i, 1);
-			data.categories = data.categories;
+			data.tags.splice(i, 1);
+			data.tags = data.tags;
 		});
 	};
 </script>
 
 <main class="container mx-auto grid gap-4">
-	<h1>Categories</h1>
+	<h1>Tags</h1>
 
 	<form class="grid gap-4" on:submit|preventDefault={handleSubmit}>
-		<OutlineFormField>
-			<label for="">Name</label>
-			<input type="text" required name="name" />
-		</OutlineFormField>
+		<div class="row gap-4">
+			<OutlineFormField>
+				<label for="">Name</label>
+				<input type="text" required name="name" />
+			</OutlineFormField>
+
+			<div class="grid gap-2">
+				<label for="">Color</label>
+				<input type="color" name="color" required />
+			</div>
+		</div>
 
 		<div class="flex gap-x-2 justify-end">
 			<button type="submit" class="button primary raised">Submit</button>
@@ -69,16 +77,16 @@
 	</form>
 
 	<ul>
-		{#each $creationCategories as category (category.key)}
+		{#each $creationTags as tag (tag.key)}
 			<li>
-				<CategoryPromise status={category.status} name={category.data.name} />
+				<TagPromise status={tag.status} name={tag.data.name} color={tag.data.color} />
 			</li>
 		{/each}
 
-		{#each data.categories as category (category.id)}
+		{#each data.tags as tag (tag.id)}
 			<li class="flex justify-between">
 				<span>
-					{category.name}
+					{tag.name}
 				</span>
 
 				<div class="flex gap-x-2">
@@ -86,16 +94,18 @@
 						<Icon icon="material-symbols:edit" />
 					</button>
 
-					<button class="button icon warn" on:click={() => spawnDelete(category)}>
+					<button class="button icon warn" on:click={() => spawnDelete(tag)}>
 						<Icon icon="material-symbols:delete" />
 					</button>
-
-					|
-
-					<a href="categories/{category.id}/sub-categories" class="link"> SubCategories </a>
-					<a href="categories/{category.id}/tags" class="link"> Tags </a>
 				</div>
 			</li>
 		{/each}
 	</ul>
 </main>
+
+<style>
+	.row {
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+	}
+</style>

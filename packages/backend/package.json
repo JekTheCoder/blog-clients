@@ -17,13 +17,29 @@
     "eslint-config-custom": "*"
   },
   "exports": {
-		".": "./src/index.ts",
+    ".": "./src/index.ts",
+		"./auth/*": "./src/routes/auth/*",
     "./*": "./src/routes/*/index.ts"
   },
   "typesVersions": {
     "*": {
+			"blogs": [
+				"./src/routes/blogs/index.ts"	
+			],
+      "categories": [
+        "./src/routes/categories/index.ts"
+      ],
+			"sub-categories": [
+				"./src/routes/sub-categories/index.ts"
+			],
+			"tags": [
+				"./src/routes/tags/index.ts"
+			],
+			"auth/login": [
+				"./src/routes/auth/login.ts"
+			],
       "*": [
-        "./src/routes/*/index.ts"
+        "./src/index.ts"
       ]
     }
   }

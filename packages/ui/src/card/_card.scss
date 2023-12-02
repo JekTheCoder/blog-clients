@@ -1,0 +1,15 @@
+@mixin card {
+  background-color: var(--card-bg-color, white);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--card-radius);
+}
+
+@mixin card-x-padding {
+	padding-left: var(--card-x-padding);
+	padding-right: var(--card-x-padding);
+}
+
+@mixin card-y-padding {
+	padding-top: var(--card-y-padding);
+	padding-bottom: var(--card-y-padding);
+}
