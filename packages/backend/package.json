@@ -23,6 +23,9 @@
   },
   "typesVersions": {
     "*": {
+			"blogs": [
+				"./src/routes/blogs/index.ts"	
+			],
       "categories": [
         "./src/routes/categories/index.ts"
       ],
