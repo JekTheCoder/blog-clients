@@ -28,7 +28,11 @@ interface AsyncStream<T> {
 }
 
 export class BlogRwClient {
-	private readonly socket = buildWs();
+	private readonly socket: WebSocket;
+
+	constructor(workspaceId: string) {
+		this.socket = buildWs(workspaceId);
+	}
 
 	onHtml(): AsyncStream<string> {
 		const subscribe = (callback: (value: string) => void) => {
@@ -46,7 +50,7 @@ export class BlogRwClient {
 
 		return {
 			subscribe
-		}
+		};
 	}
 
 	getContent(): Promise<string> {

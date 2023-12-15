@@ -14,14 +14,16 @@
 	import { createOne } from 'backend/blogs';
 
 	export let data: PageData;
-	let content = blog;
 
+	const workspaceId = crypto.randomUUID();
+
+	let content = blog;
 	let client: BlogRwClient;
 
 	let save: Promise<unknown> | null = null;
 
 	onMount(() => {
-		client = new BlogRwClient();
+		client = new BlogRwClient(workspaceId);
 		const onHtml = client.onHtml();
 
 		const sub = onHtml.subscribe((html) => (content = html));
@@ -82,6 +84,19 @@
 
 		save = spawnSave(categoryId, tagsSelected, subCategoriesSelected);
 	};
+
+	const onImageUpload: EventHandler<Event, HTMLInputElement> = (e) => {
+		const file = e.currentTarget.files?.[0];
+		if (!file) return;
+
+		const formData = new FormData();
+		formData.append('image', file);
+
+		fetch(`http://localhost:7878/${workspaceId}/upload`, {
+			method: 'POST',
+			body: formData,
+		});
+	};
 </script>
 
 <section />
@@ -90,6 +105,8 @@
 	<BlogFrame {content} class="min-w-0" />
 
 	<hr />
+
+	<input type="file" accept="image/*" name="image" on:change={onImageUpload} />
 
 	<form class="grid gap-4" on:submit|preventDefault={onSubmit}>
 		<div class="grid grid-cols-3 gap-x-4">
