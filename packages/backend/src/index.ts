@@ -1,1 +1,1 @@
-export { setAuthHandler, type AuthHandler } from './client'
+export { setAuthHandler, type AuthHandler, triggerTokensRefresh } from './client'
