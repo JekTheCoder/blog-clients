@@ -11,7 +11,7 @@
 	import { getAll as getAllTags, type Tag } from 'backend/tags';
 	import ItemSelectorList from './ItemSelectorList.svelte';
 	import { BlogRwClient } from '$lib/blogs/blog-rw-client';
-	import { createOne } from 'backend/blogs';
+	import { createOne, uploadImages } from 'backend/blogs';
 
 	export let data: PageData;
 
@@ -21,6 +21,8 @@
 	let client: BlogRwClient;
 
 	let save: Promise<unknown> | null = null;
+
+	const images: File[] = [];
 
 	onMount(() => {
 		client = new BlogRwClient(workspaceId);
@@ -71,6 +73,8 @@
 			tags: tags.map((tag) => tag.id),
 			subCategories: subCategories.map((subCategory) => subCategory.id)
 		});
+
+		return uploadImages(created.data.id, images);
 	};
 
 	const onSubmit: EventHandler<SubmitEvent, HTMLFormElement> = (e) => {
@@ -95,7 +99,7 @@
 		fetch(`http://localhost:7878/${workspaceId}/upload`, {
 			method: 'POST',
 			body: formData
-		});
+		}).then(() => images.push(file));
 	};
 </script>
 
