@@ -1,4 +1,5 @@
 import { buildWs } from '$lib/backend/api';
+import { getContent } from '$lib/backend/api/get-content';
 
 export type MessageResult =
 	| {
@@ -30,7 +31,7 @@ interface AsyncStream<T> {
 export class BlogRwClient {
 	private readonly socket: WebSocket;
 
-	constructor(workspaceId: string) {
+	constructor(private readonly workspaceId: string) {
 		this.socket = buildWs(workspaceId);
 	}
 
@@ -54,25 +55,7 @@ export class BlogRwClient {
 	}
 
 	getContent(): Promise<string> {
-		const message: WRequest = {
-			type: 'getContent'
-		};
-		this.socket.send(JSON.stringify(message));
-
-		return new Promise((resolve, reject) => {
-			const self = this;
-
-			function onMessage(e: MessageEvent) {
-				const message: MessageResult = JSON.parse(e.data);
-				if (message.type === 'err') reject(message.value);
-				if (message.type === 'ok' && message.value.type === 'content') {
-					self.socket.removeEventListener('message', onMessage);
-					resolve(message.value.value);
-				}
-			}
-
-			this.socket.addEventListener('message', onMessage);
-		});
+		return getContent(this.workspaceId) as any;
 	}
 
 	close() {

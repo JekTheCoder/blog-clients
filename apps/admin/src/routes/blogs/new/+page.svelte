@@ -65,7 +65,7 @@
 	const spawnSave = async (categoryId: string, tags: Tag[], subCategories: SubCategory[]) => {
 		const content = await client.getContent();
 
-		return createOne({
+		const created = await createOne({
 			content,
 			categoryId,
 			tags: tags.map((tag) => tag.id),
@@ -94,7 +94,7 @@
 
 		fetch(`http://localhost:7878/${workspaceId}/upload`, {
 			method: 'POST',
-			body: formData,
+			body: formData
 		});
 	};
 </script>
