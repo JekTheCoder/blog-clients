@@ -4,6 +4,7 @@ import { IdReturn } from '../../models/id-return';
 
 export type BlogRequest = {
   content: string;
+  categoryId: string;
   tags: string[];
   subCategories: string[];
 };
