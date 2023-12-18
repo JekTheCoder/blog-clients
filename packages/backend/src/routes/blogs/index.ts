@@ -1,6 +1,6 @@
 import { apiUrl } from '../../config';
 import { authClient } from '../../client';
-import { IdReturn } from '../../models/id-return';
+import type { IdReturn } from '../../models/id-return';
 
 export type BlogRequest = {
   content: string;
@@ -8,6 +8,19 @@ export type BlogRequest = {
   tags: string[];
   subCategories: string[];
 };
+
+export type BlogPreview = {
+  id: string;
+  adminId: string;
+  title: string;
+  html?: string | null;
+};
+
+export function getAll({ limit, offset }: { offset?: number; limit?: number }) {
+  return authClient.get<BlogPreview[]>(apiUrl + '/blogs', {
+    params: { limit, offset }
+  });
+}
 
 export function createOne(payload: BlogRequest) {
   return authClient.post<IdReturn>(apiUrl + '/blogs', payload);
