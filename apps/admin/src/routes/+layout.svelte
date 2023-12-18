@@ -25,7 +25,11 @@
 			</li>
 
 			<li>
-				<a href="auth/refresh" class="link">Refresh</a>
+				<a href="/blogs" class="link">Blogs</a>
+			</li>
+
+			<li>
+				<a href="/auth/refresh" class="link">Refresh</a>
 			</li>
 		</ul>
 	</nav>
