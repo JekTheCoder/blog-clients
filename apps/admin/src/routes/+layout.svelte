@@ -23,6 +23,10 @@
 			<li>
 				<a href="/categories" class="link">Categories</a>
 			</li>
+
+			<li>
+				<a href="auth/refresh" class="link">Refresh</a>
+			</li>
 		</ul>
 	</nav>
 </header>
