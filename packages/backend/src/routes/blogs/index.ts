@@ -33,5 +33,5 @@ export function uploadImages(blogId: string, files: File[]) {
     formData.append('image', file);
   }
 
-  return authClient.post<void>(`${apiUrl}/blogs/${blogId}/public/`, files);
+  return authClient.post<void>(`${apiUrl}/blogs/${blogId}/public/`, formData);
 }
