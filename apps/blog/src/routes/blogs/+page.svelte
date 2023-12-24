@@ -5,29 +5,13 @@
 	import PageLayout from '$lib/modules/ui/main-layout/PageLayout.svelte';
 	import Icon from '$lib/modules/ui/icon/Icon.svelte';
 	import { page as svPage } from '$app/stores';
-	import { getAllBlogs } from '$lib/backend/api/blogs/get-all-blogs';
-	import { PAGE_SIZE } from './data';
-	import FlashingDots from '$lib/modules/ui/dots/components/FlashingDots.svelte';
+	import { goto } from '$app/navigation';
 
 	export let data: PageData;
+	$: page = Number($svPage.url.searchParams.get('page')) ?? 0;
 
-	let page = buildPage($svPage.url.searchParams);
-	let blogs: Promise<PageData['blogs']> | PageData['blogs'] = data.blogs;
-
-	function updatePage(page_: number) {
-		blogs = getAllBlogs(PAGE_SIZE * page_, PAGE_SIZE).then((blogs) => blogs.unwrap());
-		page = page_;
-		$svPage.url.searchParams.set('page', page.toString());
-	}
-
-	function buildPage(params: URLSearchParams) {
-		const pageStr = params.get('page');
-		if (!pageStr) return 0;
-
-		const page = Number(pageStr);
-		if (isNaN(page)) return 0;
-
-		return page;
+	function updatePage(page: number) {
+		goto(`?page=${page}`);
 	}
 </script>
 
@@ -35,22 +19,17 @@
 	<Header slot="header" />
 
 	<div class="gap-y-8 gap-x-4">
-		{#await blogs}
-			<div class="flex justify-center w-full">
-				<FlashingDots />
-			</div>
-		{:then blogs}
-			{#each blogs as blog}
-				<VPostPreview post={blog} />
-			{/each}
-		{/await}
+		{#each data.blogs as blog}
+			<VPostPreview post={blog} />
+		{/each}
 	</div>
 
 	<footer class="container mx-auto my-8" slot="footer">
-		<button class="button icon" on:click={() => updatePage(page - 1)}>
+		<button class="button icon" on:click={() => updatePage(page - 1)} disabled={page === 0}>
 			<Icon icon="ooui:next-rtl" />
 		</button>
-		<button class="button icon" on:click={() => updatePage(page - 1)}>
+
+		<button class="button icon" on:click={() => updatePage(page + 1)} disabled={!data.hasNext}>
 			<Icon icon="ooui:next-ltr" />
 		</button>
 	</footer>

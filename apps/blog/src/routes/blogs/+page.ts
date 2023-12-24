@@ -11,9 +11,10 @@ export const load: PageLoad = async ({ url }) => {
 		page = 0;
 	}
 
-	const blogs = (await getAllBlogs(page * PAGE_SIZE, PAGE_SIZE)).unwrap();
+	const blogs = (await getAllBlogs(page * PAGE_SIZE, PAGE_SIZE + 1)).unwrap();
 
 	return {
-		blogs
+		blogs: blogs.slice(0, PAGE_SIZE),
+		hasNext: blogs.length > PAGE_SIZE
 	};
 };
