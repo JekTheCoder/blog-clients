@@ -13,6 +13,7 @@
 	import EachComment from '$lib/modules/components/comments/smart/EachComment.svelte';
 	import EachCommentCreation from '$lib/modules/components/comments/smart/EachCommentCreation.svelte';
 	import type { IdResponse } from '$lib/backend/types/id-response';
+	import { BlogFrame } from 'blog-frame';
 
 	type CommentCreation = {
 		id: number;
@@ -54,15 +55,11 @@
 	};
 </script>
 
-<article>
-	<h2>
-		{data.blog.title}
-	</h2>
+<svelte:head>
+	<title>{data.blog.title}</title>
+</svelte:head>
 
-	<img src="https://cdn-images-1.medium.com/max/600/1*G6Wcui5h86A-GX50pZ4-yg.jpeg" alt="" />
-
-	{@html data.blog.content}
-</article>
+<BlogFrame content={data.blog.content} />
 
 <hr class="my-4" />
 
