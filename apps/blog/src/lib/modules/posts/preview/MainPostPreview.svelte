@@ -1,14 +1,18 @@
+<script lang="ts">
+	export let preview: string;
+	export let title: string;
+	export let mainImage: string | null | undefined;
+</script>
+
 <article>
-	<img src="https://cdn-images-1.medium.com/max/600/1*G6Wcui5h86A-GX50pZ4-yg.jpeg" alt="" />
+	{#if mainImage}
+		<img src={mainImage} alt="" />
+	{/if}
 
 	<div class="p-2">
-		<h4>Lorem ipsum dolor sit.</h4>
+		<h4>{title}</h4>
 
-		<p>
-			Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error enim velit aliquam, vitae
-			animi nesciunt molestias voluptate similique, exercitationem accusantium ullam dolor et
-			obcaecati. Veniam quod nulla sit non blanditiis.
-		</p>
+		{@html preview}
 	</div>
 </article>
 

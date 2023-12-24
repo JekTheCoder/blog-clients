@@ -1,3 +1,13 @@
-// since there's no dynamic data here, we can prerender
-// it so that it gets served as a static asset in production
-export const prerender = true;
+import { getAllBlogs } from '$lib/backend/api/blogs/get-all-blogs';
+import type { PageLoad } from './$types';
+import { LATEST_PAGES, LATEST_PAGE_SIZE } from './constants';
+
+export const prerender = false;
+
+export const load: PageLoad = async () => {
+	const latests = await getAllBlogs(0, LATEST_PAGE_SIZE * LATEST_PAGES + 1);
+
+	return {
+		latests: latests.unwrap()
+	};
+};
