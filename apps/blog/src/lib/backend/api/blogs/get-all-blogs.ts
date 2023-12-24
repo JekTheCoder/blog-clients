@@ -5,8 +5,8 @@ import { enviroment } from '../../../../enviroment';
 export type BlogPreview = {
 	id: string;
 	title: string;
-	content: string;
-	html: string;
+	preview: string;
+	mainImage?: string | null;
 };
 
 export const getAllBlogs = (offset: number, limit: number) => {
