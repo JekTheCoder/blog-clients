@@ -7,13 +7,11 @@
 <a href="/blogs/{post.id}">
 	<article>
 		<div class="img-wrapper">
-			<img src="https://cdn-images-1.medium.com/max/600/1*G6Wcui5h86A-GX50pZ4-yg.jpeg" alt="" />
+			<img src={post.mainImage} alt="" />
 		</div>
 
 		<h4>{post.title}</h4>
-		<p>
-			{post.content}
-		</p>
+		{@html post.preview}
 	</article>
 </a>
 
