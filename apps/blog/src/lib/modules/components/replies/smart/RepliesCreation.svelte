@@ -1,12 +1,10 @@
 <script lang="ts">
-	import {
-		createOneReply,
-		type ReplyCreate
-	} from '$lib/backend/api/blogs/comments/replies/create-one-reply';
+	import { createOneReply, type ReplyCreate } from 'backend/replies';
 	import { writable } from 'svelte/store';
 	import EachReplyCreation from './EachReplyCreation.svelte';
-	import type { User } from '$lib/global/user';
+	import type { User } from 'globals/user';
 	import type { ReplyCreation } from '../type';
+	import { fromAxios } from '$lib/util/result';
 
 	export let commentId: string;
 	export let parentId: string | undefined | null = undefined;
@@ -19,7 +17,7 @@
 			replies.push({
 				key: Math.random(),
 				reply,
-				status: createOneReply(commentId, reply, parentId)
+				status: fromAxios(createOneReply(commentId, reply, parentId))
 			});
 
 			return replies;
@@ -29,7 +27,7 @@
 	const handleRetry = (creation: ReplyCreation, index: number) => {
 		replies.update((replies) => {
 			const reply = replies[index];
-			reply.status = createOneReply(commentId, creation.reply, parentId);
+			reply.status = fromAxios(createOneReply(commentId, creation.reply, parentId));
 			return replies;
 		});
 	};

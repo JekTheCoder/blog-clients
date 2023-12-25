@@ -1,24 +1,21 @@
 <script lang="ts">
 	import OutlineFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
 	import type { FormEventHandler } from 'svelte/elements';
-	import {
-		createOneComment,
-		type CommentCreate
-	} from '$lib/backend/api/blogs/comments/create-one-comment';
+	import { createOneComment, type CommentCreate } from 'backend/comments';
 	import type { PageData } from './$types';
-	import { user } from '$lib/global/user';
+	import { user } from 'globals/user';
 	import { writable } from 'svelte/store';
-	import type { Result } from '$lib/util/result';
+	import { fromAxios, type Result } from '$lib/util/result';
 	import Textarea from '$lib/modules/ui/text-field/components/Textarea.svelte';
 	import EachComment from '$lib/modules/components/comments/smart/EachComment.svelte';
 	import EachCommentCreation from '$lib/modules/components/comments/smart/EachCommentCreation.svelte';
-	import type { IdResponse } from '$lib/backend/types/id-response';
 	import { BlogFrame } from 'blog-frame';
+	import type { IdReturn } from 'backend/src/models/id-return';
 
 	type CommentCreation = {
 		id: number;
 		comment: CommentCreate;
-		status: Promise<Result<IdResponse, unknown>>;
+		status: Promise<Result<IdReturn, unknown>>;
 	};
 
 	export let data: PageData;
@@ -34,7 +31,7 @@
 			content: content.toString()
 		};
 
-		const result = createOneComment(data.blog.id, req);
+		const result = fromAxios(createOneComment(data.blog.id, req));
 		commentsCreated.update((comments) => {
 			comments.unshift({
 				id: Math.random(),
@@ -49,7 +46,7 @@
 
 	const handleRetry = (commentCreation: CommentCreation, i: number) => {
 		commentsCreated.update((comments) => {
-			comments[i].status = createOneComment(data.blog.id, commentCreation.comment);
+			comments[i].status = fromAxios(createOneComment(data.blog.id, commentCreation.comment));
 			return comments;
 		});
 	};

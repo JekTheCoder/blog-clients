@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getAllReplies } from '$lib/backend/api/blogs/comments/replies/get-all-replies';
-	import type { User } from '$lib/global/user';
+	import { getAllReplies } from 'backend/replies';
+	import type { User } from 'globals/user';
 	import FlashingDots from '$lib/modules/ui/dots/components/FlashingDots.svelte';
 	import EachReply from './EachReply.svelte';
 

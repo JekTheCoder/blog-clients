@@ -1,4 +1,4 @@
-import { getAllBlogs } from '$lib/backend/api/blogs/get-all-blogs';
+import { getAll } from 'backend/blogs';
 import type { PageLoad } from './$types';
 import { PAGE_SIZE } from './data';
 
@@ -11,7 +11,10 @@ export const load: PageLoad = async ({ url }) => {
 		page = 0;
 	}
 
-	const blogs = (await getAllBlogs(page * PAGE_SIZE, PAGE_SIZE + 1)).unwrap();
+	const blogs = await getAll({
+		offset: page * PAGE_SIZE,
+		limit: PAGE_SIZE + 1
+	}).then((response) => response.data);
 
 	return {
 		blogs: blogs.slice(0, PAGE_SIZE),

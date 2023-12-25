@@ -38,6 +38,12 @@
 			"auth/login": [
 				"./src/routes/auth/login.ts"
 			],
+			"comments": [
+				"./src/routes/comments/index.ts"	
+			],
+			"replies": [
+				"./src/routes/replies/index.ts"
+			],
       "*": [
         "./src/index.ts"
       ]

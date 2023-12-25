@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import CardArticle from '$lib/modules/ui/card/CardArticle.svelte';
 	import OutlineFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
-	import { login, type LoginResponse } from '$lib/backend/api/auth/login';
+	import { login, type LoginResponse } from 'backend/auth/login';
 	import type { FormEventHandler } from 'svelte/elements';
 	import { goto } from '$app/navigation';
 	import { setTokens, user } from 'globals/user';
@@ -24,12 +24,9 @@
 		const username = formData.get('username')?.toString() ?? '';
 		const password = formData.get('password')?.toString() ?? '';
 
-		login(username, password).then((result) =>
-			result.match({
-				ok: handleLogin,
-				err: () => (invalid = true)
-			})
-		);
+		login(username, password)
+			.then(handleLogin)
+			.catch(() => (invalid = true));
 	};
 </script>
 
