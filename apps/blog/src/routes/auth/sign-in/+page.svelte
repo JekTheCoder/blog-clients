@@ -2,20 +2,15 @@
 	import { page } from '$app/stores';
 	import CardArticle from '$lib/modules/ui/card/CardArticle.svelte';
 	import OutlineFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
-	import { login, type LoginResponse } from 'backend/auth/login';
+	import { login } from 'auth';
 	import type { FormEventHandler } from 'svelte/elements';
 	import { goto } from '$app/navigation';
-	import { setTokens, user } from 'globals/user';
 
 	const redirectUrl = $page.url.searchParams.get('redirect') ?? '/';
 
 	let invalid = false;
 
-	const handleLogin = (login: LoginResponse) => {
-		user.set(login.user);
-
-		setTokens(login);
-
+	const handleLogin = () => {
 		goto(redirectUrl).catch(() => goto('/'));
 	};
 
