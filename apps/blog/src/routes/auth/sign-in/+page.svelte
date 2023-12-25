@@ -5,14 +5,18 @@
 	import { login, type LoginResponse } from '$lib/backend/api/auth/login';
 	import type { FormEventHandler } from 'svelte/elements';
 	import { goto } from '$app/navigation';
-	import { setTokens, user } from '$lib/global/user';
+	import { setTokens, user } from 'globals/user';
 
 	const redirectUrl = $page.url.searchParams.get('redirect') ?? '/';
 
 	let invalid = false;
 
 	const handleLogin = (login: LoginResponse) => {
+		console.log({ user: login.user });
+
 		user.set(login.user);
+		console.log({ wa: $user });
+
 		setTokens(login.token, login.refreshToken);
 
 		goto(redirectUrl).catch(() => goto('/'));

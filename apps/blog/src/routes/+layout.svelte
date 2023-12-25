@@ -1,16 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
-	import { saveChanges } from '$lib/global/user';
 	import './styles.scss';
 
 	onMount(() => {
 		const theme = localStorage.getItem('theme');
 		document.querySelector('body')?.classList.add(theme ?? 'light-theme');
 	});
-
-	onMount(() => {
-		window.addEventListener('beforeunload', () => saveChanges());
-	})
 </script>
 
 <slot />
