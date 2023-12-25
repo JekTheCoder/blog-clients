@@ -6,8 +6,8 @@
 
 	$: hasNext = page < pages - 1;
 
-	const updatePage = (page: number) => {
-		page = Math.max(0, page);
+	const updatePage = (newPage: number) => {
+		page = Math.max(0, newPage);
 	};
 </script>
 
@@ -16,7 +16,7 @@
 		<Icon icon="ooui:next-rtl" />
 	</button>
 
-	<fieldset>
+	<fieldset class="flex gap-x-2">
 		{#each Array(pages) as _, i}
 			<input
 				type="radio"

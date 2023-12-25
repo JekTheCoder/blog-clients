@@ -7,6 +7,25 @@
 	import { LATEST_PAGE_SIZE } from './constants';
 
 	export let data: PageData;
+
+	let page = 0;
+
+	$: bellowBlogs = data.latests.slice(1);
+	$: isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;
+
+	// Its -2 instead of -1 because of skip of the first blog
+	$: pages = Math.floor((data.latests.length - 2) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
+
+	function chunks<T>(array: T[], size: number): T[][] {
+		const nChunks = Math.floor((array.length - 1) / size) + 1;
+		const chunks: T[][] = [];
+
+		for (let i = 0; i < nChunks; i++) {
+			chunks.push(array.slice(i * size, i * size + size));
+		}
+
+		return chunks;
+	}
 </script>
 
 <Header />
@@ -38,18 +57,41 @@
 
 		<hr class="my-3" />
 
-		<div class="grid grid-cols-3 gap-4">
-			{#each data.latests.slice(1) as blog}
-				<VPostPreview post={blog} />
-			{/each}
+		<div class="w-full overflow-hidden">
+			<div class="carousel" style="transform: translateX(-{page * 100}%)">
+				{#each chunks(bellowBlogs, LATEST_PAGE_SIZE) as chunk, i}
+					<div class="chunk grid grid-cols-3 gap-x-2 min-w-full">
+						{#each chunk as blog}
+							<VPostPreview post={blog} />
+						{/each}
+
+						{#if !isExact && i === pages - 1}
+							<div class="card p-2">more</div>
+						{/if}
+					</div>
+				{/each}
+
+				{#if isExact}
+					<div class="chunk grid grid-cols-3 gap-x-2 min-w-full">
+						<div>more</div>
+					</div>
+				{/if}
+			</div>
 		</div>
 
 		<a href="/blogs" class="primary button outlined w-full"> View more </a>
 
 		<footer class="mt-6">
-			<RadioPaginator pages={Math.floor((data.latests.length - 1) / LATEST_PAGE_SIZE) + 1} />
+			<RadioPaginator {pages} bind:page />
 		</footer>
 	</section>
 </main>
 
 <footer />
+
+<style lang="scss">
+	.carousel {
+		transition: transform 0.5s ease;
+		display: flex;
+	}
+</style>
