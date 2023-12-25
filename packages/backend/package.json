@@ -37,9 +37,6 @@
 			"tags": [
 				"./src/routes/tags/index.ts"
 			],
-			"auth/login": [
-				"./src/routes/auth/login.ts"
-			],
 			"comments": [
 				"./src/routes/comments/index.ts"	
 			],
