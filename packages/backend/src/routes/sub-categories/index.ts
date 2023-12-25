@@ -3,22 +3,22 @@ import { apiUrl } from 'globals/api';
 import { authClient } from 'auth';
 
 export type SubCategory = {
-  id: string;
-  name: string;
+	id: string;
+	name: string;
 };
 
 export function getAll(categoryId: string) {
-  return axios.get<SubCategory[]>(`${apiUrl}/categories/${categoryId}/sub-categories/`);
+	return axios.get<SubCategory[]>(`${apiUrl}/categories/${categoryId}/sub-categories/`);
 }
 
 export type SubCategoryRequest = {
-  name: string;
+	name: string;
 };
 
 export function createOne(categoryId: string, payload: SubCategoryRequest) {
-  return authClient.post(`${apiUrl}/categories/${categoryId}/sub-categories/`, payload);
+	return authClient.post(`${apiUrl}/categories/${categoryId}/sub-categories/`, payload);
 }
 
 export function deleteOne(subCategoryId: string) {
-  return authClient.delete(`${apiUrl}/sub-categories/${subCategoryId}/`);
+	return authClient.delete(`${apiUrl}/sub-categories/${subCategoryId}/`);
 }

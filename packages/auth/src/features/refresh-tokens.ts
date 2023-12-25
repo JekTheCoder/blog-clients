@@ -1,12 +1,12 @@
-import { refresh } from "../backend";
-import { AccessToken } from "../domain/access-token";
-import { authHandler, authState } from "../locals";
+import { refresh } from '../backend';
+import { AccessToken } from '../domain/access-token';
+import { authHandler, authState } from '../locals';
 
 export async function refreshTokens(refreshToken: string) {
-  try {
-    const result = await refresh(refreshToken);
+	try {
+		const result = await refresh(refreshToken);
 
-		authState.update(state => {
+		authState.update((state) => {
 			if (!state) {
 				authHandler.redirectLogin();
 				return state;
@@ -23,8 +23,8 @@ export async function refreshTokens(refreshToken: string) {
 			state.accessToken = accessToken;
 
 			return state;
-		})
-  } catch (_) {
-    authHandler.redirectLogin();
-  }
+		});
+	} catch (_) {
+		authHandler.redirectLogin();
+	}
 }

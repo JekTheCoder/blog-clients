@@ -47,7 +47,7 @@ export class Result<T, E> {
 	}
 
 	isOk(): boolean {
-		return this.result.kind === ResultKind.Ok;	
+		return this.result.kind === ResultKind.Ok;
 	}
 
 	isErr(): boolean {

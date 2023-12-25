@@ -10,7 +10,7 @@
 			const parsed = encodeURI(pathname);
 			return goto('/auth/sign-in?redirect=' + parsed);
 		}
-	})
+	});
 </script>
 
 <header class="container mx-auto">

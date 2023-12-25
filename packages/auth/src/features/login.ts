@@ -5,8 +5,5 @@ export async function login(username: string, password: string) {
 	try {
 		const { user, refreshToken, token } = await httpLogin(username, password);
 		signIn(user, token, refreshToken);
-	}
-	catch (_) {
-		
-	}
+	} catch (_) {}
 }

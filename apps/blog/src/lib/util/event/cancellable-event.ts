@@ -1,6 +1,6 @@
 export class CancellableEvent<T> {
 	private _cancelled = false;
-	
+
 	constructor(public readonly data: T) {}
 
 	public isCancelled(): boolean {

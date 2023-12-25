@@ -34,10 +34,7 @@
 	/>
 
 	{#if commentId !== null}
-		<CommentFooter
-			{user}
-			on:repliesCreation={(e) => repliesCreation?.createReply(e.detail)}
-		>
+		<CommentFooter {user} on:repliesCreation={(e) => repliesCreation?.createReply(e.detail)}>
 			<svelte:fragment slot="repliesCreation">
 				{#if user}
 					<RepliesCreation bind:this={repliesCreation} {user} {commentId} />

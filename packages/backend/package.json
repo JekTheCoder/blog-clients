@@ -1,36 +1,36 @@
 {
-  "name": "backend",
-  "version": "0.0.1",
-  "type": "module",
-  "module": "./src/index.ts",
-  "svelte": "./src/index.ts",
-  "license": "MIT",
-  "scripts": {
-    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
-    "format": "prettier --write --ignore-path=../../.prettierignore ."
-  },
-  "dependencies": {
-    "axios": "^1.5.1",
-    "globals": "workspace:*",
+	"name": "backend",
+	"version": "0.0.1",
+	"type": "module",
+	"module": "./src/index.ts",
+	"svelte": "./src/index.ts",
+	"license": "MIT",
+	"scripts": {
+		"lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
+		"format": "prettier --write --ignore-path=../../.prettierignore ."
+	},
+	"dependencies": {
+		"axios": "^1.5.1",
+		"globals": "workspace:*",
 		"auth": "workspace:*"
-  },
-  "devDependencies": {
-    "eslint-config-custom": "*"
-  },
-  "exports": {
-    ".": "./src/index.ts",
+	},
+	"devDependencies": {
+		"eslint-config-custom": "*"
+	},
+	"exports": {
+		".": "./src/index.ts",
 		"./auth/*": "./src/routes/auth/*",
-    "./*": "./src/routes/*/index.ts"
-  },
+		"./*": "./src/routes/*/index.ts"
+	},
 	"types": "./src/index.ts",
-  "typesVersions": {
-    "*": {
+	"typesVersions": {
+		"*": {
 			"blogs": [
-				"./src/routes/blogs/index.ts"	
+				"./src/routes/blogs/index.ts"
 			],
-      "categories": [
-        "./src/routes/categories/index.ts"
-      ],
+			"categories": [
+				"./src/routes/categories/index.ts"
+			],
 			"sub-categories": [
 				"./src/routes/sub-categories/index.ts"
 			],
@@ -38,11 +38,11 @@
 				"./src/routes/tags/index.ts"
 			],
 			"comments": [
-				"./src/routes/comments/index.ts"	
+				"./src/routes/comments/index.ts"
 			],
 			"replies": [
 				"./src/routes/replies/index.ts"
 			]
-    }
-  }
+		}
+	}
 }

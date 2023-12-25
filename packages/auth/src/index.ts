@@ -1,8 +1,8 @@
-import { createClient } from "./features/client";
+import { createClient } from './features/client';
 
-import  { writable, readonly } from 'svelte/store';
-import { authState } from "./locals";
-import { User } from "./domain/user";
+import { writable, readonly } from 'svelte/store';
+import { authState } from './locals';
+import { User } from './domain/user';
 
 export { setAuthHandler } from './locals';
 export { login } from './features/login';
@@ -12,10 +12,10 @@ export { triggerTokensRefresh } from './features/trigger-refresh';
 export type { User } from './domain/user';
 export type { RegisterRequest } from './backend/register';
 
-const userStore =  writable<User | null>(null);
+const userStore = writable<User | null>(null);
 
-let sub: (() => void) | null= null;
-authState.subscribe(state => {
+let sub: (() => void) | null = null;
+authState.subscribe((state) => {
 	if (!state) {
 		sub?.();
 		sub = null;
@@ -24,10 +24,8 @@ authState.subscribe(state => {
 	}
 
 	sub?.();
-	sub = state.user.subscribe(user => 
-		userStore.set(user)
-	);
-})
+	sub = state.user.subscribe((user) => userStore.set(user));
+});
 
 export const authClient = createClient();
 export const user = readonly(userStore);

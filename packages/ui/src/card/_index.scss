@@ -1,7 +1,7 @@
 @use 'card';
 
 .card {
-  @include card.card;
+	@include card.card;
 }
 
 .card-x-padding {

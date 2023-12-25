@@ -4,20 +4,20 @@ import { IdReturn } from '../../models/id-return';
 import { authClient } from 'auth';
 
 export type Category = {
-  id: string;
-  name: string;
+	id: string;
+	name: string;
 };
 
 export function getAll() {
-  return axios.get<Category[]>(apiUrl + '/categories');
+	return axios.get<Category[]>(apiUrl + '/categories');
 }
 
 export type CategoryRequest = {
-  name: string;
+	name: string;
 };
 
 export function create(category: CategoryRequest) {
-  return authClient.post<IdReturn>(apiUrl + '/categories', category);
+	return authClient.post<IdReturn>(apiUrl + '/categories', category);
 }
 
 export function update(id: string, category: CategoryRequest) {
@@ -25,5 +25,5 @@ export function update(id: string, category: CategoryRequest) {
 }
 
 export function deleteOne(id: string) {
-	return authClient.delete<IdReturn>(apiUrl + '/categories/' + id);	
+	return authClient.delete<IdReturn>(apiUrl + '/categories/' + id);
 }

@@ -1,7 +1,7 @@
 @mixin colors($color) {
-  --color: var(--#{$color}-color);
-  --hover-color: var(--#{$color}-hover-color);
-  --active-color: var(--#{$color}-active-color);
+	--color: var(--#{$color}-color);
+	--hover-color: var(--#{$color}-hover-color);
+	--active-color: var(--#{$color}-active-color);
 }
 
 .button.primary {

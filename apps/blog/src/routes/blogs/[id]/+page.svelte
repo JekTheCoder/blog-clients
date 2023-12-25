@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { OutlineFormField } from "ui/form-field";
+	import { OutlineFormField } from 'ui/form-field';
 	import type { FormEventHandler } from 'svelte/elements';
 	import { createOneComment, type CommentCreate } from 'backend/comments';
 	import type { PageData } from './$types';

@@ -13,7 +13,7 @@
 	$: status.then(() => (done = LoadStatus.Done));
 </script>
 
-<div class="chip" class:disabled={done !== LoadStatus.Done} style="--color: {color}"> 
+<div class="chip" class:disabled={done !== LoadStatus.Done} style="--color: {color}">
 	{name}
 </div>
 

@@ -1,3 +1,3 @@
 export type IdReturn = {
-  id: string;
+	id: string;
 };

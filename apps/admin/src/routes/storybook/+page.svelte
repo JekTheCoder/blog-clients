@@ -40,9 +40,7 @@
 			</button>
 		</section>
 
-		<section>
-
-		</section>
+		<section />
 	</article>
 
 	<div class="flex gap-x-4">

@@ -1,18 +1,18 @@
 @use '../../icon/icon';
 
 .button {
-  text-align: center;
-  padding: 8px 15px;
+	text-align: center;
+	padding: 8px 15px;
 
-  --color: var(--primary-text-color);
-  --hover-color: var(--primary-text-color);
-  --active-color: var(--primary-text-color);
+	--color: var(--primary-text-color);
+	--hover-color: var(--primary-text-color);
+	--active-color: var(--primary-text-color);
 
-  @include icon.icon {
-    font-size: 1.5rem;
-  }
+	@include icon.icon {
+		font-size: 1.5rem;
+	}
 }
 
 a.button {
-  display: inline-block;
+	display: inline-block;
 }
