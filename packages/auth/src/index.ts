@@ -8,6 +8,7 @@ export { setAuthHandler } from './locals';
 export { login } from './features/login';
 export { logout } from './features/logout';
 export { register } from './features/register';
+export { triggerTokensRefresh } from './features/trigger-refresh';
 export type { User } from './domain/user';
 export type { RegisterRequest } from './backend/register';
 
