@@ -14,5 +14,5 @@ export {
 	setAuthHandler,
 	authHandler,
 	type NoopAuthHandler,
-	type AuthHandler
+	type AuthHandler,
 } from './auth-handler';

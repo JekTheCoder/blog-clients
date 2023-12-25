@@ -13,6 +13,6 @@ export function signIn(user: User, token: string, refreshToken: string) {
 	authState.set({
 		user: writable(user),
 		accessToken,
-		refreshToken
+		refreshToken,
 	});
 }

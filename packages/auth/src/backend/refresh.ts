@@ -8,5 +8,5 @@ export type RefreshResponse = {
 
 export const refresh = (refreshToken: string) =>
 	axios.post<RefreshResponse>(`${apiUrl}/auth/refresh`, {
-		refreshToken
+		refreshToken,
 	});

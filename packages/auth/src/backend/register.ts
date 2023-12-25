@@ -20,6 +20,6 @@ export function register({ email, name, password, username }: RegisterRequest) {
 		email,
 		name,
 		password,
-		username
+		username,
 	});
 }

@@ -6,7 +6,7 @@ export async function refreshTokens(refreshToken: string) {
 	try {
 		const result = await refresh(refreshToken);
 
-		authState.update((state) => {
+		authState.update(state => {
 			if (!state) {
 				authHandler.redirectLogin();
 				return state;

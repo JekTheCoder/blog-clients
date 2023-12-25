@@ -6,11 +6,15 @@ export type ReplyCreate = {
 	content: string;
 };
 
-export function createOneReply(commentId: string, req: ReplyCreate, parentId?: string | null) {
+export function createOneReply(
+	commentId: string,
+	req: ReplyCreate,
+	parentId?: string | null
+) {
 	return authClient.post(`${apiUrl}/comments/${commentId}/replies`, req, {
 		params: {
-			parentId
-		}
+			parentId,
+		},
 	});
 }
 
@@ -31,7 +35,7 @@ export type Reply = {
 export function getAllReplies(commentId: string, parentId?: string) {
 	return axios.get<Reply[]>(`${apiUrl}/comments/${commentId}/replies`, {
 		params: {
-			parentId
-		}
+			parentId,
+		},
 	});
 }

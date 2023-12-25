@@ -1,4 +1,8 @@
-import { register as registerHttp, type RegisterResponse, RegisterRequest } from '../backend';
+import {
+	register as registerHttp,
+	type RegisterResponse,
+	RegisterRequest,
+} from '../backend';
 import { signIn } from './sign-in';
 
 export async function register(request: RegisterRequest) {

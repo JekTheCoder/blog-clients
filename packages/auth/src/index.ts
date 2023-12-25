@@ -15,7 +15,7 @@ export type { RegisterRequest } from './backend/register';
 const userStore = writable<User | null>(null);
 
 let sub: (() => void) | null = null;
-authState.subscribe((state) => {
+authState.subscribe(state => {
 	if (!state) {
 		sub?.();
 		sub = null;
@@ -24,7 +24,7 @@ authState.subscribe((state) => {
 	}
 
 	sub?.();
-	sub = state.user.subscribe((user) => userStore.set(user));
+	sub = state.user.subscribe(user => userStore.set(user));
 });
 
 export const authClient = createClient();

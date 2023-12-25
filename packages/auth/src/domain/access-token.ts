@@ -11,7 +11,7 @@ export class AccessToken {
 		exp,
 		id,
 		role,
-		token
+		token,
 	}: {
 		exp: number;
 		id: string;
@@ -26,13 +26,15 @@ export class AccessToken {
 
 	static fromToken(token: string): AccessToken | null {
 		try {
-			const { exp, id, role } = deserializeJwt<{ exp: number; id: string; role: Role }>(token);
+			const { exp, id, role } = deserializeJwt<{ exp: number; id: string; role: Role }>(
+				token
+			);
 
 			return new AccessToken({
 				exp,
 				id,
 				role,
-				token
+				token,
 			});
 		} catch {
 			return null;

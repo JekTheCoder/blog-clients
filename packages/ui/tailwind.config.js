@@ -13,11 +13,11 @@ export default {
 					500: '#E95420',
 					600: '#d24c1d',
 					700: '#ba431a',
-					800: '#a33b16'
+					800: '#a33b16',
 				},
-				bone: '#fafafa'
-			}
-		}
+				bone: '#fafafa',
+			},
+		},
 	},
-	plugins: []
+	plugins: [],
 };
