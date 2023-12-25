@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { apiUrl } from '../../config';
-import { authClient } from '../../client';
+import { apiUrl } from 'globals/api';
+import { authClient } from 'auth';
 
 export type SubCategory = {
   id: string;

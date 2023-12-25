@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { apiUrl } from '../../config';
-import { authClient } from '../../client';
+import { apiUrl } from 'globals/api';
+import { authClient } from 'auth';
 import type { IdReturn } from '../../models/id-return';
 
 export type Comment = {

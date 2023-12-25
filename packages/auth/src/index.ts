@@ -5,6 +5,11 @@ import { authState } from "./locals";
 import { User } from "./domain/user";
 
 export { setAuthHandler } from './locals';
+export { login } from './features/login';
+export { logout } from './features/logout';
+export { register } from './features/register';
+export type { User } from './domain/user';
+export type { RegisterRequest } from './backend/register';
 
 const userStore =  writable<User | null>(null);
 
