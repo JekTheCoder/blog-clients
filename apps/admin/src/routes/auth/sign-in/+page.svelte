@@ -3,17 +3,13 @@
 	import { OutlineFormField } from 'ui/form-field';
 	import type { FormEventHandler } from 'svelte/elements';
 	import { goto } from '$app/navigation';
-	import { setTokens, user } from 'globals/user';
-	import { login, type LoginResponse } from 'backend/auth/login';
+	import { login } from 'auth';
 
 	const redirectUrl = $page.url.searchParams.get('redirect') ?? '/';
 
 	let invalid = false;
 
-	const handleLogin = (login: LoginResponse) => {
-		user.set(login.user);
-		setTokens(login);
-
+	const handleLogin = () => {
 		goto(redirectUrl).catch(() => goto('/'));
 	};
 
