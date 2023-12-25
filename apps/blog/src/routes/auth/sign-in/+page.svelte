@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import CardArticle from '$lib/modules/ui/card/CardArticle.svelte';
-	import OutlineFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
+	import { OutlineFormField } from 'ui/form-field';
 	import { login } from 'auth';
 	import type { FormEventHandler } from 'svelte/elements';
 	import { goto } from '$app/navigation';

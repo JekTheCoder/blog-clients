@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import CardArticle from '$lib/modules/ui/card/CardArticle.svelte';
-	import OutlineFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
+	import { OutlineFormField } from "ui/form-field";
 	import { register } from 'auth';
 	import type { FormEventHandler } from 'svelte/elements';
 
