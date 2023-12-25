@@ -1,6 +1,5 @@
 import { AccessToken } from '../domain/access-token';
 import { writable, Writable } from 'svelte/store';
-import {} from 'globals/user'
 import { User } from '../domain/user';
 
 export type AuthState = {
@@ -11,4 +10,4 @@ export type AuthState = {
 
 export const authState = writable<AuthState | null>(null);
 
-export {setAuthHandler, authHandler, NoopAuthHandler, AuthHandler} from './auth-handler';
+export { setAuthHandler, authHandler, type NoopAuthHandler, type AuthHandler } from './auth-handler';
