@@ -29,27 +29,31 @@
 	}
 </script>
 
+<svelte:head>
+	<title>MeBlog</title>
+</svelte:head>
+
 <Header />
 
 <main class="container mx-auto pt-6">
-	<h2>Lorem ipsum dolor sit.</h2>
+	<h2>MeBlog</h2>
 
-	<section class="flex justify-between gap-x-6 py-4">
-		<div class="flex gap-x-4">
-			<span>Lorem, ipsum.</span>
-			<span>Molestias, distinctio.</span>
-			<span>Perspiciatis, maiores.</span>
-			<span>Rem, numquam.</span>
-		</div>
+	<!-- <nav class="py-2"> -->
+	<!-- 	<ul class="flex justify-evenly overflow-auto w-full gap-x-4"> -->
+	<!-- 		{#each data.categories as category} -->
+	<!-- 			<li> -->
+	<!-- 				<a class="link" href="/blogs/?category={category.id}"> -->
+	<!-- 					{category.name} -->
+	<!-- 				</a> -->
+	<!-- 			</li> -->
+	<!-- 		{/each} -->
+	<!-- 	</ul> -->
+	<!-- </nav> -->
 
-		<div />
-	</section>
-
-	<hr />
+	<hr class="mb-4" />
 
 	<section>
 		<h3>Latests</h3>
-		<hr class="my-2" />
 
 		{#if data.latests[0]}
 			{@const blog = data.latests[0]}
