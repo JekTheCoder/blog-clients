@@ -5,6 +5,7 @@
 	import RadioPaginator from '$lib/modules/components/paginators/RadioPaginator.svelte';
 	import type { PageData } from './$types';
 	import { LATEST_PAGE_SIZE } from './constants';
+	import ViewMore from './ViewMore.svelte';
 
 	export let data: PageData;
 
@@ -66,20 +67,18 @@
 						{/each}
 
 						{#if !isExact && i === pages - 1}
-							<div class="card p-2">more</div>
+							<ViewMore />
 						{/if}
 					</div>
 				{/each}
 
 				{#if isExact}
 					<div class="chunk grid grid-cols-3 gap-x-2 min-w-full">
-						<div>more</div>
+						<ViewMore />
 					</div>
 				{/if}
 			</div>
 		</div>
-
-		<a href="/blogs" class="primary button outlined w-full"> View more </a>
 
 		<footer class="mt-6">
 			<RadioPaginator {pages} bind:page />
