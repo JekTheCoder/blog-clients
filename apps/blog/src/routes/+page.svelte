@@ -53,7 +53,12 @@
 
 		{#if data.latests[0]}
 			{@const blog = data.latests[0]}
-			<MainPostPreview preview={blog.preview} title={blog.title} mainImage={blog.mainImage} />
+			<MainPostPreview
+				preview={blog.preview}
+				title={blog.title}
+				mainImage={blog.mainImage}
+				blogId={blog.id}
+			/>
 		{/if}
 
 		<hr class="my-3" />

@@ -2,15 +2,22 @@
 	export let preview: string;
 	export let title: string;
 	export let mainImage: string | null | undefined;
+	export let blogId: string;
+
+	$: blogUrl = `/blogs/${blogId}`;
 </script>
 
 <article>
 	{#if mainImage}
-		<img src={mainImage} alt="" />
+		<a href={blogUrl}>
+			<img src={mainImage} alt="" />
+		</a>
 	{/if}
 
 	<div class="p-2">
-		<h4>{title}</h4>
+		<a href={blogUrl}>
+			<h4>{title}</h4>
+		</a>
 
 		{@html preview}
 	</div>
