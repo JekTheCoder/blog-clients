@@ -21,6 +21,7 @@
 		"./auth/*": "./src/routes/auth/*",
     "./*": "./src/routes/*/index.ts"
   },
+	"types": "./src/index.ts",
   "typesVersions": {
     "*": {
 			"blogs": [
@@ -43,10 +44,7 @@
 			],
 			"replies": [
 				"./src/routes/replies/index.ts"
-			],
-      "*": [
-        "./src/index.ts"
-      ]
+			]
     }
   }
 }
