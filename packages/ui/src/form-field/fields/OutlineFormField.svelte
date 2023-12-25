@@ -4,10 +4,8 @@
   export { klass as class };
 </script>
 
-<div class={'form-field grid ' + klass}>
-  <div class="wrapper">
-    <slot />
-  </div>
+<div class={'form-field grid gap-1 ' + klass}>
+  <slot />
 </div>
 
 <style lang="scss">
@@ -22,7 +20,7 @@
     outline: 2px solid var(--active-color);
   }
 
-  .wrapper {
+  .form-field > :global(*:not(label)) {
     @include outline();
     display: grid;
 
@@ -31,16 +29,7 @@
     }
   }
 
-  .form-field {
-    :global(input),
-    :global(textarea),
-    :global(select) {
-      outline: none;
-      border: none;
-    }
-
-		:global(select) {
-		background-color: transparent;	
-		}
-  }
+	.gap-1 {
+		gap: 0.1rem;
+	}
 </style>
