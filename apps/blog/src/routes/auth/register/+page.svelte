@@ -1,21 +1,12 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import CardArticle from '$lib/modules/ui/card/CardArticle.svelte';
 	import OutlineFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
-	import type { LoginResponse } from 'backend/auth/login';
+	import { register } from 'auth';
 	import type { FormEventHandler } from 'svelte/elements';
-	import { goto } from '$app/navigation';
-	import { setTokens, user } from 'globals/user';
 
 	let invalid = false;
 	let password = '';
-
-	const handleLogin = (login: LoginResponse) => {
-		user.set(login.user);
-
-		setTokens(login);
-
-		goto('/');
-	};
 
 	const onSubmit: FormEventHandler<HTMLFormElement> = (event) => {
 		const formData = new FormData(event.currentTarget);
@@ -24,6 +15,15 @@
 		const password = formData.get('password')?.toString() ?? '';
 		const name = formData.get('name')?.toString() ?? '';
 		const email = formData.get('email')?.toString() ?? '';
+
+		register({
+			username,
+			password,
+			name,
+			email
+		})
+			.then(() => goto('/'))
+			.catch(() => (invalid = true));
 	};
 
 	let repeatInput: HTMLInputElement;

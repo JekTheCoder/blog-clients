@@ -3,7 +3,7 @@
 	import type { FormEventHandler } from 'svelte/elements';
 	import { createOneComment, type CommentCreate } from 'backend/comments';
 	import type { PageData } from './$types';
-	import { user } from 'globals/user';
+	import { user } from 'auth';
 	import { writable } from 'svelte/store';
 	import { fromAxios, type Result } from '$lib/util/result';
 	import Textarea from '$lib/modules/ui/text-field/components/Textarea.svelte';
@@ -96,14 +96,3 @@
 		{/each}
 	</ul>
 </section>
-
-<style>
-	img {
-		width: 100%;
-		aspect-ratio: 2 / 1;
-		object-fit: cover;
-		object-position: center;
-
-		transition: transform 0.2s ease-in-out;
-	}
-</style>

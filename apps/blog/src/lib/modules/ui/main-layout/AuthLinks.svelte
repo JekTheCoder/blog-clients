@@ -1,12 +1,7 @@
 <script>
-	import { user, setTokens } from 'globals/user';
+	import { user, logout } from 'auth';
 
 	$: isLoggedIn = Boolean($user);
-
-	const logout = () => {
-		user.set(null);
-		setTokens(null);
-	};
 </script>
 
 <ul class="flex gap-x-2">
