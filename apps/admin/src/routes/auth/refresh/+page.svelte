@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { triggerTokensRefresh } from 'backend';
+	import { triggerTokensRefresh } from 'auth';
 	import type { EventHandler } from 'svelte/elements';
 
 	const onClick: EventHandler<MouseEvent, HTMLButtonElement> = () => {
