@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import './styles.scss';
-	import { setAuthHandler } from 'backend';
+	import { setAuthHandler } from 'auth';
 
 	setAuthHandler({
 		redirectLogin: () => {
