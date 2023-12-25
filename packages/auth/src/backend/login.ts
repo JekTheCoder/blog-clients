@@ -1,13 +1,9 @@
 import axios from 'axios';
 import { apiUrl } from 'globals/api';
+import { User } from '../domain/user';
 
 export type LoginResponse = {
-  user: {
-    id: string;
-    username: string;
-    name: string;
-    kind: number;
-  };
+  user: User;
   token: string;
   refreshToken: string;
 };
