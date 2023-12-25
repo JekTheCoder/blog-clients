@@ -12,7 +12,7 @@
 
 	const handleLogin = (login: LoginResponse) => {
 		user.set(login.user);
-		setTokens(login.token, login.refreshToken);
+		setTokens(login);
 
 		goto(redirectUrl).catch(() => goto('/'));
 	};

@@ -12,12 +12,9 @@
 	let invalid = false;
 
 	const handleLogin = (login: LoginResponse) => {
-		console.log({ user: login.user });
-
 		user.set(login.user);
-		console.log({ wa: $user });
 
-		setTokens(login.token, login.refreshToken);
+		setTokens(login);
 
 		goto(redirectUrl).catch(() => goto('/'));
 	};
