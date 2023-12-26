@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ReplyCreate } from '$lib/backend/api/blogs/comments/replies/create-one-reply';
-	import type { User } from '$lib/global/user';
+	import type { ReplyCreate } from 'backend/replies';
+	import type { User } from 'auth';
 	import ReactBar from '$lib/modules/components/bars/ReactBar.svelte';
 	import ReplyForm from '$lib/modules/components/replies/components/ReplyForm.svelte';
 	import { createEventDispatcher } from 'svelte';

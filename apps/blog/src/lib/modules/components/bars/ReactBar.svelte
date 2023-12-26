@@ -20,13 +20,14 @@
 </script>
 
 <div class="w-full flex gap-x-2">
-	<button class="button icon">
-		<Icon icon="iconamoon:like-thin" />
-	</button>
-
-	<button class="button icon">
-		<Icon icon="iconamoon:dislike-thin" />
-	</button>
+	<!-- TODO :( -->
+	<!-- <button class="button icon"> -->
+	<!-- 	<Icon icon="iconamoon:like-thin" /> -->
+	<!-- </button> -->
+	<!---->
+	<!-- <button class="button icon"> -->
+	<!-- 	<Icon icon="iconamoon:dislike-thin" /> -->
+	<!-- </button> -->
 
 	<button class="button basic" on:click={(e) => dispatch('replyClick', e)}>Reply</button>
 
