@@ -8,4 +8,13 @@
 
 .form-field {
 	--active-color: var(--accent-color);
+	--inactive-color: var(--primary-text-color);
+
+	input,
+	select {
+		background-color: transparent;
+		color: var(--primary-text-color);
+		border: none;
+		outline: none;
+	}
 }

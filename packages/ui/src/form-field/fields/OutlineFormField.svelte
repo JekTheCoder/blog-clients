@@ -4,9 +4,13 @@
 	export { klass as class };
 </script>
 
-<div class={'form-field grid gap-1 ' + klass}>
-	<slot />
-</div>
+<label class={'form-field grid gap-1 ' + klass}>
+	<slot name="label" />
+
+	<div class="control">
+		<slot />
+	</div>
+</label>
 
 <style lang="scss">
 	@mixin outline() {
@@ -20,9 +24,9 @@
 		outline: 2px solid var(--active-color);
 	}
 
-	.form-field > :global(*:not(label)) {
+	.control > :global(*) {
+		width: 100%;
 		@include outline();
-		display: grid;
 
 		&:focus-within {
 			@include focus-outline();
