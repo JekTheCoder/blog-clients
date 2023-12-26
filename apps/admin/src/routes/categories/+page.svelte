@@ -59,7 +59,7 @@
 
 	<form class="grid gap-4" on:submit|preventDefault={handleSubmit}>
 		<OutlineFormField>
-			<label for="">Name</label>
+			<svelte:fragment slot="svelte:fragment">Name</svelte:fragment>
 			<input type="text" required name="name" />
 		</OutlineFormField>
 

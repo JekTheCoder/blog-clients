@@ -1,15 +1,28 @@
 <script>
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 	import './styles.scss';
+	import { authReadFrom, saveAuth } from 'auth/persistance';
 	import { setAuthHandler } from 'auth';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
-	setAuthHandler({
-		redirectLogin: () => {
-			const pathname = $page.url.pathname;
-			const parsed = encodeURI(pathname);
-			return goto('/auth/sign-in?redirect=' + parsed);
-		}
+	onMount(() => {
+		const theme = localStorage.getItem('theme');
+		document.querySelector('body')?.classList.add(theme ?? 'light-theme');
+
+		authReadFrom(localStorage);
+		window.addEventListener('beforeunload', () => {
+			alert('beforeunload');
+			saveAuth(localStorage);
+		});
+
+		setAuthHandler({
+			redirectLogin: () => {
+				const pathname = $page.url.pathname;
+				const parsed = encodeURI(pathname);
+				return goto('/auth/sign-in?redirect=' + parsed);
+			}
+		});
 	});
 </script>
 
@@ -35,4 +48,33 @@
 	</nav>
 </header>
 
-<slot />
+<div>
+	<slot />
+</div>
+
+<style>
+	:global(body) {
+		display: grid;
+		grid-template-rows: auto 1fr auto;
+
+		background-color: var(--app-bg-color);
+
+		min-height: 100vh;
+		color: var(--primary-text-color);
+	}
+
+	:global(h2) {
+		font-size: 3rem;
+		font-weight: 600;
+	}
+
+	:global(h3) {
+		font-size: 2rem;
+		font-weight: 600;
+	}
+
+	:global(h4) {
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+</style>
