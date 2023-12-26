@@ -4,6 +4,7 @@
 
 	export let hasReplies = false;
 	export let repliesChecked = false;
+	export let canAnswer = true;
 
 	const dispatch = createEventDispatcher<{
 		repliesToggle: boolean;
@@ -29,7 +30,7 @@
 	<!-- 	<Icon icon="iconamoon:dislike-thin" /> -->
 	<!-- </button> -->
 
-	<button class="button basic" on:click={(e) => dispatch('replyClick', e)}>Reply</button>
+	<button class="button basic" on:click={(e) => dispatch('replyClick', e)} disabled={!canAnswer}>Reply</button>
 
 	<button class="button basic" on:click={onRepliesClick} disabled={!hasReplies}>
 		<Icon

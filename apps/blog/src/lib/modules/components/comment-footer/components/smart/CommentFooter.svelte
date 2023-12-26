@@ -39,6 +39,7 @@
 <ReactBar
 	{hasReplies}
 	repliesChecked={toggled === LooseLoad.Shown}
+	canAnswer={user !== null}
 	on:repliesToggle={handleRepliesToggle}
 	on:replyClick={() => (isReplying = true)}
 />
