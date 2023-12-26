@@ -2,6 +2,9 @@
 	import { onMount } from 'svelte';
 	import './styles.scss';
 	import { authReadFrom, saveAuth } from 'auth/persistance';
+	import { setAuthHandler } from 'auth';
+	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	onMount(() => {
 		const theme = localStorage.getItem('theme');
@@ -11,6 +14,14 @@
 		window.addEventListener('beforeunload', () => {
 			alert('beforeunload');
 			saveAuth(localStorage);
+		});
+
+		setAuthHandler({
+			redirectLogin: () => {
+				const pathname = $page.url.pathname;
+				const parsed = encodeURI(pathname);
+				return goto('/auth/sign-in?redirect=' + parsed);
+			}
 		});
 	});
 </script>
