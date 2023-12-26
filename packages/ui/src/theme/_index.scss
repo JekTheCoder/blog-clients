@@ -1,4 +1,4 @@
-@mixin colors() {
+@mixin light() {
 	--primary-color: theme('colors.violet.700');
 	--primary-hover-color: theme('colors.violet.600');
 	--primary-active-color: theme('colors.violet.800');
@@ -16,10 +16,17 @@
 	--warning-color: theme('colors.red.500');
 	--inactive-color: theme('colors.gray.200');
 
+	--card-radius: 10px;
+	--card-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	--card-x-padding: 1rem;
+	--card-y-padding: 1rem;
+
+	--button-radius: 40px;
+
 	--primary-text-color: theme('colors.black');
 	--primary-disabled-text-color: theme('colors.gray.400');
 
-	--secondary-text-color: theme('colors.gray.600');
+	--secondary-text-color: theme('colors.gray.300');
 	--secondary-disabled-text-color: theme('colors.gray.400');
 
 	--alter-text-color: theme('colors.white');
@@ -31,10 +38,51 @@
 	--app-bg-color: theme('colors.bone');
 
 	--card-bg-color: theme('colors.white');
+}
+
+// TODO: darkmode
+@mixin dark() {
+	--primary-color: theme('colors.violet.500');
+	--primary-hover-color: theme('colors.violet.600');
+	--primary-active-color: theme('colors.violet.700');
+	--primary-light-color: theme('colors.violet.400');
+	--primary-disabled-color: theme('colors.violet.100');
+
+	--accent-color: theme('colors.ubuntu.400');
+	--accent-hover-color: theme('colors.ubuntu.300');
+	--accent-active-color: theme('colors.ubuntu.500');
+	--accent-light-color: theme('colors.ubuntu.300');
+	--accent-disabled-color: theme('colors.ubuntu.100');
+
+	--disabled-color: theme('colors.gray.400');
+
+	--warning-color: theme('colors.red.500');
+	--inactive-color: theme('colors.gray.200');
+
 	--card-radius: 10px;
-	--card-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	--card-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 	--card-x-padding: 1rem;
 	--card-y-padding: 1rem;
 
 	--button-radius: 40px;
+
+	--primary-text-color: #f0f0f0;
+	--primary-disabled-text-color: theme('colors.gray.400');
+
+	--secondary-text-color: theme('colors.gray.400');
+	--secondary-disabled-text-color: theme('colors.gray.400');
+
+	--alter-text-color: theme('colors.white');
+	--alter-disabled-text-color: theme('colors.gray.400');
+
+	--alter-secondary-text-color: theme('colors.gray.600');
+	--alter-secondary-disabled-text-color: theme('colors.gray.400');
+
+	--app-bg-color: #171717;
+
+	--card-bg-color: #2d2d2d;
+}
+
+@mixin colors() {
+	@include dark();
 }
