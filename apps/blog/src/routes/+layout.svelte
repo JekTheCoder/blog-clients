@@ -1,10 +1,17 @@
 <script>
 	import { onMount } from 'svelte';
 	import './styles.scss';
+	import { authReadFrom, saveAuth } from 'auth/persistance';
 
 	onMount(() => {
 		const theme = localStorage.getItem('theme');
 		document.querySelector('body')?.classList.add(theme ?? 'light-theme');
+
+		authReadFrom(localStorage);
+		window.addEventListener('beforeunload', () => {
+			alert('beforeunload');
+			saveAuth(localStorage);
+		});
 	});
 </script>
 
