@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ReplyCreate } from '$lib/backend/api/blogs/comments/replies/create-one-reply';
-	import OutlineFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
+	import type { ReplyCreate } from 'backend/replies';
+	import { OutlineFormField } from "ui/form-field";
 	import Textarea from '$lib/modules/ui/text-field/components/Textarea.svelte';
 	import { createEventDispatcher } from 'svelte';
 	import type { FormEventHandler } from 'svelte/elements';
