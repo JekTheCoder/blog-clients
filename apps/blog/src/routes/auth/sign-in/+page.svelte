@@ -33,12 +33,12 @@
 
 		<form method="POST" class="mb-6 grid gap-4" on:submit|preventDefault={onSubmit}>
 			<OutlineFormField>
-				<label for="">Username</label>
+				<svelte:fragment slot="label">Username</svelte:fragment>
 				<input type="text" name="username" required />
 			</OutlineFormField>
 
 			<OutlineFormField>
-				<label for="">Password</label>
+				<svelte:fragment slot="label">Password</svelte:fragment>
 				<input type="password" name="password" required />
 			</OutlineFormField>
 
@@ -52,7 +52,7 @@
 		<footer>
 			<p>
 				Don't have an account?
-				<a href="/" class="link">Register</a>
+				<a href="/auth/register" class="link">Register</a>
 			</p>
 		</footer>
 	</CardArticle>

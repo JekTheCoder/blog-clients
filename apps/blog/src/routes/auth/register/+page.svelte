@@ -42,24 +42,24 @@
 		<form method="POST" class="grid gap-4 mb-6" on:submit|preventDefault={onSubmit}>
 			<div class="grid gap-4 grid-cols-2">
 				<OutlineFormField>
-					<label for="">Username</label>
+					<svelte:fragment slot="label">Username</svelte:fragment>
 					<input type="text" name="username" required />
 				</OutlineFormField>
 
 				<OutlineFormField>
-					<label for="">Name</label>
+					<svelte:fragment slot="label">Name</svelte:fragment>
 					<input type="text" name="name" />
 				</OutlineFormField>
 			</div>
 
 			<OutlineFormField>
-				<label for="">Email</label>
+				<svelte:fragment slot="label">Email</svelte:fragment>
 				<input type="email" name="email" required />
 			</OutlineFormField>
 
 			<div class="grid gap-4 md:grid-cols-2">
 				<OutlineFormField>
-					<label for="">Password</label>
+					<svelte:fragment slot="label">Password</svelte:fragment>
 					<input
 						type="password"
 						name="password"
@@ -70,7 +70,7 @@
 				</OutlineFormField>
 
 				<OutlineFormField>
-					<label for="">Repeat password</label>
+					<svelte:fragment slot="label">Repeat password</svelte:fragment>
 					<input
 						type="password"
 						name="rpassword"
