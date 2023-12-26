@@ -20,6 +20,16 @@
 			"require": "./src/index.ts",
 			"import": "./src/index.ts",
 			"types": "./src/index.ts"
+		},
+		"./persistance": {
+			"require": "./src/persistance.ts",
+			"import": "./src/persistance.ts",
+			"types": "./src/persistance.ts"
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"persistance": ["./src/persistance.ts"]
 		}
 	}
 }
