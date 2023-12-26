@@ -96,3 +96,11 @@
 		{/each}
 	</ul>
 </section>
+
+<style>
+	section {
+		--name-text-color: var(--primary-text-color);
+		--content-text-color: var(--primary-text-color);
+		--username-text-color: var(--secondary-text-color);
+	}
+</style>

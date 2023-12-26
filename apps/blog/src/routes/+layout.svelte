@@ -25,6 +25,7 @@
 		background-color: var(--app-bg-color);
 
 		min-height: 100vh;
+		color: var(--primary-text-color);
 	}
 
 	:global(h2) {

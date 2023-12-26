@@ -1,6 +1,6 @@
 <script>
 	import FlashingDots from '$lib/modules/ui/dots/components/FlashingDots.svelte';
-	import OutlinedFormField from '$lib/modules/ui/form-field/fields/OutlineFormField.svelte';
+	import { OutlineFormField } from 'ui/form-field';
 </script>
 
 <main class="container mx-auto mt-4 grid gap-4">
@@ -28,12 +28,12 @@
 	</div>
 
 	<div class="flex gap-x-4">
-		<OutlinedFormField>
+		<OutlineFormField>
 			<input type="text" />
-		</OutlinedFormField>
+		</OutlineFormField>
 
-		<OutlinedFormField class="primary">
+		<OutlineFormField class="primary">
 			<input type="text" />
-		</OutlinedFormField>
+		</OutlineFormField>
 	</div>
 </main>
