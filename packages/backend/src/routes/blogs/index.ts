@@ -18,9 +18,9 @@ export type BlogPreview = {
 	html?: string | null;
 };
 
-export function getAll({ limit, offset }: { offset?: number; limit?: number }) {
+export function getAll({ limit, offset, search }: { offset?: number; limit?: number, search?: string }) {
 	return axios.get<BlogPreview[]>(apiUrl + '/blogs', {
-		params: { limit, offset },
+		params: { limit, offset, search },
 	});
 }
 

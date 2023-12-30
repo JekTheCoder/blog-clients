@@ -6,22 +6,53 @@
 	import Icon from '$lib/modules/ui/icon/Icon.svelte';
 	import { page as svPage } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { OutlineFormField } from 'ui/form-field';
+	import type { FormEventHandler } from 'svelte/elements';
 
 	export let data: PageData;
+	let searchParams = new URLSearchParams();
+
 	$: page = Number($svPage.url.searchParams.get('page')) ?? 0;
 
-	function updatePage(page: number) {
-		goto(`?page=${page}`);
+	function updateQuery(params: URLSearchParams) {
+		goto(`?${params.toString()}`);
 	}
+
+	function updatePage(page: number) {
+		searchParams.set('page', page.toString());
+		updateQuery(searchParams);
+	}
+
+	let timeout: NodeJS.Timeout | null = null;
+	const searchHandler: FormEventHandler<HTMLInputElement> = (event) => {
+		if (timeout) clearTimeout(timeout);
+
+		const search = event.currentTarget.value;
+		timeout = setTimeout(() => {
+			searchParams.set('search', search);
+			updateQuery(searchParams);
+		}, 300);
+	};
 </script>
 
 <PageLayout>
 	<Header slot="header" />
 
-	<div class="gap-y-8 gap-x-4">
-		{#each data.blogs as blog}
-			<VPostPreview post={blog} />
-		{/each}
+	<div class="grid gap-4">
+		<section>
+			<search>
+				<OutlineFormField>
+					<svelte:fragment slot="label">Search</svelte:fragment>
+					<input type="text" on:input={searchHandler} />
+				</OutlineFormField>
+			</search>
+		</section>
+
+		<div class="blogs gap-y-8 gap-x-4">
+			{#each data.blogs as blog}
+				<VPostPreview post={blog} />
+			{/each}
+		</div>
 	</div>
 
 	<footer class="container mx-auto my-8" slot="footer">
@@ -36,7 +67,7 @@
 </PageLayout>
 
 <style>
-	div {
+	.blogs {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(350px, max-content));
 	}

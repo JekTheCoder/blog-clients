@@ -11,9 +11,12 @@ export const load: PageLoad = async ({ url }) => {
 		page = 0;
 	}
 
+	const search = url.searchParams.get('search');
+
 	const blogs = await getAll({
 		offset: page * PAGE_SIZE,
-		limit: PAGE_SIZE + 1
+		limit: PAGE_SIZE + 1,
+		search: search ?? ''
 	}).then((response) => response.data);
 
 	return {
