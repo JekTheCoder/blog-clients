@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - './apps/blog/**'
+      - './packages/**'
 
 jobs:
   build:
