@@ -2,8 +2,6 @@ import { getAll } from 'backend/blogs';
 import type { PageLoad } from './$types';
 import { PAGE_SIZE } from './data';
 
-export const prerender = false;
-
 export const load: PageLoad = async ({ url }) => {
 	const pageRaw = url.searchParams.get('page') ?? 0;
 	let page = Number(pageRaw);

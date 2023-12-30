@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  blog:
+    image: jekimager/blog-client
+    build:
+      context: .
+      dockerfile: Dockerfile.blog
+      args:
+        DOCKER_BUILDKIT: 1
+    ports:
+      - "80:4173"

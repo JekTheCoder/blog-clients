@@ -1,0 +1,17 @@
+FROM oven/bun:1 as builder
+WORKDIR /front
+COPY . /front
+RUN cd /front/apps/blog && bun install
+
+# [optional] tests & build
+ENV NODE_ENV=production
+RUN cd /front/apps/blog && bun test
+RUN cd /front/apps/blog && bun run build
+
+# copy production dependencies and source code into final image
+FROM node:20-alpine as runtime
+COPY --from=builder /front .
+
+ENTRYPOINT ["npm", "run", "preview", "--prefix", "./apps/blog", "--", "--host", "0.0.0.0"]
+EXPOSE 4173
+

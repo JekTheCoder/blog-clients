@@ -15,7 +15,7 @@
 		"auth": "workspace:*"
 	},
 	"devDependencies": {
-		"eslint-config-custom": "*"
+		"eslint-config-custom": "workspace:*"
 	},
 	"exports": {
 		".": "./src/index.ts",
