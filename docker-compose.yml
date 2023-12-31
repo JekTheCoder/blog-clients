@@ -4,13 +4,12 @@ services:
   blog:
     image: jekimager/blog-client
     environment:
-      - API_URL=${API_URL}
       - PORT=4173
       - ORIGIN=${API_URL}
     build:
       context: .
       dockerfile: Dockerfile.blog
       args:
-        DOCKER_BUILDKIT: 1
+        API_URL: ${API_URL}
     ports:
       - "80:4173"

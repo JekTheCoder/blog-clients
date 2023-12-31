@@ -9,6 +9,7 @@ RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs
 # ---------
 
 FROM oven/bun:1 as builder
+ARG API_URL
 WORKDIR /app
 COPY --from=scaffolding /app .
 RUN bun install
@@ -19,6 +20,7 @@ RUN bun install --frozen-lockfile
 
 # [optional] tests & build
 ENV NODE_ENV=production
+ENV VITE_API_URL=$API_URL
 RUN cd apps/blog && bun run build
 
 # copy production dependencies and source code into final image
