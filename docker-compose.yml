@@ -5,7 +5,7 @@ services:
     image: jekimager/blog-client
     environment:
       - PORT=4173
-      - ORIGIN=${API_URL}
+      - ORIGIN=${ORIGIN}
     build:
       context: .
       dockerfile: Dockerfile.blog
