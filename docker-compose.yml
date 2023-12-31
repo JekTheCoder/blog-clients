@@ -6,6 +6,7 @@ services:
     environment:
       - API_URL=${API_URL}
       - PORT=4173
+      - ORIGIN=${API_URL}
     build:
       context: .
       dockerfile: Dockerfile.blog
