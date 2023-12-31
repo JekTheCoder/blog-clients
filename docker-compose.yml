@@ -12,4 +12,4 @@ services:
       args:
         API_URL: ${API_URL}
     ports:
-      - "80:4173"
+      - "8000:4173"
