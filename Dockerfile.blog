@@ -29,7 +29,7 @@ WORKDIR /app
 COPY --from=builder /app/apps/blog/build/ src/
 COPY --from=builder /app/packages/ packages/
 COPY --from=builder /app/node_modules/ node_modules/
-RUN echo '{ "name": "app", "type": "module" }' > /app/package.json
+COPY --from=builder /app/package.json package.json
 
 ENTRYPOINT ["node", "/app/src/"]
 EXPOSE 4173
