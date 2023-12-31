@@ -1,17 +1,34 @@
+FROM oven/bun:1 as scaffolding 
+WORKDIR /app
+COPY package.json bun.lockb ./
+COPY packages packages
+COPY apps apps
+
+RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+
+# ---------
+
 FROM oven/bun:1 as builder
-WORKDIR /front
-COPY . /front
-RUN cd /front/apps/blog && bun install
+WORKDIR /app
+COPY --from=scaffolding /app .
+RUN bun install
+COPY . .
+
+# To restore workspaces symlinks
+RUN bun install --frozen-lockfile
 
 # [optional] tests & build
 ENV NODE_ENV=production
-RUN cd /front/apps/blog && bun test
-RUN cd /front/apps/blog && bun run build
+RUN cd apps/blog && bun run build
 
 # copy production dependencies and source code into final image
 FROM node:20-alpine as runtime
-COPY --from=builder /front .
+WORKDIR /app
+COPY --from=builder /app/apps/blog/build/ src/
+COPY --from=builder /app/packages/ packages/
+COPY --from=builder /app/node_modules/ node_modules/
+RUN echo '{ "name": "app", "type": "module" }' > /app/package.json
 
-ENTRYPOINT ["npm", "run", "preview", "--prefix", "./apps/blog", "--", "--host", "0.0.0.0"]
+ENTRYPOINT ["node", "/app/src/"]
 EXPOSE 4173
 
