@@ -75,9 +75,8 @@ jobs:
           username: root
           password: ${{ secrets.DROPLET_PASSWORD }}
           script: |
-            cd ~/front/
             export API_URL=${{ vars.API_URL }}
 
-            docker-compose down
-            docker-compose pull
-            docker-compose up -d
+            cd ~/front/ && docker-compose down
+            cd ~/front/ && docker-compose pull
+            cd ~/front/ && docker-compose up -d
