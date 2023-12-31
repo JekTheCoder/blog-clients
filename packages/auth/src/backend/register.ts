@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { apiUrl } from 'globals/api';
-import { User } from 'globals/user';
+import { apiUrl } from 'app-globals/api';
+import { User } from '../domain/user';
 
 export type RegisterRequest = {
 	username: string;

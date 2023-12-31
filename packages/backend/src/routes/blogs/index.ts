@@ -1,4 +1,4 @@
-import { apiUrl } from 'globals/api';
+import { apiUrl } from 'app-globals/api';
 import { authClient } from 'auth';
 import type { IdReturn } from '../../models/id-return';
 import axios from 'axios';

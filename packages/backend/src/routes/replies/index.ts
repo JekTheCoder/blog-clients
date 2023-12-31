@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { apiUrl } from 'globals/api';
+import { apiUrl } from 'app-globals/api';
 import { authClient } from 'auth';
 
 export type ReplyCreate = {
