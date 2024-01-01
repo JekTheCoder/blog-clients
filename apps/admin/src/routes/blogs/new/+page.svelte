@@ -78,7 +78,7 @@
 	};
 
 	const onSubmit: EventHandler<SubmitEvent, HTMLFormElement> = (e) => {
-		if (subCategoriesSelected.length === 0 || tagsSelected.length === 0) {
+		if (subCategoriesSelected.length === 0) {
 			return;
 		}
 
@@ -118,7 +118,7 @@
 				<OutlineFormField>
 					<select
 						name="categoryId"
-						on:change={(e) => categorySelected.set(e.target?.value ?? null)}
+						on:change={(e) => categorySelected.set(e.currentTarget.value ?? null)}
 					>
 						{#each data.categories as category (category.id)}
 							<option value={category.id}>{category.name}</option>

@@ -1,5 +1,6 @@
+import { BLOG_WORKSPACE } from "$lib/app-globals";
+
 export async function getContent(workspaceId: string) {
-	const port = 7878;
-	const response = await fetch(`http://localhost:${port}/${workspaceId}/content/`);
+	const response = await fetch(`http://${BLOG_WORKSPACE}/${workspaceId}/content/`);
 	return response.text();
 }
