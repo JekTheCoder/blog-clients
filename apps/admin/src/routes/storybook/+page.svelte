@@ -70,4 +70,10 @@
 			<input type="text" />
 		</OutlineFormField>
 	</div>
+
+	<section>
+		<OutlineFormField>
+			<textarea cols="30" rows="10"></textarea>
+		</OutlineFormField>
+	</section>
 </main>

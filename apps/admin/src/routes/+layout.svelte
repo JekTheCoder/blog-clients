@@ -39,10 +39,18 @@
 
 			<li>
 				<a href="/blogs" class="link">Blogs</a>
+			</li>				
+
+			<li>
+				<a href="/storybook" class="link">Storybook</a>
 			</li>
 
 			<li>
 				<a href="/auth/refresh" class="link">Refresh</a>
+			</li>
+
+			<li>
+				<a href="/auth/sign-in" class="link">Sign In</a>
 			</li>
 		</ul>
 	</nav>
