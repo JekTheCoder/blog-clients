@@ -62,6 +62,10 @@
 				title={blog.title}
 				mainImage={blog.mainImage}
 				blogId={blog.id}
+				category={blog.category}
+				createdAt={blog.createdAt}
+				subCategories={blog.subCategories}
+				tags={blog.tags}
 			/>
 		{/if}
 
