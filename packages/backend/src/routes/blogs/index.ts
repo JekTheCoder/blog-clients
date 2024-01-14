@@ -57,10 +57,12 @@ export type BlogById = {
 	id: string;
 	title: string;
 	content: string;
-	html: string;
-
+	createdAt: Date;
 	comments: Comment[];
-};
+	category: Category;
+	tags: Tag[];
+	subCategories: SubCategory[];
+}
 
 export function getOneBlog(id: string) {
 	return axios.get<BlogById>(apiUrl + '/blogs/' + id);

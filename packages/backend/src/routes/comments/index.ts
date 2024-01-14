@@ -2,17 +2,14 @@ import axios from 'axios';
 import { apiUrl } from 'app-globals/api';
 import { authClient } from 'auth';
 import type { IdReturn } from '../../models/id-return';
+import type { Account } from '../account';
 
 export type Comment = {
 	id: string;
 	content: string;
 	hasReplies: boolean;
 
-	account: {
-		id: string;
-		username: string;
-		name: string;
-	};
+	account: Account;
 };
 
 export const getAllComments = (blogId: string) => {

@@ -42,6 +42,9 @@
 			],
 			"replies": [
 				"./src/routes/replies/index.ts"
+			],
+			"accounts": [
+				"./src/routes/accounts/index.ts"
 			]
 		}
 	}
