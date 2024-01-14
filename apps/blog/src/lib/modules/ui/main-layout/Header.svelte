@@ -1,21 +1,34 @@
 <script>
+	import ThemeButton from '$lib/layout/components/ThemeButton.svelte';
 	import AuthLinks from './AuthLinks.svelte';
 </script>
 
-<header class="container mx-auto py-6 sticky top-0">
-	<h1><a href="/">MeBlog</a></h1>
+<header class="py-2 sticky top-0 flex items-center">
+	<div class="container mx-auto layout">
+		<h1><a href="/">MeBlog</a></h1>
 
-	<div />
+		<div />
 
-	<AuthLinks />
+		<div class="flex gap-x-4 items-center">
+			<ThemeButton />
+
+			<AuthLinks />
+		</div>
+	</div>
 </header>
 
 <style>
 	header {
-		background-color: var(--bg-color);
+		background-color: var(--header-bg-color);
+		backdrop-filter: blur(10px);
+		z-index: 10;
+	}
+
+	.layout {
 		display: grid;
 		grid-template-columns: auto 1fr auto;
 		gap: 2rem;
+		place-items: center;
 	}
 
 	a {
