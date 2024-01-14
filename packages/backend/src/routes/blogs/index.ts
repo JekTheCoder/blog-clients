@@ -19,7 +19,7 @@ export type BlogPreview = {
 	title: string;
 	preview: string;
 	mainImage?: string;
-	createdAt: Date;
+	createdAt: string;
 	category: Category;
 	tags: Tag[];
 	subCategories: SubCategory[];
