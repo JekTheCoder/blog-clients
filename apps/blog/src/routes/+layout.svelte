@@ -13,6 +13,7 @@
 			classes.remove(Theme.Light as unknown as string, Theme.Dark as unknown as string);
 
 			classes.add(theme as unknown as string);
+			localStorage.setItem('theme', theme as unknown as string);
 		});
 
 		authReadFrom(localStorage);
