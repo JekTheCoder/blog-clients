@@ -1,14 +1,19 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import './styles.scss';
 	import { authReadFrom, saveAuth } from 'auth/persistance';
 	import { setAuthHandler } from 'auth';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { Theme, theme } from '$lib/globals/theme';
 
 	onMount(() => {
-		const theme = localStorage.getItem('theme');
-		document.querySelector('body')?.classList.add(theme ?? 'light-theme');
+		theme.subscribe((theme) => {
+			const classes = document.querySelector('body')!.classList;
+			classes.remove(Theme.Light as unknown as string, Theme.Dark as unknown as string);
+
+			classes.add(theme as unknown as string);
+		});
 
 		authReadFrom(localStorage);
 		window.addEventListener('beforeunload', () => {
