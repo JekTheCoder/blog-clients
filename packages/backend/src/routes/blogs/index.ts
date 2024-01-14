@@ -3,6 +3,9 @@ import { authClient } from 'auth';
 import type { IdReturn } from '../../models/id-return';
 import axios from 'axios';
 import type { Comment } from '../comments';
+import type { Category } from '../categories';
+import type { Tag } from '../tags';
+import type { SubCategory } from '../sub-categories';
 
 export type BlogRequest = {
 	content: string;
@@ -13,12 +16,24 @@ export type BlogRequest = {
 
 export type BlogPreview = {
 	id: string;
-	adminId: string;
 	title: string;
-	html?: string | null;
+	preview: string;
+	mainImage?: string;
+	createdAt: Date;
+	category: Category;
+	tags: Tag[];
+	subCategories: SubCategory[];
 };
 
-export function getAll({ limit, offset, search }: { offset?: number; limit?: number, search?: string }) {
+export function getAll({
+	limit,
+	offset,
+	search,
+}: {
+	offset?: number;
+	limit?: number;
+	search?: string;
+}) {
 	return axios.get<BlogPreview[]>(apiUrl + '/blogs', {
 		params: { limit, offset, search },
 	});
