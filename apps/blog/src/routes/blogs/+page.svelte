@@ -15,7 +15,7 @@
 	$: page = Number($svPage.url.searchParams.get('page')) ?? 0;
 
 	function updateQuery(params: URLSearchParams) {
-		goto(`?${params.toString()}`);
+		goto(`?${params.toString()}`, { replaceState: true, noScroll: true, keepFocus: true });
 	}
 
 	function updatePage(page: number) {
