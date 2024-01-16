@@ -26,7 +26,9 @@
 
 			<SubCategories subCategories={post.subCategories} />
 
-			<span>•</span>
+			{#if post.tags.length}
+				<span>•</span>
+			{/if}
 
 			<ul class="flex gap-x-2">
 				{#each post.tags as tag (tag.id)}
