@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { apiUrl } from 'app-globals/api';
 import { authClient } from 'auth';
+import { IdReturn } from '../../models/id-return';
 
 export type Tag = {
 	id: string;
@@ -17,8 +18,13 @@ export type TagRequest = {
 	color: string;
 };
 
-export function createOne(categoryId: string, payload: TagRequest) {
-	return authClient.post(`${apiUrl}/categories/${categoryId}/tags/`, payload);
+export async function createOne(categoryId: string, payload: TagRequest) {
+	const response = await authClient.post<IdReturn>(
+		`${apiUrl}/categories/${categoryId}/tags/`,
+		payload
+	);
+
+	return response.data;
 }
 
 export function deleteOne(id: string) {
