@@ -4,6 +4,14 @@
 	import { Icon } from 'ui/icon';
 </script>
 
+<header class="container mx-auto">
+	<nav>
+		<ul class="flex gap-x-4">
+			<li><a href="/storybook/tags" class="link">Tags</a></li>
+		</ul>
+	</nav>
+</header>
+
 <main class="container mx-auto mt-4 grid gap-4">
 	<article>
 		<h2>Button</h2>

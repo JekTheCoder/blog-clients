@@ -5,20 +5,22 @@
 	import type { EventHandler } from 'svelte/elements';
 	import { writable } from 'svelte/store';
 	import { page } from '$app/stores';
-	import TagPromise from './TagPromise.svelte';
+	import TagPromise from '$lib/components/tags/TagPromise.svelte';
 	import { Icon } from 'ui/icon';
 	import TagBackgroundSelect from '$lib/components/tags/TagBackgroundSelect.svelte';
+	import type { IdReturn } from 'backend';
+	import { Tag as TagContent } from 'domain-ui/tag';
 
 	export let data: PageData;
 	let id = $page.params.id;
 
-	type CategoryCreation = {
+	type TagCreation = {
 		key: number;
-		status: Promise<unknown>;
+		status: Promise<IdReturn>;
 		data: TagRequest;
 	};
 
-	const creationTags = writable<CategoryCreation[]>([]);
+	const creationTags = writable<TagCreation[]>([]);
 
 	const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = ({ currentTarget: form }) => {
 		const formData = new FormData(form);
@@ -54,6 +56,19 @@
 			data.tags = data.tags;
 		});
 	};
+
+	const onTagDone = ({ id }: IdReturn, { name, color }: TagRequest, key: number) => {
+		creationTags.update((tags) => {
+			const i = tags.findIndex((t) => t.key === key);
+			if (i === -1) return tags;
+
+			tags.splice(i, 1);
+			return tags;
+		});
+
+		data.tags.unshift({ id, name, color });
+		data = data;
+	};
 </script>
 
 <main class="container mx-auto grid gap-4">
@@ -80,15 +95,21 @@
 	<ul>
 		{#each $creationTags as tag (tag.key)}
 			<li>
-				<TagPromise status={tag.status} name={tag.data.name} color={tag.data.color} />
+				<TagPromise
+					on:done={(e) => onTagDone(e.detail, tag.data, tag.key)}
+					categoryId={id}
+					status={tag.status}
+					name={tag.data.name}
+					color={tag.data.color}
+				/>
 			</li>
 		{/each}
 
 		{#each data.tags as tag (tag.id)}
-			<li class="flex justify-between">
-				<span>
-					{tag.name}
-				</span>
+			<li class="flex items-center justify-between">
+				<div>
+					<TagContent id={tag.id} name={tag.name} color={tag.color} />
+				</div>
 
 				<div class="flex gap-x-2">
 					<button class="button icon accent">

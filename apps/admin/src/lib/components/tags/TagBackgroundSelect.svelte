@@ -4,7 +4,10 @@
 	import { tagBackgrounds } from 'domain-ui/tag';
 
 	let backgroundSelected = tagBackgrounds[0];
+	export let name = '';
 </script>
+
+<input type="hidden" {name} value={backgroundSelected} />
 
 <BaseSelect items={tagBackgrounds} let:ctx let:item>
 	<div slot="preview" class="tag {backgroundSelected} w-full">{backgroundSelected}</div>
