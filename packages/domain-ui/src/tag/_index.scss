@@ -1,0 +1,21 @@
+@use 'background';
+
+.tag {
+	&.blue-gradient {
+	@include background.blue-gradient();
+	}
+
+	&.primary-solid {
+		@include background.primary-solid();
+	}
+
+	&.accent-solid {
+		@include background.accent-solid();	
+	}
+
+	&.warning-solid {
+		@include background.warning-solid();
+	}
+}
+
+
