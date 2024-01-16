@@ -1,4 +1,4 @@
 import Tag from './Tag.svelte';
-import { type TagBackground, tagBackgrounds } from './background';
+import { TagBackground, tagBackgrounds } from './background';
 
-export { Tag, type TagBackground, tagBackgrounds };
+export { Tag, TagBackground, tagBackgrounds };

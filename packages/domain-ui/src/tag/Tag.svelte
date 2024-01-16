@@ -4,7 +4,7 @@
 	export let color: string;
 </script>
 
-<a href="/blogs?tag={id}" class="elevation-1 tag" style="background-color: {color}">
+<a href="/blogs?tag={id}" class="elevation-1 {color} tag">
 	{name}
 </a>
 

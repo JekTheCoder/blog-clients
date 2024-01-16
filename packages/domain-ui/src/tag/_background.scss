@@ -33,6 +33,6 @@
 }
 
 @mixin warning-solid() {
-	background-color: var(--warning-color);
+	background-color: var(--warn-color);
 	color: theme('colors.white');
 }
