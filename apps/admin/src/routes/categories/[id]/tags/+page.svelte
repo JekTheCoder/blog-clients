@@ -7,6 +7,7 @@
 	import { page } from '$app/stores';
 	import TagPromise from './TagPromise.svelte';
 	import { Icon } from 'ui/icon';
+	import TagBackgroundSelect from '$lib/components/tags/TagBackgroundSelect.svelte';
 
 	export let data: PageData;
 	let id = $page.params.id;
@@ -65,12 +66,10 @@
 				<input type="text" required name="name" />
 			</OutlineFormField>
 
-			<div class="grid gap-2">
-				<label for="">
-					Color
-					<input type="color" name="color" required />
-				</label>
-			</div>
+			<OutlineFormField>
+				<svelte:fragment slot="label">Color</svelte:fragment>
+				<TagBackgroundSelect name="color" />
+			</OutlineFormField>
 		</div>
 
 		<div class="flex gap-x-2 justify-end">
