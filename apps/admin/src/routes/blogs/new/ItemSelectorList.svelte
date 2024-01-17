@@ -1,5 +1,5 @@
 <script lang="ts">
-	import DropdownSearch from '$lib/backend/ui/search/DropdownSearch.svelte';
+	import DropdownSearch from '$lib/ui/search/DropdownSearch.svelte';
 	import { writable } from 'svelte/store';
 	import { OutlineFormField } from 'ui/form-field';
 

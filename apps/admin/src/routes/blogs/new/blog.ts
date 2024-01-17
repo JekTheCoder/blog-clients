@@ -28,20 +28,10 @@ export const blog = `<h1>The Marvelous World of Cats: Markdown Magic</h1>
 <li><strong>Curious</strong>: Cats are natural explorers, and their curiosity can lead them to unexpected places.</li>
 </ol>
 <h2>Cat Care</h2>
-<p>Caring for your feline friend is essential. Here's how you can create a task list to ensure their well-being:</p>
-<ul>
-<li>[x] Provide a balanced diet with quality cat food.</li>
-<li>[ ] Regularly visit the veterinarian for check-ups.</li>
-<li>[ ] Groom your cat, especially long-haired breeds.</li>
-<li>[x] Keep them entertained with toys and playtime.</li>
-<li>[x] Maintain a litter box for proper hygiene.</li>
-</ul>
+<p>Caring for your <code>feline</code> friend is essential. Here's how you can create a task list to ensure their well-being:</p>
 <h2>Cat Videos</h2>
 <p>Finally, let's embed a YouTube video of cute cats in Markdown using an iframe:</p>
-<pre><code class="language-markdown">&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
-
-
-</code></pre>
-
-<BlogFrame content={''} />
-`;
+<pre>
+	<code class="language-markdown">&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+	</code>
+</pre>`;
