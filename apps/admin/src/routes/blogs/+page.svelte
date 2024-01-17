@@ -13,9 +13,15 @@
 				{blog.title}
 			</p>
 
-			<div>
-				<a href="/blogs/{blog.id}/images" class="link">images</a>
-			</div>
+			<ul class="flex gap-x-2">
+				<li>
+					<a href="/blogs/{blog.id}/grouping" class="link">Grouping</a>
+				</li>
+
+				<li>
+					<a href="/blogs/{blog.id}/images" class="link">images</a>
+				</li>
+			</ul>
 		</li>
 	{/each}
 </ul>
