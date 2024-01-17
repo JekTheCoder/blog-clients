@@ -1,8 +1,6 @@
+@use './link';
+
 .link {
-	font-weight: var(--link-font-weight);
-	color: var(--primary-text-color);
+	@include link.link();
 }
 
-.link:hover {
-	text-decoration: underline;
-}

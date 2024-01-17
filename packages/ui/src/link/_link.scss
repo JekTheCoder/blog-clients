@@ -1,0 +1,8 @@
+@mixin link() {
+	font-weight: var(--link-font-weight);
+	color: var(--primary-text-color);
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
