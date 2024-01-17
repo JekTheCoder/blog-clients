@@ -1,4 +1,9 @@
-$border-color: #eee;
+@use '~ui/src/link/link';
+
+$border-color: var(--primary-text-color);
+$inset-bg: var(--card-bg-color);
+
+$normal-font-size: 1.25rem;
 
 .blog-frame {
 	h1 {
@@ -7,6 +12,7 @@ $border-color: #eee;
 		padding-bottom: 0.4rem;
 		margin-top: 1rem;
 		margin-bottom: 1.5rem;
+		text-align: balance;
 
 		line-height: 1.2;
 	}
@@ -22,21 +28,38 @@ $border-color: #eee;
 	}
 
 	p {
-		font-size: 1.25rem;
+		font-size: $normal-font-size;
 	}
 
 	ul {
 		list-style-type: disclosure-closed;
 	}
 
-	code {
-		display: block;
-		overflow-x: auto;
+	a {
+		@include link.link();
+	}
 
-		background-color: #eee;
+	pre {
+		margin-bottom: 1rem;
+
+		> code {
+			display: block;
+			overflow-x: auto;
+			padding: 1rem;
+
+			font-size: 1rem;
+		}
+	}
+
+	code {
+		background-color: $inset-bg;
 		border-radius: 3px;
-		border: 1px solid #ddd;
-		padding: 1rem;
+		border: 1px solid $border-color;
+		vertical-align: middle;
+
+		font-size: 11px;
+
+		padding: 0.2rem 0.4rem;
 	}
 
 	p {
