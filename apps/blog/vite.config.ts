@@ -1,6 +1,11 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { join } from 'node:path';
+import tailwindcss from 'tailwindcss';
+
+const tailwindConfig = tailwindcss({
+	config: '../../packages/ui/tailwind.config.js'
+});
 
 export default defineConfig({
 	server: {
@@ -9,6 +14,11 @@ export default defineConfig({
 	plugins: [sveltekit()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
+	},
+	css: {
+		postcss: {
+			plugins: [tailwindConfig]
+		}
 	},
 	resolve: {
 		alias: [
