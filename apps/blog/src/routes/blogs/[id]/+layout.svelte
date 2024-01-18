@@ -4,7 +4,7 @@
 
 <Header />
 
-<main>
+<main class="container px-4">
 	<div>
 		<a class="link" href="/blogs">Back</a>
 	</div>
@@ -14,7 +14,6 @@
 <style>
 	main {
 		max-width: 1000px;
-		width: 80%;
 		margin: 0 auto;
 	}
 </style>
