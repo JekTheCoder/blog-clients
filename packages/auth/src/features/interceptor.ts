@@ -14,7 +14,7 @@ export const authInterceptor: (
 	}
 
 	if (authStateValue.accessToken.isExpired()) {
-		refreshTokens(authStateValue.refreshToken);
+		await refreshTokens(authStateValue.refreshToken);
 	}
 
 	config.headers.set('Authorization', `Bearer ${authStateValue.accessToken.token}`);
