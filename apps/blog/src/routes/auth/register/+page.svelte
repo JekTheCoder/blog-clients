@@ -54,7 +54,7 @@
 
 			<OutlineFormField>
 				<svelte:fragment slot="label">Email</svelte:fragment>
-				<input type="email" name="email" required />
+				<input type="email" name="email" />
 			</OutlineFormField>
 
 			<div class="grid gap-4 md:grid-cols-2">
