@@ -5,7 +5,15 @@ $inset-bg: var(--card-bg-color);
 
 $normal-font-size: 1.25rem;
 
+@mixin code-box() {
+	background-color: $inset-bg;
+	border-radius: 3px;
+	border: 1px solid $border-color;
+}
+
 .blog-frame {
+	display: grid;
+
 	h1 {
 		font-size: 2.5rem;
 		border-bottom: 2px solid $border-color;
@@ -28,6 +36,16 @@ $normal-font-size: 1.25rem;
 
 	p {
 		font-size: $normal-font-size;
+
+		code {
+			@include code-box();
+			vertical-align: middle;
+			white-space: nowrap;
+
+			font-size: 14px;
+
+			padding: 0.2rem 0.4rem;
+		}
 	}
 
 	ul {
@@ -39,26 +57,19 @@ $normal-font-size: 1.25rem;
 	}
 
 	pre {
+		@include code-box();
+
 		margin-bottom: 1rem;
+		display: grid;
+		overflow-x: auto;
 
 		> code {
-			display: block;
-			overflow-x: auto;
+			min-width: max-content;
 			padding: 1rem;
 
 			font-size: 1rem;
+			white-space: pre-wrap;
 		}
-	}
-
-	code {
-		background-color: $inset-bg;
-		border-radius: 3px;
-		border: 1px solid $border-color;
-		vertical-align: middle;
-
-		font-size: 14px;
-
-		padding: 0.2rem 0.4rem;
 	}
 
 	p {
