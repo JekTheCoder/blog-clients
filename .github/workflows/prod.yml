@@ -43,7 +43,7 @@ jobs:
         with:
           push: true
           build-args: |
-            API_URL=${{ vars.API_URL }}
+            VITE_API_URL=${{ vars.API_URL }}
           tags: jekimager/blog-client:latest
 
   deploy:

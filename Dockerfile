@@ -6,8 +6,8 @@ RUN bun install
 RUN bun install --frozen-lockfile
 
 ENV NODE_ENV=production
-ENV VITE_API_URL=$API_URL
-RUN bun run build
+ARG VITE_API_URL
+RUN cd apps/blog && bun run build
 
 FROM oven/bun:1 as runtime 
 WORKDIR /app
