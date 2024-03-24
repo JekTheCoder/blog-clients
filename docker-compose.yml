@@ -13,3 +13,4 @@ services:
         API_URL: ${API_URL}
     ports:
       - "8000:4173"
+    restart: on-failure
