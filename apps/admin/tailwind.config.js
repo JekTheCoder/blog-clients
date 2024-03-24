@@ -1,6 +1,2 @@
-const tailwindConfig = require('ui/tailwind-config');
-
-/** @type {import('tailwindcss').Config} */
-export default {
-	...tailwindConfig
-};
+const tailwind = require("../../packages/ui/tailwind.config.js");
+export default tailwind.default;

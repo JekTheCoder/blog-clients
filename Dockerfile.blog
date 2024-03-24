@@ -1,36 +1,18 @@
-FROM oven/bun:1 as scaffolding 
+FROM oven/bun:1 as builder 
 WORKDIR /app
-COPY package.json bun.lockb ./
-COPY packages packages
-COPY apps apps
-
-RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
-
-# ---------
-
-FROM oven/bun:1 as builder
-ARG API_URL
-WORKDIR /app
-COPY --from=scaffolding /app .
-RUN bun install
 COPY . .
 
-# To restore workspaces symlinks
+RUN bun install
 RUN bun install --frozen-lockfile
 
-# [optional] tests & build
 ENV NODE_ENV=production
 ENV VITE_API_URL=$API_URL
-RUN cd apps/blog && bun run build
+RUN bun run build
 
-# copy production dependencies and source code into final image
-FROM node:20-alpine as runtime
+FROM oven/bun:1 as runtime 
 WORKDIR /app
-COPY --from=builder /app/apps/blog/build/ src/
-COPY --from=builder /app/packages/ packages/
-COPY --from=builder /app/node_modules/ node_modules/
-COPY --from=builder /app/package.json package.json
+COPY --from=builder /app/apps/blog/build/ .
 
-ENTRYPOINT ["node", "/app/src/"]
+ENTRYPOINT ["bun", "/app/"]
 EXPOSE 4173
 
