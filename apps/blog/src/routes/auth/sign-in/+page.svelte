@@ -5,8 +5,12 @@
 	import { login } from 'auth';
 	import type { FormEventHandler } from 'svelte/elements';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-	const redirectUrl = $page.url.searchParams.get('redirect') ?? '/';
+	let redirectUrl = '/';
+	onMount(() => {
+		redirectUrl = $page.url.searchParams.get('redirect') ?? '/';
+	});
 
 	let invalid = false;
 
