@@ -40,6 +40,8 @@ jobs:
 
       - name: Build and push Docker images
         uses: docker/bake-action@v2.3.0
+        build-args: |
+          API_URL=${{ vars.API_URL }}
         env:
           API_URL: ${{ vars.API_URL }}
         with:
