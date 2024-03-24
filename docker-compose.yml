@@ -8,7 +8,6 @@ services:
       - ORIGIN=${ORIGIN}
     build:
       context: .
-      dockerfile: Dockerfile.blog
       args:
         API_URL: ${API_URL}
     ports:
