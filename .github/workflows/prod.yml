@@ -39,13 +39,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push Docker images
-        uses: docker/bake-action@v2.3.0
-        build-args: |
-          API_URL=${{ vars.API_URL }}
-        env:
-          API_URL: ${{ vars.API_URL }}
+        uses: docker/build-push-action@v4
         with:
           push: true
+          build-args: |
+            API_URL=${{ vars.API_URL }}
           set: |
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
