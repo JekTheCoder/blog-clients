@@ -65,7 +65,7 @@ jobs:
 
       - name: Copy docker-compose.yml to droplet
         run: |
-          test -d ~/front/ || mkdir -p ~/front
+          mkdir -p ~/front
           sshpass -v -p ${{ secrets.DROPLET_PASSWORD }} scp -o StrictHostKeyChecking=no docker-compose.yml root@${{ vars.DROPLET_IP }}:~/front/docker-compose.yml
 
       - name: Deploy
