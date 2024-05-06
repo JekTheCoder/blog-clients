@@ -18,12 +18,6 @@
 	let data = serverData;
 	let settingsDialog: Dialog;
 
-	$: {
-		load($url).then(newData => {
-			data = newData;			
-		});
-	}
-
 	$: page = Number($url.searchParams.get('page')) ?? 0;
 
 	function updatePage(page: number) {
@@ -53,15 +47,17 @@
 	onMount(() => {
 		let changesUnsub: () => void;
 
-		// const unsub = url.subscribe(() => {
-		// 	changesUnsub = url.subscribe((url) => {
-		// 		window.history.replaceState({}, '', url); 
-		// 		data = load(url);
-		// 	});
-		// })
+		const unsub = url.subscribe(() => {
+			changesUnsub = url.subscribe((url) => {
+				window.history.replaceState({}, '', url); 
+				load(url).then((newData) => {
+					data = newData;	
+				});
+			});
+		})
 
 		return () => {
-			// unsub();
+			unsub();
 			changesUnsub?.();
 		};
 	});
