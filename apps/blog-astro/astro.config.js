@@ -7,6 +7,7 @@ import { join } from 'node:path';
 // https://astro.build/config
 export default defineConfig({
 	integrations: [svelte(), tailwind()],
+	output: 'hybrid',
 	vite: {
 		resolve: {
 			alias: [

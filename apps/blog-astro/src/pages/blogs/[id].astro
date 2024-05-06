@@ -1,0 +1,18 @@
+---
+export const prerender = false
+
+import Layout from '@/layouts/Layout.astro'
+import { BlogFrame } from 'blog-frame';
+import { getOneBlog } from 'backend/blogs'
+
+const { content, title } = await (getOneBlog(Astro.params.id!).then(response => response.data));
+---
+
+<Layout title={`${title} - MeBlog`}>
+
+	<main>
+	<BlogFrame {content} />
+
+	<hr class="my-4" />
+	</main> 
+</Layout>
