@@ -1,0 +1,22 @@
+{
+  "name": "blog-astro",
+  "type": "module",
+  "version": "0.0.1",
+	"packageManager": "bun@latest",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.7.1",
+    "@astrojs/check": "^0.5.10",
+    "typescript": "^5.4.5",
+		"iconify-icon": "^1.0.8",
+		"ui": "workspace:*",
+		"domain-ui": "workspace:*",
+		"common": "workspace:*"
+  }
+}

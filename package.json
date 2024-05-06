@@ -1,22 +1,28 @@
 {
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"build": "turbo run build",
-		"dev": "turbo run dev --concurrency 11",
-		"lint": "turbo run lint",
-		"format": "prettier --write .",
-		"start:admin": "cd apps/admin && bun dev -- --mode production"
-	},
-	"devDependencies": {
-		"eslint": "^8.0.0",
-		"prettier": "^2.7.1",
-		"prettier-plugin-svelte": "^2.7.0",
-		"turbo": "latest"
-	},
-	"packageManager": "bun@1.0.6",
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	]
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@latest",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --concurrency 11",
+    "lint": "turbo run lint",
+    "format": "prettier --write .",
+    "start:admin": "cd apps/admin && bun dev -- --mode production",
+    "dev:blog": "cd apps/blog-astro && bun dev"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-svelte": "^2.7.0",
+    "turbo": "latest"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "@astrojs/svelte": "^5.4.0",
+    "svelte": "^4.2.15",
+    "typescript": "^5.4.5"
+  }
 }
