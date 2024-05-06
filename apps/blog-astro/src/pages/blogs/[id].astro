@@ -10,9 +10,20 @@ const { content, title } = await (getOneBlog(Astro.params.id!).then(response => 
 
 <Layout title={`${title} - MeBlog`}>
 
-	<main>
+<main class="container px-4">
+	<div>
+		<a class="link" href="/blogs">Back</a>
+	</div>
+
 	<BlogFrame {content} />
 
 	<hr class="my-4" />
 	</main> 
 </Layout>
+
+<style>
+	main {
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+</style>
