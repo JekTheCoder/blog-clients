@@ -7,10 +7,9 @@
 	export let post: BlogPreview;
 </script>
 
-<a href="/blogs/{post.id}">
-	<article class="grid grid-rows-[auto_1fr_auto]">
+	<article class="relative grid grid-rows-[auto_auto_auto_1fr] group">
 		<div class="img-wrapper">
-			<img src={post.mainImage} alt="" />
+			<img src={post.mainImage} alt={`${post.title}`} class="group-hover:scale-110" />
 		</div>
 
 		<h4>{post.title}</h4>
@@ -30,14 +29,15 @@
 				<span>•</span>
 			{/if}
 
-			<ul class="flex gap-x-2">
+			<ul class="flex gap-x-2 z-20">
 				{#each post.tags as tag (tag.id)}
 					<li><TagComponent id={tag.id} name={tag.name} color={tag.color} /></li>
 				{/each}
 			</ul>
 		</footer>
+
+		<a href="/blogs/{post.id}" class="absolute inset-0 w-full h-full" />
 	</article>
-</a>
 
 <style lang="scss">
 	.img-wrapper {
@@ -53,9 +53,5 @@
 		object-position: center;
 
 		transition: transform 0.2s ease-in-out;
-	}
-
-	a:hover img {
-		transform: scale(1.1);
 	}
 </style>

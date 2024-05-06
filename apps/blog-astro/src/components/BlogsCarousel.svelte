@@ -27,20 +27,25 @@ function chunks<T>(array: T[], size: number): T[][] {
 
 <div class="w-full overflow-hidden">
 	<div class="flex transition-transform" style="transform: translateX(-{page * 100}%)">
+
 		{#each chunks(blogs, pagesSize) as chunk, i}
-			<div class="chunk grid grid-cols-3 gap-x-2 min-w-full">
+			<ul class="chunk grid grid-cols-3 gap-x-2 min-w-full">
 				{#each chunk as blog}
-					<VPostPreview post={blog} />
+					<li>
+						<VPostPreview post={blog} />
+					</li>
 				{/each}
 
 				{#if !isExact && i === pages - 1}
-					<ViewMore />
+					<li class="grid">
+						<ViewMore />
+					</li>
 				{/if}
-			</div>
+			</ul>
 		{/each}
 
 		{#if isExact}
-			<div class="chunk grid grid-cols-3 gap-x-2 min-w-full">
+			<div class="chunk grid gap-x-2 min-w-full">
 				<ViewMore />
 			</div>
 		{/if}
