@@ -8,11 +8,7 @@ const data = await load(Astro.url);
 ---
 
 <Layout title="Blogs">
-
-	<header></header>
-<main class="container mx-auto my-4">
-
-
+	<main class="container mx-auto my-4">
 		<Blogs client:load url={Astro.url} serverData={data} />
 	</main>
 </Layout>

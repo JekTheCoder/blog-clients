@@ -79,11 +79,13 @@
 			</div>
 		</section>
 
-		<div class="blogs gap-y-8 gap-x-4">
+		<ul class="blogs gap-y-8 gap-x-4">
 			{#each data.blogs as blog}
-				<VPostPreview post={blog} />
+				<li>
+					<VPostPreview post={blog} />
+				</li>
 			{/each}
-		</div>
+		</ul>
 	</main>
 
 	<footer class="container mx-auto my-8 stepper">
