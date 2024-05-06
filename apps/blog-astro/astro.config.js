@@ -14,11 +14,6 @@ export default defineConfig({
 					find: /~(.+)/,
 					replacement: join(process.cwd(), '../../node_modules/$1'),
 				},
-
-				{
-					find: /@\//,
-					replacement: join(process.cwd(), './src/styles') + '/',
-				},
 			],
 		},
 	},

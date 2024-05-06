@@ -5,6 +5,11 @@
 @forward '~ui/src/dialog';
 @forward '~domain-ui/src';
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
 // @forward '../lib/modules/ui/link/styles/link.scss';
 // @forward '../lib/modules/ui/font/styles.scss';
 

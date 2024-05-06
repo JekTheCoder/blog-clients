@@ -1,9 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
-// import VPostPreview from "@/components/VPostPreview.svelte";
-// import MainPostPreview from "@/components/MainPostPreview.astro";
+import Layout from "@/layouts/Layout.astro";
+import VPostPreview from "@/components/VPostPreview.svelte";
+import MainPostPreview from "@/components/MainPostPreview.svelte";
+import ViewMore from "@/components/ViewMore.svelte";
+import RadioPaginator from "@/components/RadioPaginator.svelte";
 
 import { getAll } from "backend/blogs";
+
 export const LATEST_PAGE_SIZE = 3;
 export const LATEST_PAGES = 3;
 
@@ -38,7 +41,16 @@ const pages =
     <section>
       <h3>Latests</h3>
 
-      <!-- {latests.at(0) && <MainPostPreview {...latests[0]} />} -->
+      {latests.at(0) && <MainPostPreview 
+				preview={latests[0].preview}
+				title={latests[0].title}
+				mainImage={latests[0].mainImage}
+				blogId={latests[0].id}
+				category={latests[0].category}
+				createdAt={latests[0].createdAt}
+				subCategories={latests[0].subCategories}
+				tags={latests[0].tags}
+			/>}
 
       <hr class="my-3" />
 
@@ -49,8 +61,8 @@ const pages =
               <div class="chunk grid grid-cols-3 gap-x-2 min-w-full">
                 {chunk.map((blog, i) => (
                   <>
-                    <!-- <VPostPreview post={blog} /> -->
-                    <!-- {!isExact && i === pages - 1 && <ViewMore />} -->
+                    <VPostPreview post={blog} />
+                    {!isExact && i === pages - 1 && <ViewMore />}
                   </>
                 ))}
               </div>
@@ -59,16 +71,16 @@ const pages =
         </div>
 
         <footer class="mt-6">
-          <!-- <RadioPaginator {pages} bind:page /> -->
+          <RadioPaginator {pages} />
         </footer>
       </div>
     </section>
   </main>
+</Layout>
 
-  <style lang="scss">
+  <style>
     .carousel {
       transition: transform 0.5s ease;
       display: flex;
     }
   </style>
-</Layout>
