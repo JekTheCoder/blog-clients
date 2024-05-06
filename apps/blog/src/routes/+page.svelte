@@ -14,8 +14,7 @@
 	$: bellowBlogs = data.latests.slice(1);
 	$: isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;
 
-	// Its -2 instead of -1 because of skip of the first blog
-	$: pages = Math.floor((data.latests.length - 2) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
+	// Its -2 instead of -1 because of skip of the first blog $: pages = Math.floor((data.latests.length - 2) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
 
 	function chunks<T>(array: T[], size: number): T[][] {
 		const nChunks = Math.floor((array.length - 1) / size) + 1;

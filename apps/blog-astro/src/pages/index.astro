@@ -1,9 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import VPostPreview from "@/components/VPostPreview.svelte";
 import MainPostPreview from "@/components/MainPostPreview.svelte";
-import ViewMore from "@/components/ViewMore.svelte";
-import RadioPaginator from "@/components/RadioPaginator.svelte";
+import BlogsCarousel from "@/components/BlogsCarousel.svelte";
 
 import { getAll } from "backend/blogs";
 
@@ -15,21 +13,7 @@ const latests = await getAll({
   limit: LATEST_PAGE_SIZE * LATEST_PAGES + 1,
 }).then((latest) => latest.data);
 
-function chunks<T>(array: T[], size: number): T[][] {
-  const nChunks = Math.floor((array.length - 1) / size) + 1;
-  const chunks: T[][] = [];
-
-  for (let i = 0; i < nChunks; i++) {
-    chunks.push(array.slice(i * size, i * size + size));
-  }
-
-  return chunks;
-}
-
 const bellowBlogs = latests.slice(1);
-const isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;
-const pages =
-  Math.floor((latests.length - 2) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
 ---
 
 <Layout title="MeBlog">
@@ -54,33 +38,7 @@ const pages =
 
       <hr class="my-3" />
 
-      <div class="w-full overflow-hidden">
-        <div class="carousel" style="transform: translateX(-{page * 100}%)">
-          {
-            chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk) => (
-              <div class="chunk grid grid-cols-3 gap-x-2 min-w-full">
-                {chunk.map((blog, i) => (
-                  <>
-                    <VPostPreview post={blog} />
-                    {!isExact && i === pages - 1 && <ViewMore />}
-                  </>
-                ))}
-              </div>
-            ))
-          }
-        </div>
-
-        <footer class="mt-6">
-          <RadioPaginator {pages} />
-        </footer>
-      </div>
+			<BlogsCarousel client:load blogs={bellowBlogs} pageSize={LATEST_PAGE_SIZE} />
     </section>
   </main>
 </Layout>
-
-  <style>
-    .carousel {
-      transition: transform 0.5s ease;
-      display: flex;
-    }
-  </style>

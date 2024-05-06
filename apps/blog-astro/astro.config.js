@@ -1,12 +1,13 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import svelte from '@astrojs/svelte';
+import solidJs from '@astrojs/solid-js';
 
 import { join } from 'node:path';
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [svelte(), tailwind()],
+	integrations: [svelte(), tailwind(), solidJs()],
 	output: 'hybrid',
 	vite: {
 		resolve: {
