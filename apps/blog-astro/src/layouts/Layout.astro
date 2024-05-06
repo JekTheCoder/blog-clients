@@ -1,11 +1,11 @@
 ---
+import stylesUrl from '../styles/_index.scss?url';
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-
-import "../styles/_index.scss";
 ---
 
 <!doctype html>
@@ -15,6 +15,7 @@ import "../styles/_index.scss";
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="stylesheet" href={stylesUrl} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>

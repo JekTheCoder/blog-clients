@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Blogs from '@/components/svelte-pages/Blogs.svelte';
+
+import { load } from '@/components/svelte-pages/blogs-data';
+
+const data = await load(Astro.url);
+---
+
+<Layout title="Blogs">
+	<header></header>
+
+		<Blogs client:load url={Astro.url} serverData={data} />
+</Layout>
