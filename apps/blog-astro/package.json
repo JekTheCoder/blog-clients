@@ -2,7 +2,7 @@
   "name": "blog-astro",
   "type": "module",
   "version": "0.0.1",
-	"packageManager": "bun@latest",
+  "packageManager": "bun@latest",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -12,11 +12,16 @@
   },
   "dependencies": {
     "astro": "^4.7.1",
+    "@astrojs/svelte": "^5.4.0",
+    "svelte": "^4.2.15",
     "@astrojs/check": "^0.5.10",
     "typescript": "^5.4.5",
-		"iconify-icon": "^1.0.8",
-		"ui": "workspace:*",
-		"domain-ui": "workspace:*",
-		"common": "workspace:*"
+    "iconify-icon": "^1.0.8",
+    "ui": "workspace:*",
+    "domain-ui": "workspace:*",
+    "common": "workspace:*"
+  },
+  "devDependencies": {
+    "prettier-plugin-astro": "^0.13.0"
   }
 }

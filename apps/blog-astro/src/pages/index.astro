@@ -1,7 +1,74 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+// import VPostPreview from "@/components/VPostPreview.svelte";
+// import MainPostPreview from "@/components/MainPostPreview.astro";
+
+import { getAll } from "backend/blogs";
+export const LATEST_PAGE_SIZE = 3;
+export const LATEST_PAGES = 3;
+
+const latests = await getAll({
+  offset: 0,
+  limit: LATEST_PAGE_SIZE * LATEST_PAGES + 1,
+}).then((latest) => latest.data);
+
+function chunks<T>(array: T[], size: number): T[][] {
+  const nChunks = Math.floor((array.length - 1) / size) + 1;
+  const chunks: T[][] = [];
+
+  for (let i = 0; i < nChunks; i++) {
+    chunks.push(array.slice(i * size, i * size + size));
+  }
+
+  return chunks;
+}
+
+const bellowBlogs = latests.slice(1);
+const isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;
+const pages =
+  Math.floor((latests.length - 2) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
 ---
 
-<Layout title="Welcome to Astro.">
-	<main />
+<Layout title="MeBlog">
+  <main class="container mx-auto pt-6">
+    <h2>MeBlog</h2>
+
+    <hr class="mb-4" />
+
+    <section>
+      <h3>Latests</h3>
+
+      <!-- {latests.at(0) && <MainPostPreview {...latests[0]} />} -->
+
+      <hr class="my-3" />
+
+      <div class="w-full overflow-hidden">
+        <div class="carousel" style="transform: translateX(-{page * 100}%)">
+          {
+            chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk) => (
+              <div class="chunk grid grid-cols-3 gap-x-2 min-w-full">
+                {chunk.map((blog, i) => (
+                  <>
+                    <!-- <VPostPreview post={blog} /> -->
+                    <!-- {!isExact && i === pages - 1 && <ViewMore />} -->
+                  </>
+                ))}
+              </div>
+            ))
+          }
+        </div>
+
+        <footer class="mt-6">
+          <!-- <RadioPaginator {pages} bind:page /> -->
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <style lang="scss">
+    .carousel {
+      transition: transform 0.5s ease;
+      display: flex;
+    }
+  </style>
 </Layout>

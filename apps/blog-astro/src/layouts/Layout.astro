@@ -1,24 +1,51 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 
-import '../styles/_index.scss';
+import "../styles/_index.scss";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
+
+<style is:global>
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    background-color: var(--app-bg-color);
+
+    min-height: 100vh;
+    color: var(--primary-text-color);
+  }
+
+  h2 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+</style>

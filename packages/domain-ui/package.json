@@ -4,7 +4,6 @@
 	"description": "Domain UI",
 	"type": "module",
 	"module": "./src/index.ts",
-	"svelte": "./src/index.ts",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
@@ -12,11 +11,14 @@
 	},
 	"devDependencies": {
 		"eslint-config-custom": "workspace:*",
-		"svelte": "^3.9.2",
+		"svelte": "^4.0.5",
 		"tailwindcss": "^3.3.3"
 	},
 	"exports": {
-		".": "./src/index.ts",
+		".": {
+			"svelte": "./dist/index.js",
+			"import": "./src/index.ts"
+		},
 		"./*": {
 			"require": "./src/*/index.ts",
 			"import": "./src/*/index.ts",

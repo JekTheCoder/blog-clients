@@ -4,7 +4,6 @@
 	"description": "Styles and components for use in svelte websites",
 	"type": "module",
 	"module": "./src/index.ts",
-	"svelte": "./src/index.ts",
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
@@ -12,10 +11,13 @@
 	},
 	"devDependencies": {
 		"eslint-config-custom": "workspace:*",
-		"svelte": "^3.9.2"
+		"svelte": "^4.0.5"
 	},
 	"exports": {
-		".": "./src/index.ts",
+		".": {
+			"svelte": "./dist/index.js",
+			"import": "./src/index.ts"
+		},
 		"./tailwind-config": {
 			"require": "./tailwind.config.js",
 			"import": "./tailwind.config.js",

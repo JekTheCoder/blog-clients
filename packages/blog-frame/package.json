@@ -12,7 +12,7 @@
 	},
 	"devdependencies": {
 		"eslint-config-custom": "workspace:*",
-		"svelte": "^3.9.2"
+		"svelte": "^4.0.5"
 	},
 	"exports": {
 		".": {
