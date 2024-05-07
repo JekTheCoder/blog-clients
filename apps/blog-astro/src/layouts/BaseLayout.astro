@@ -8,6 +8,25 @@ interface Props {
 const { title } = Astro.props;
 ---
 
+<script>
+	import { authReadFrom, saveAuth } from 'auth/persistance';
+	import { setAuthHandler } from 'auth';
+
+	authReadFrom(localStorage);
+	window.addEventListener('beforeunload', () => {
+		alert('beforeunload');
+		saveAuth(localStorage);
+	});
+
+	setAuthHandler({
+		redirectLogin: () => {
+			const pathname = window.location.href;
+			const parsed = encodeURI(pathname);
+			return goto('/auth/sign-in?redirect=' + parsed);
+		}
+	});
+</script>
+
 <!doctype html>
 <html lang="en">
   <head>
