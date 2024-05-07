@@ -1,10 +1,13 @@
 ---
+export const prerender = false;
+
 import Layout from '@/layouts/Layout.astro';
 import Blogs from '@/components/svelte-pages/Blogs.svelte';
 
 import { load } from '@/components/svelte-pages/blogs-data';
 
 const data = await load(Astro.url);
+console.log(Astro.url.searchParams)
 ---
 
 <Layout title="Blogs">

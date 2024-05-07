@@ -7,7 +7,14 @@ import AuthLinks from './AuthLinks.svelte';
 	<div class="container mx-auto px-4 layout min-h-10">
 		<h1><a href="/">MeBlog</a></h1>
 
-		<div></div>
+		<form action="/blogs">
+			<input
+				class="border border-gray-300 rounded px-2 py-1"
+				type="search"
+				name="search"
+				placeholder="Search"
+			/>
+		</form>
 
 		<div class="flex gap-x-4 items-center">
 			<ThemeButton client:only />

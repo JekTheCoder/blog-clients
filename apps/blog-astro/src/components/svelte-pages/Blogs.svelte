@@ -5,7 +5,6 @@
 	import type { FormEventHandler } from 'svelte/elements';
 	import { Dialog } from 'ui/dialog';
 	import { writable } from 'svelte/store';
-	import { onMount, } from 'svelte';
 	import { type PageLoad, load } from './blogs-data';
 
 	let baseUrl: URL;
@@ -20,8 +19,20 @@
 
 	$: page = Number($url.searchParams.get('page')) ?? 0;
 
-	function updatePage(page: number) {
+	function updateUrl(fn: (url: URL) => void) {
 		url.update(url => {
+			fn(url);
+			return url;
+		});
+
+		window.history.replaceState({}, '', $url); 
+		load($url).then((newData) => {
+			data = newData;	
+		});
+	}
+
+	function updatePage(page: number) {
+		updateUrl(url => {
 			url.searchParams.set('page', page.toString())
 			return url;
 		});
@@ -33,7 +44,7 @@
 
 		const search = event.currentTarget.value;
 		timeout = setTimeout(() => { 
-			url.update(url => {
+			updateUrl(url => {
 				url.searchParams.set('search', search)
 				return url;
 			});
@@ -43,24 +54,6 @@
 	const openSettings = () => {
 		settingsDialog.open();
 	};
-
-	onMount(() => {
-		let changesUnsub: () => void;
-
-		const unsub = url.subscribe(() => {
-			changesUnsub = url.subscribe((url) => {
-				window.history.replaceState({}, '', url); 
-				load(url).then((newData) => {
-					data = newData;	
-				});
-			});
-		})
-
-		return () => {
-			unsub();
-			changesUnsub?.();
-		};
-	});
 </script>
 
 	<main class="grid gap-4">
@@ -69,7 +62,7 @@
 				<search>
 					<OutlineFormField>
 						<svelte:fragment slot="label">Search</svelte:fragment>
-						<input type="text" on:input={searchHandler} />
+						<input type="text" on:input={searchHandler} value={baseUrl.searchParams.get('search')} />
 					</OutlineFormField>
 				</search>
 
