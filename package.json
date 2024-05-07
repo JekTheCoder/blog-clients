@@ -8,7 +8,7 @@
 		"lint": "turbo run lint",
 		"format": "prettier --write .",
 		"start:admin": "cd apps/admin && bun dev -- --mode production",
-		"dev:blog": "cd apps/blog-astro && bun dev"
+		"dev:blog": "cd apps/blog && bun dev"
 	},
 	"devDependencies": {
 		"eslint": "^8.0.0",

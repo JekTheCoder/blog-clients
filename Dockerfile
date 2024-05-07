@@ -11,8 +11,8 @@ RUN cd apps/blog && bun run build
 
 FROM oven/bun:1 as runtime 
 WORKDIR /app
-COPY --from=builder /app/apps/blog/build/ .
+COPY --from=builder /app/apps/blog/dist/ .
 
-ENTRYPOINT ["bun", "/app/"]
+ENTRYPOINT ["bun", "/app/server/entry.mjs"]
 EXPOSE 4173
 
