@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import svelte from '@astrojs/svelte';
 import solidJs from '@astrojs/solid-js';
+import node from '@astrojs/node';
 
 import { join } from 'node:path';
 
@@ -9,6 +10,9 @@ import { join } from 'node:path';
 export default defineConfig({
 	integrations: [svelte(), tailwind(), solidJs()],
 	output: 'hybrid',
+	adapter: node({
+		mode: 'standalone',
+	}),
 	vite: {
 		resolve: {
 			alias: [

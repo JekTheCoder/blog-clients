@@ -15,14 +15,11 @@
 		"prettier": "^3.2.5",
 		"turbo": "latest",
 		"prettier-plugin-astro": "^0.13.0",
-		"prettier-plugin-svelte": "^3.2.3"
+		"prettier-plugin-svelte": "^3.2.3",
+		"typescript": "^5.4.5"
 	},
 	"workspaces": [
 		"apps/*",
 		"packages/*"
-	],
-	"dependencies": {
-		"@astrojs/solid-js": "^4.1.0",
-		"solid-js": "^1.8.17"
-	}
+	]
 }
