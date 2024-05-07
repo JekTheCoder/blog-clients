@@ -1,21 +1,19 @@
-import { useMounted } from "@/lib/utils/use-mounted";
 import { createSignal, type ResolvedChildren, } from "solid-js";
 
-export default function Carousel({children, pages,leftIcon, rightIcon}: {
+export default function Carousel({ children, pages,leftIcon, rightIcon, class: className }: {
 	children: any,
 	leftIcon: ResolvedChildren,
 	rightIcon: ResolvedChildren,
 	pages: number,
+	class?: string
 }) {
 	const [page, setPage] = createSignal(0);
 	const hasNext = () => page() < pages - 1;
 
-const mounted = useMounted();
-
 	return <>
 <div class="w-full overflow-hidden">
 
-		<div class={`${mounted() ? 'flex' : ''} transition-transform`} style={`transform: translateX(-${page() * 100}%);`}>
+		<div class={`${className} transition-transform`} style={`transform: translateX(-${page() * 100}%);`}>
 		{children}
 	</div>
 		</div>

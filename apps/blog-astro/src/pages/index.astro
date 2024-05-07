@@ -57,9 +57,11 @@ function chunks<T>(array: T[], size: number): T[][] {
 			/>}
 
       <hr class="my-3" />
-			<Carousel client:load pages={pages}>
+
+			<Carousel client:load pages={pages} class="carousel-collapse">
 				<Icon icon="ooui:next-rtl" slot="leftIcon"/>
 				<Icon icon="ooui:next-ltr" slot="rightIcon" />
+
 
 				{chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
 					<ul class="chunk grid grid-cols-3 gap-x-2 min-w-full">
@@ -85,4 +87,18 @@ function chunks<T>(array: T[], size: number): T[][] {
 			</Carousel>
     </section>
   </main>
+
+	<noscript>
+		<style>
+			.carousel-collapse  {
+				display: unset;
+			}
+		</style>
+	</noscript>
 </Layout>
+
+<style is:global>
+	.carousel-collapse {
+		display: flex;
+	}
+</style>
