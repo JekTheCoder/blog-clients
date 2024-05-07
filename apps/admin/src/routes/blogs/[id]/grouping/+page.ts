@@ -10,6 +10,6 @@ export const load: PageLoad = async ({ params }) => {
 
 	return {
 		blog,
-		tags: tags.data
+		tags: tags.data,
 	};
 };

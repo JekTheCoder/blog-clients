@@ -14,11 +14,11 @@ export const load: PageLoad = async ({ url }) => {
 	const blogs = await getAll({
 		offset: page * PAGE_SIZE,
 		limit: PAGE_SIZE + 1,
-		search: search ?? ''
-	}).then((response) => response.data);
+		search: search ?? '',
+	}).then(response => response.data);
 
 	return {
 		blogs: blogs.slice(0, PAGE_SIZE),
-		hasNext: blogs.length > PAGE_SIZE
+		hasNext: blogs.length > PAGE_SIZE,
 	};
 };

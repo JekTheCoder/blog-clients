@@ -4,7 +4,7 @@ import { get } from 'svelte/store';
 import { refreshTokens } from './refresh-tokens';
 
 export const authInterceptor: (
-	config: InternalAxiosRequestConfig
+	config: InternalAxiosRequestConfig,
 ) => Promise<InternalAxiosRequestConfig> = async config => {
 	const authStateValue = get(authState);
 

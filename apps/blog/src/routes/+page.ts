@@ -5,10 +5,10 @@ import { LATEST_PAGES, LATEST_PAGE_SIZE } from './constants';
 export const load: PageLoad = async () => {
 	const latests = await getAll({
 		offset: 0,
-		limit: LATEST_PAGE_SIZE * LATEST_PAGES + 1
+		limit: LATEST_PAGE_SIZE * LATEST_PAGES + 1,
 	});
 
 	return {
-		latests: latests.data
+		latests: latests.data,
 	};
 };

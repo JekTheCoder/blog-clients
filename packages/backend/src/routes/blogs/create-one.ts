@@ -1,6 +1,6 @@
-import { authClient } from "auth";
-import { IdReturn } from "../../models/id-return";
-import { apiUrl } from "app-globals/api";
+import { authClient } from 'auth';
+import { IdReturn } from '../../models/id-return';
+import { apiUrl } from 'app-globals/api';
 
 export type BlogRequest = {
 	content: string;

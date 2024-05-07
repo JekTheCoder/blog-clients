@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 export const enum Theme {
 	Dark = 'dark',
-	Light = 'light'
+	Light = 'light',
 }
 
 export const theme = writable(getTheme());

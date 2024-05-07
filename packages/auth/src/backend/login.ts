@@ -10,7 +10,7 @@ export type LoginResponse = {
 
 export const login = async (
 	username: string,
-	password: string
+	password: string,
 ): Promise<LoginResponse> => {
 	return axios
 		.post<LoginResponse>(`${apiUrl}/auth/login`, {

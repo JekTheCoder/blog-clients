@@ -33,7 +33,9 @@
 	},
 	"typesVersions": {
 		"*": {
-			"persistance": ["./src/persistance.ts"]
+			"persistance": [
+				"./src/persistance.ts"
+			]
 		}
 	}
 }

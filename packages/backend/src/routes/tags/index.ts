@@ -21,7 +21,7 @@ export type TagRequest = {
 export async function createOne(categoryId: string, payload: TagRequest) {
 	const response = await authClient.post<IdReturn>(
 		`${apiUrl}/categories/${categoryId}/tags/`,
-		payload
+		payload,
 	);
 
 	return response.data;

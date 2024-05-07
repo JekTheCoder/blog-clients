@@ -6,6 +6,6 @@ export const load: PageLoad = async ({ params }) => {
 	const subCategories = await getAll(id);
 
 	return {
-		subCategories: subCategories.data
+		subCategories: subCategories.data,
 	};
 };

@@ -9,7 +9,7 @@ export type ReplyCreate = {
 export function createOneReply(
 	commentId: string,
 	req: ReplyCreate,
-	parentId?: string | null
+	parentId?: string | null,
 ) {
 	return authClient.post(`${apiUrl}/comments/${commentId}/replies`, req, {
 		params: {

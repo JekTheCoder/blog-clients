@@ -1,4 +1,4 @@
-import { createSignal, onMount } from "solid-js";
+import { createSignal, onMount } from 'solid-js';
 
 export function useMounted() {
 	const [mounted, setMounted] = createSignal(false);

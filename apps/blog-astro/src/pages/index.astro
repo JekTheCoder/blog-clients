@@ -1,96 +1,103 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import MainPostPreview from "@/components/MainPostPreview.svelte";
-import Carousel from "@/components/Carousel.tsx";
+import Layout from '@/layouts/Layout.astro';
+import MainPostPreview from '@/components/MainPostPreview.svelte';
+import Carousel from '@/components/Carousel.tsx';
 
 import VPostPreview from '@/components/VPostPreview.svelte';
 import ViewMore from '@/components/ViewMore.svelte';
 
 import { Icon } from 'ui/icon';
 
-import { getAll } from "backend/blogs";
+import { getAll } from 'backend/blogs';
 
 export const LATEST_PAGE_SIZE = 3;
 export const LATEST_PAGES = 3;
 
 const latests = await getAll({
-  offset: 0,
-  limit: LATEST_PAGE_SIZE * LATEST_PAGES + 1,
-}).then((latest) => latest.data);
+	offset: 0,
+	limit: LATEST_PAGE_SIZE * LATEST_PAGES + 1,
+}).then(latest => latest.data);
 
 const bellowBlogs = latests.slice(1);
 
 const isExact = bellowBlogs.length % LATEST_PAGE_SIZE === 0;
 const pages =
-  Math.floor((bellowBlogs.length - 1) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
+	Math.floor((bellowBlogs.length - 1) / LATEST_PAGE_SIZE) + 1 + (isExact ? 1 : 0);
 
 function chunks<T>(array: T[], size: number): T[][] {
-  const nChunks = Math.floor((array.length - 1) / size) + 1;
-  const chunks: T[][] = [];
+	const nChunks = Math.floor((array.length - 1) / size) + 1;
+	const chunks: T[][] = [];
 
-  for (let i = 0; i < nChunks; i++) {
-    chunks.push(array.slice(i * size, i * size + size));
-  }
+	for (let i = 0; i < nChunks; i++) {
+		chunks.push(array.slice(i * size, i * size + size));
+	}
 
-  return chunks;
+	return chunks;
 }
 ---
 
 <Layout title="MeBlog">
-  <main class="container mx-auto pt-6">
-    <h2>MeBlog</h2>
+	<main class="container mx-auto pt-6">
+		<h2>MeBlog</h2>
 
-    <hr class="mb-4" />
+		<hr class="mb-4" />
 
-    <section>
-      <h3>Latests</h3>
+		<section>
+			<h3>Latests</h3>
 
-      {latests.at(0) && <MainPostPreview 
-				preview={latests[0].preview}
-				title={latests[0].title}
-				mainImage={latests[0].mainImage}
-				blogId={latests[0].id}
-				category={latests[0].category}
-				createdAt={latests[0].createdAt}
-				subCategories={latests[0].subCategories}
-				tags={latests[0].tags}
-			/>}
+			{
+				latests.at(0) && (
+					<MainPostPreview
+						preview={latests[0].preview}
+						title={latests[0].title}
+						mainImage={latests[0].mainImage}
+						blogId={latests[0].id}
+						category={latests[0].category}
+						createdAt={latests[0].createdAt}
+						subCategories={latests[0].subCategories}
+						tags={latests[0].tags}
+					/>
+				)
+			}
 
-      <hr class="my-3" />
+			<hr class="my-3" />
 
 			<Carousel client:load pages={pages} class="carousel-collapse">
-				<Icon icon="ooui:next-rtl" slot="leftIcon"/>
+				<Icon icon="ooui:next-rtl" slot="leftIcon" />
 				<Icon icon="ooui:next-ltr" slot="rightIcon" />
 
-
-				{chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
-					<ul class="chunk grid grid-cols-3 gap-x-2 min-w-full">
+				{
+					chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
+						<ul class="chunk grid grid-cols-3 gap-x-2 min-w-full">
 							{chunk.map(blog => (
 								<li>
 									<VPostPreview post={blog} />
 								</li>
 							))}
-								
-						{!(!isExact && i === pages - 1) ? null : (
-							<li class="grid">
-								<ViewMore />
-							</li>)
-						}
-					</ul>
-				))}
 
-				{!isExact ? null : (
-					<div class="chunk grid gap-x-2 min-w-full">
-						<ViewMore />
-					</div>
-				)}
+							{!(!isExact && i === pages - 1) ? null : (
+								<li class="grid">
+									<ViewMore />
+								</li>
+							)}
+						</ul>
+					))
+				}
+
+				{
+					!isExact ? null : (
+						<div class="chunk grid gap-x-2 min-w-full">
+							<ViewMore />
+						</div>
+					)
+				}
 			</Carousel>
-    </section>
-  </main>
+		</section>
+	</main>
 
 	<noscript>
 		<style>
-			.carousel-collapse  {
+			.carousel-collapse {
 				display: unset;
 			}
 		</style>

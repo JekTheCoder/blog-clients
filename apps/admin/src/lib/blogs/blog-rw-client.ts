@@ -50,7 +50,7 @@ export class BlogRwClient {
 		};
 
 		return {
-			subscribe
+			subscribe,
 		};
 	}
 

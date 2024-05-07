@@ -7,7 +7,7 @@ type MatchProp<T, TR, U, UR> = {
 
 export const enum ResultKind {
 	Ok = 1,
-	Err
+	Err,
 }
 
 export type ResultType<T, E> =
@@ -55,8 +55,10 @@ export class Result<T, E> {
 	}
 }
 
-export const ok = <T>(value: T): Result<T, never> => new Result({ kind: ResultKind.Ok, value });
-export const err = <E>(error: E): Result<never, E> => new Result({ kind: ResultKind.Err, error });
+export const ok = <T>(value: T): Result<T, never> =>
+	new Result({ kind: ResultKind.Ok, value });
+export const err = <E>(error: E): Result<never, E> =>
+	new Result({ kind: ResultKind.Err, error });
 
 export const fromPromise = <T, E>(promise: Promise<T>): Promise<Result<T, E>> => {
 	return promise.then(ok<T>).catch(err<E>);
@@ -70,6 +72,8 @@ export const fromCallback = <T, E>(callback: () => T): Result<T, E> => {
 	}
 };
 
-export const fromAxios = <T>(axios: Promise<AxiosResponse<T>>): Promise<Result<T, AxiosError>> => {
-	return axios.then((data) => ok(data.data)).catch(err<AxiosError>);
+export const fromAxios = <T>(
+	axios: Promise<AxiosResponse<T>>,
+): Promise<Result<T, AxiosError>> => {
+	return axios.then(data => ok(data.data)).catch(err<AxiosError>);
 };

@@ -6,6 +6,6 @@ export const load: PageLoad = async ({ params }) => {
 	const tags = await getAll(id);
 
 	return {
-		tags: tags.data
+		tags: tags.data,
 	};
 };
