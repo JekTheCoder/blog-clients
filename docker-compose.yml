@@ -4,12 +4,13 @@ services:
   blog:
     image: jekimager/blog-client
     environment:
-      - PORT=4173
+      - PORT=1234
+      - HOST=0.0.0.0
       - ORIGIN=${ORIGIN}
     build:
       context: .
       args:
         VITE_API_URL: ${API_URL}
     ports:
-      - "8000:4173"
+      - "8000:1234"
     restart: always
