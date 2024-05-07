@@ -1,22 +1,16 @@
 ---
 import ThemeButton from './ThemeButton.svelte';
 import AuthLinks from './AuthLinks.svelte';
+import GlobalSearch from './GlobalSearch.svelte';
 ---
 
 <header class="py-2 sticky top-0 flex items-center">
 	<div class="container mx-auto px-4 layout min-h-10">
 		<h1><a href="/">MeBlog</a></h1>
 
-		<form action="/blogs">
-			<input
-				class="border border-gray-300 rounded px-2 py-1"
-				type="search"
-				name="search"
-				placeholder="Search"
-			/>
-		</form>
+		<GlobalSearch class="invisible w-0 sm:w-full sm:visible" />
 
-		<div class="flex gap-x-4 items-center">
+		<div class="flex gap-x-4 items-center min-w-28">
 			<ThemeButton client:only />
 
 			<AuthLinks client:only />
@@ -34,7 +28,7 @@ import AuthLinks from './AuthLinks.svelte';
 	.layout {
 		display: grid;
 		grid-template-columns: auto 1fr auto;
-		gap: 2rem;
+		gap: 4rem;
 		place-items: center;
 	}
 
