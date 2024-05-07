@@ -24,6 +24,11 @@
 			"require": "./src/date/index.ts",
 			"import": "./src/date/index.ts",
 			"types": "./src/date/index.ts"
+		},
+		"./*": {
+			"require": "./src/*/index.ts",
+			"import": "./src/*/index.ts",
+			"types": "./src/*/index.ts"
 		}
 	},
 	"typesVersions": {
