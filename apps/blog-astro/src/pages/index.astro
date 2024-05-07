@@ -63,8 +63,8 @@ function chunks<T>(array: T[], size: number): T[][] {
 			<hr class="my-3" />
 
 			<Carousel client:load pages={pages} class="carousel-collapse">
-				<Icon icon="ooui:next-rtl" slot="leftIcon" />
-				<Icon icon="ooui:next-ltr" slot="rightIcon" />
+				<Icon client:only="svelte" icon="ooui:next-rtl" slot="leftIcon" />
+				<Icon client:only="svelte" icon="ooui:next-ltr" slot="rightIcon" />
 
 				{
 					chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
