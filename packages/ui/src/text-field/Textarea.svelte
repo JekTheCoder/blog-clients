@@ -25,7 +25,6 @@
 
 <style>
 	textarea {
-		box-sizing: content-box;
 		resize: none;
 	}
 </style>
