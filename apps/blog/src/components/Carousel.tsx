@@ -8,8 +8,8 @@ export default function Carousel({
 	class: className,
 }: {
 	children: any;
-	leftIcon: ResolvedChildren;
-	rightIcon: ResolvedChildren;
+	leftIcon?: ResolvedChildren;
+	rightIcon?: ResolvedChildren;
 	pages: number;
 	class?: string;
 }) {
