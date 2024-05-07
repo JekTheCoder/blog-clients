@@ -1,0 +1,12 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro"
+import SignIn from "@/components/svelte-pages/SignIn.svelte";
+
+const redirectUrl = Astro.url.searchParams.get("redirect") ?? '/';
+---
+
+<BaseLayout title="Sign in">
+	<main class="grid place-content-center h-screen">
+		<SignIn client:load {redirectUrl} />
+	</main>
+</BaseLayout>
