@@ -1,9 +1,9 @@
-import type { ReplyCreate } from '$lib/backend/api/blogs/comments/replies/create-one-reply';
-import type { IdResponse } from '$lib/backend/types/id-response';
-import type { Result } from '$lib/util/result';
+import type { ReplyCreate } from 'backend/replies';
+import type { IdReturn } from 'backend';
+import type { Result } from 'common/result';
 
 export type ReplyCreation = {
 	key: number;
 	reply: ReplyCreate;
-	status: Promise<Result<IdResponse, unknown>>;
+	status: Promise<Result<IdReturn, unknown>>;
 };
