@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 
 ENV NODE_ENV=production
-ARG VITE_API_URL
+ARG PUBLIC_API_URL
 
 # if necessary
 RUN bun install
