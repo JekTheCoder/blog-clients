@@ -9,10 +9,13 @@ import { join } from 'node:path';
 // https://astro.build/config
 export default defineConfig({
 	integrations: [svelte(), tailwind(), solidJs()],
-	output: 'hybrid',
+	output: 'server',
 	adapter: node({
 		mode: 'standalone',
 	}),
+	build: {
+		redirects: false,
+	},
 	vite: {
 		resolve: {
 			alias: [
