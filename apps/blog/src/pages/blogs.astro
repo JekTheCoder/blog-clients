@@ -2,7 +2,7 @@
 export const prerender = false;
 
 import Layout from '@/layouts/Layout.astro';
-import Blogs from '@/components/svelte-pages/Blogs.svelte';
+import BlogsPage from '@/components/svelte-pages/Blogs.svelte';
 
 import { load } from '@/components/svelte-pages/blogs-data';
 
@@ -12,6 +12,6 @@ console.log(Astro.url.searchParams)
 
 <Layout title="Blogs">
 	<main class="container mx-auto my-4">
-		<Blogs client:load url={Astro.url} serverData={data} />
+		<BlogsPage client:load url={Astro.url} serverData={data} />
 	</main>
 </Layout>
