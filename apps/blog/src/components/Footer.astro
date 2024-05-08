@@ -1,0 +1,43 @@
+---
+import { Icon } from 'ui/icon';
+
+const links = [
+	{
+		url: 'https://portfolio.jeshuahinostroza.com/',
+		label: 'Portfolio',
+	},
+	{
+		url: 'https://www.linkedin.com/in/jeshua-hinostroza/',
+		label: 'Linkedin',
+		icon: 'bi:linkedin',
+	},
+	{
+		url: 'https://github.com/JekTheCoder',
+		label: 'GitHub',
+		icon: 'octicon:mark-github-16',
+	},
+	{
+		url: 'mailto:hinostrozajeshua@gmail.com',
+		label: 'Email',
+		icon: 'ic-baseline-email',
+	},
+];
+---
+
+<footer class="mt-10 px-8 py-4 flex flex-col sm:flex-row justify-between">
+	<p>Jeshua Hinostroza @ 2024</p>
+
+	<ul class="flex gap-x-4">
+		{
+			links.map(({ url, label, icon }) => (
+				<li>
+					<a class="link flex items-center gap-x-1" href={url} target="_blank">
+						{icon && <Icon {icon} />}
+
+						{label}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</footer>
