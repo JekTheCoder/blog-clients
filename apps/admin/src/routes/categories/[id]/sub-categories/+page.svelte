@@ -21,29 +21,6 @@
 
 	const creationCategories = writable<CategoryCreation[]>([]);
 
-	const handleSubmit: EventHandler<SubmitEvent, HTMLFormElement> = ({ currentTarget: form }) => {
-		const formData = new FormData(form);
-		const name = formData.get('name');
-		if (!name) return;
-
-		const createReq = createOne(categoryId, {
-			name: name.toString()
-		});
-
-		creationCategories.update((categories) => {
-			categories.push({
-				key: Math.random(),
-				status: createReq,
-				data: {
-					name: name.toString()
-				}
-			});
-
-			return categories;
-		});
-
-		form.reset();
-	};
 
 	const spawnDelete = ({ id }: SubCategory) => {
 		const i = data.subCategories.findIndex((c) => c.id === id);

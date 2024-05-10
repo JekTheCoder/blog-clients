@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import SubCategoryForm from '@/components/SubCategoryForm.svelte';
+import { getAll } from 'backend/sub-categories';
+
+const { id } = Astro.params;
+const subCategories = await getAll(id).then(response => response.data);
+---
+
+<Layout title="Sub Categories">
+	<main class="container mx-auto gap-4">
+		<h1>SubCategories</h1>
+
+		<SubCategoryForm client:load categoryId={id!} subCategories={subCategories} />
+	</main>
+</Layout>
