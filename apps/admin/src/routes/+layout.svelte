@@ -1,4 +1,5 @@
 <script>
+	import { AuthLinks } from 'auth-ui';
 	import { onMount } from 'svelte';
 	import './styles.scss';
 	import { authReadFrom, saveAuth } from 'auth/persistance';
@@ -27,7 +28,7 @@
 </script>
 
 <header class="container mx-auto">
-	<nav class="p-4">
+	<nav class="flex justify-between p-4">
 		<ul class="flex gap-x-2">
 			<li>
 				<a href="/" class="link">Home</a>
@@ -48,11 +49,9 @@
 			<li>
 				<a href="/auth/refresh" class="link">Refresh</a>
 			</li>
-
-			<li>
-				<a href="/auth/sign-in" class="link">Sign In</a>
-			</li>
 		</ul>
+
+		<AuthLinks />
 	</nav>
 </header>
 
