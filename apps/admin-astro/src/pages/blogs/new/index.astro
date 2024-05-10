@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import CreateBlogPage from '@/components/svelte-pages/CreateBlogPage.svelte';
+
+import { getAll } from 'backend/categories';
+
+const categories = await getAll().then(res => res.data);
+---
+
+<Layout title="new blog">
+	<main class="container mx-auto">
+		<CreateBlogPage client:load {categories} />
+	</main>
+</Layout>

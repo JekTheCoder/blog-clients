@@ -1,5 +1,4 @@
-import { buildWs } from '$lib/backend/api';
-import { getContent } from '$lib/backend/api/get-content';
+import { buildWs, getContent } from './blog-create';
 
 export type MessageResult =
 	| {
