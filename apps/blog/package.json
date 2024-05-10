@@ -21,6 +21,7 @@
 		"@astrojs/node": "^8.2.5",
 		"iconify-icon": "^1.0.8",
 		"@fontsource/bitter": "^5.0.18",
+		"auth-ui": "workspace:*",
 		"blog-frame": "workspace:*",
 		"common": "workspace:*",
 		"domain-ui": "workspace:*",
