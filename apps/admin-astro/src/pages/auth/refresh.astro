@@ -1,0 +1,21 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<script>
+	import { triggerTokensRefresh } from 'auth';
+
+	const refreshBtn = document.getElementById('refreshBtn');
+
+	refreshBtn.addEventListener('click', async () => {
+		await triggerTokensRefresh();
+	});
+</script>
+
+<Layout title="Refresh">
+	<main class="container mx-auto">
+		<h1>Refresh</h1>
+
+		<button id="refreshBtn" class="button raised primary" >refresh tokens</button>
+	</main>
+</Layout>
