@@ -10,6 +10,9 @@
 		"lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
 		"format": "prettier --write --ignore-path=../../.prettierignore ."
 	},
+	"dependencies": {
+		"app-globals": "workspace:*"
+	},
 	"devdependencies": {
 		"eslint-config-custom": "workspace:*",
 		"svelte": "^4.0.5"
