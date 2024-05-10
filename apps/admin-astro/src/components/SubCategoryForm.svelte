@@ -10,6 +10,7 @@
 	export let categoryId: string;
 
 	setCategoryId(categoryId);
+	subCategories$.items.set(subCategories);
 
 	const { items, creations } = subCategories$;
 

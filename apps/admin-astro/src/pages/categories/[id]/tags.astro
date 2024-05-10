@@ -1,0 +1,16 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import TagForm from '@/components/TagForm.svelte';
+import { getAll } from 'backend/tags';
+
+const { id } = Astro.params;
+const tags = await getAll(id).then(response => response.data);
+---
+
+<Layout title="Sub Categories">
+	<main class="container mx-auto gap-4">
+		<h1>SubCategories</h1>
+
+		<TagForm client:load categoryId={id!} {tags} />
+	</main>
+</Layout>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import BaseOption from '$lib/ui/cdk/BaseOption.svelte';
-	import BaseSelect from '$lib/ui/cdk/BaseSelect.svelte';
+	import BaseOption from '@/components/ui/cdk/BaseOption.svelte';
+	import BaseSelect from '@/components/ui/cdk/BaseSelect.svelte';
 	import { tagBackgrounds } from 'domain-ui/tag';
 
 	let backgroundSelected = tagBackgrounds[0];
