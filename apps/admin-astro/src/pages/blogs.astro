@@ -1,0 +1,16 @@
+---
+export const prerender = false;
+
+import Layout from '@/layouts/Layout.astro';
+import BlogsPage from '@/components/svelte-pages/BlogsPage.svelte';
+
+import { load } from '@/components/svelte-pages/blogs-data';
+
+const data = await load(Astro.url);
+---
+
+<Layout title="Blogs">
+	<main class="container mx-auto my-4">
+		<BlogsPage client:load url={Astro.url} serverData={data} />
+	</main>
+</Layout>

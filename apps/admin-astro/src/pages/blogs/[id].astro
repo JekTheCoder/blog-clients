@@ -1,0 +1,38 @@
+---
+export const prerender = false;
+
+import Layout from '@/layouts/Layout.astro';
+import BlogComments from '@/components/comments/smart/BlogComments.svelte';
+
+import { BlogFrame } from 'blog-frame';
+import { getOneBlog } from 'backend/blogs';
+
+const { content, title, comments, id } = await getOneBlog(Astro.params.id!).then(
+	response => response.data,
+);
+---
+
+<Layout title={`${title} - MeBlog`}>
+	<main class="container px-4">
+		<div>
+			<a class="link" href="/blogs">Back</a>
+		</div>
+
+		<BlogFrame {content} />
+
+		<hr class="my-4" />
+
+		<section>
+			<h3>Comments</h3>
+
+			<BlogComments blogId={id} client:load {comments} />
+		</section>
+	</main>
+</Layout>
+
+<style>
+	main {
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+</style>

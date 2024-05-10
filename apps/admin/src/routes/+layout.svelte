@@ -27,33 +27,6 @@
 	});
 </script>
 
-<header class="container mx-auto">
-	<nav class="flex justify-between p-4">
-		<ul class="flex gap-x-2">
-			<li>
-				<a href="/" class="link">Home</a>
-			</li>
-
-			<li>
-				<a href="/categories" class="link">Categories</a>
-			</li>
-
-			<li>
-				<a href="/blogs" class="link">Blogs</a>
-			</li>				
-
-			<li>
-				<a href="/storybook" class="link">Storybook</a>
-			</li>
-
-			<li>
-				<a href="/auth/refresh" class="link">Refresh</a>
-			</li>
-		</ul>
-
-		<AuthLinks />
-	</nav>
-</header>
 
 <div>
 	<slot />

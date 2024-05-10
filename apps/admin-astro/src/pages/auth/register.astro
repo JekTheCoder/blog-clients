@@ -1,0 +1,13 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { RegisterPage } from 'auth-ui';
+---
+
+<BaseLayout title="Sign in">
+	<header class="px-4 py-2">
+		<a class="link" href="/">Home</a>
+	</header>
+	<main class="grid place-content-center h-screen">
+		<RegisterPage client:load />
+	</main>
+</BaseLayout>

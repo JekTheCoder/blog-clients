@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SignInPage } from 'auth-ui';
+
+const redirectUrl = Astro.url.searchParams.get('redirect') ?? '/';
+---
+
+<BaseLayout title="Sign in">
+	<header class="px-4 py-2">
+		<a class="link" href="/">Home</a>
+	</header>
+	<main class="grid place-content-center h-screen">
+		<SignInPage client:load {redirectUrl} />
+	</main>
+</BaseLayout>
