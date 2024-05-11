@@ -1,4 +1,5 @@
 @use '~ui/src/link/link';
+@use '~ui/src/button/styles/_icon.scss' as icon;
 
 $border-color: var(--primary-text-color);
 $inset-bg: var(--card-bg-color);
@@ -56,16 +57,20 @@ $normal-font-size: 1.25rem;
 		@include link.link();
 	}
 
+	.code-block {
+		display: grid;
+	}
+
 	pre {
 		@include code-box();
 
 		margin-bottom: 1rem;
-		display: grid;
 		overflow-x: auto;
+		padding: 1rem;
 
 		> code {
+			display: block;
 			min-width: max-content;
-			padding: 1rem;
 
 			font-size: 1rem;
 			white-space: pre-wrap;
@@ -80,5 +85,27 @@ $normal-font-size: 1.25rem;
 		margin: auto;
 		max-height: 500px;
 		max-width: 100%;
+	}
+
+	.code-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: $inset-bg;
+		padding: 0 1rem;
+		margin: 0 0.2rem;
+	}
+
+	.copy-btn {
+		@include icon.icon-button();
+
+		--color: currentColor;
+		width: 2rem;
+		height: 2rem;
+		font-size: 16px;
+	}
+
+	leptos-island {
+		display: contents;
 	}
 }

@@ -1,4 +1,4 @@
-.button.icon {
+@mixin icon-button {
 	display: grid;
 	place-content: center;
 
@@ -22,4 +22,8 @@
 		background: color-mix(in srgb, var(--color), transparent 80%);
 		transform: scale(0.95);
 	}
+}
+
+.button.icon {
+	@include icon-button;
 }
