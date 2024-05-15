@@ -4,7 +4,7 @@
 $border-color: var(--primary-text-color);
 $inset-bg: var(--card-bg-color);
 
-$normal-font-size: 1.25rem;
+$normal-font-size: 18px;
 
 @mixin code-box() {
 	background-color: $inset-bg;
@@ -54,7 +54,16 @@ $normal-font-size: 1.25rem;
 	}
 
 	a {
-		@include link.link();
+		background-image: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+		background-size: 100% 1px;
+		background-repeat: no-repeat;
+		background-position: left bottom;
+
+		transition: background-size 50ms ease-out;
+
+		&:hover {
+			background-size: 100% 100%;
+		}
 	}
 
 	.code-block {
