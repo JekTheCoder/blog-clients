@@ -19,7 +19,7 @@
 	let images: File[] = [];
 
 	onMount(() => {
-		client = new BlogRwClient(workspaceId);
+		client = new BlogRwClient(workspaceId, blogId);
 		const onHtml = client.onHtml();
 
 		const sub = onHtml.subscribe(html => (content = html));

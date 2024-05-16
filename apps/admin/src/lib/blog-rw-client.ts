@@ -30,8 +30,8 @@ interface AsyncStream<T> {
 export class BlogRwClient {
 	private readonly socket: WebSocket;
 
-	constructor(private readonly workspaceId: string) {
-		this.socket = buildWs(workspaceId);
+	constructor(private readonly workspaceId: string, blogId?: string) {
+		this.socket = buildWs(workspaceId, blogId);
 	}
 
 	onHtml(): AsyncStream<string> {

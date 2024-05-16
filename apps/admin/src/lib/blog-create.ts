@@ -1,3 +1,6 @@
+import { authState } from 'auth';
+import { get } from 'svelte/store';
+
 export const BLOG_WORKSPACE = import.meta.env.VITE_BLOG_WORKSPACE || 'localhost:7878';
 
 export async function getContent(workspaceId: string) {
@@ -5,8 +8,12 @@ export async function getContent(workspaceId: string) {
 	return response.text();
 }
 
-export function buildWs(workspaceId: string) {
-	const ws = new WebSocket(`ws://${BLOG_WORKSPACE}/${workspaceId}/`);
+export function buildWs(workspaceId: string, blogId?: string) {
+	const url = new URL(`ws://${BLOG_WORKSPACE}/${workspaceId}/`);
+	if (blogId) {
+		url.searchParams.set('blogId', blogId);
+		return new WebSocket(url, ['Authorization', get(authState)?.accessToken?.token ?? '']);
+	}
 
-	return ws;
+	return new WebSocket(url);
 }
