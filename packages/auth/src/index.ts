@@ -1,7 +1,7 @@
 import { createClient } from './features/client';
 
 import { writable, readonly } from 'svelte/store';
-import { authState } from './locals';
+import { authState as authStateStore } from './locals';
 import { User } from './domain/user';
 
 export { setAuthHandler } from './locals';
@@ -15,7 +15,7 @@ export type { RegisterRequest } from './backend/register';
 const userStore = writable<User | null>(null);
 
 let sub: (() => void) | null = null;
-authState.subscribe(state => {
+authStateStore.subscribe(state => {
 	if (!state) {
 		sub?.();
 		sub = null;
@@ -29,3 +29,4 @@ authState.subscribe(state => {
 
 export const authClient = createClient();
 export const user = readonly(userStore);
+export const authState = readonly(authStateStore);
