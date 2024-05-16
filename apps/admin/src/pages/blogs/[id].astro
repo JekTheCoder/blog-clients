@@ -1,7 +1,10 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+import { getOneBlog } from 'backend/blogs';
+
+const blog = await getOneBlog(Astro.params.id!).then(response => response.data);
 ---
 
 <Layout title="blog">
-
+{blog.content}
 </Layout>
