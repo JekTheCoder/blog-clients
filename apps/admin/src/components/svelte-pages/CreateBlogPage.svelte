@@ -8,6 +8,7 @@
 	import type { Category } from 'backend/categories';
 	import BlogGroupingForm from '../BlogGroupingForm.svelte';
 	import type { BlogGroupingIds } from '@/lib/types/grouping';
+	import WorkspaceImagePool from '../WorkspaceImagePool.svelte';
 
 	export let categories: Category[];
 
@@ -18,7 +19,7 @@
 
 	let save: Promise<unknown> | null = null;
 
-	const images: File[] = [];
+	let images: File[] = [];
 
 	let grouping: BlogGroupingIds = {
 		categoryId: null,
@@ -64,19 +65,6 @@
 
 		save = spawnSave(categoryId, tags, subCategories);
 	};
-
-	const onImageUpload: EventHandler<Event, HTMLInputElement> = e => {
-		const file = e.currentTarget.files?.[0];
-		if (!file) return;
-
-		const formData = new FormData();
-		formData.append('image', file);
-
-		fetch(`http://localhost:7878/${workspaceId}/upload`, {
-			method: 'POST',
-			body: formData,
-		}).then(() => images.push(file));
-	};
 </script>
 
 <main class="container mx-auto grid gap-4">
@@ -84,7 +72,7 @@
 
 	<hr />
 
-	<input type="file" accept="image/*" name="image" on:change={onImageUpload} />
+	<WorkspaceImagePool {workspaceId} bind:images />
 
 	<form class="grid gap-4" on:submit|preventDefault={onSubmit}>
 		<BlogGroupingForm {categories} />

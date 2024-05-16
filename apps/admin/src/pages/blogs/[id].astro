@@ -1,10 +1,12 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { getOneBlog } from 'backend/blogs';
+import UpdateBlogPage from '@/components/svelte-pages/UpdateBlogPage.svelte';
 
-const blog = await getOneBlog(Astro.params.id!).then(response => response.data);
+import { getAll } from 'backend/categories';
 ---
 
 <Layout title="blog">
-{blog.content}
+	<main class="container mx-auto">
+		<UpdateBlogPage client:load blogId={Astro.params.id!} />
+	</main>
 </Layout>
