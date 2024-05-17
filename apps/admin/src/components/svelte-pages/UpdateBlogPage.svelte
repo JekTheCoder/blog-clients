@@ -4,7 +4,7 @@
 	import { BlogFrame } from 'blog-frame';
 	import type { EventHandler } from 'svelte/elements';
 	import { BlogRwClient } from '@/lib/blog-rw-client';
-	import { uploadImages } from 'backend/blogs';
+	import { setContent, uploadImages } from 'backend/blogs';
 	import WorkspaceImagePool from '../WorkspaceImagePool.svelte';
 
 	export let blogId: string;
@@ -32,6 +32,10 @@
 
 	const spawnSave = async () => {
 		const content = await client.getContent();
+
+		await setContent(blogId, {
+			content,
+		});
 
 		// const created = await updateOne({
 		// 	content,
