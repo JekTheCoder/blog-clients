@@ -11,8 +11,14 @@ export type MessageResult =
 	  };
 
 export type MessageResponse = {
-	type: 'html' | 'content';
-	value: string;
+	type: 'content';
+	value: ParsedContent;
+};
+
+export type ParsedContent = {
+	content: string;
+	preview: string | null;
+	title: string;
 };
 
 export type MessageError = {
@@ -30,7 +36,10 @@ interface AsyncStream<T> {
 export class BlogRwClient {
 	private readonly socket: WebSocket;
 
-	constructor(private readonly workspaceId: string, blogId?: string) {
+	constructor(
+		private readonly workspaceId: string,
+		blogId?: string,
+	) {
 		this.socket = buildWs(workspaceId, blogId);
 	}
 
@@ -38,8 +47,8 @@ export class BlogRwClient {
 		const subscribe = (callback: (value: string) => void) => {
 			const onMessage = (e: MessageEvent) => {
 				const message: MessageResult = JSON.parse(e.data);
-				if (message.type === 'ok' && message.value.type === 'html') {
-					callback(message.value.value);
+				if (message.type === 'ok' && message.value.type === 'content') {
+					callback(message.value.value.content);
 				}
 			};
 
