@@ -1,0 +1,24 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getWorkspaces } from '@/lib/ws-api/get-workspaces';
+
+const workspaces = await getWorkspaces();
+---
+
+<Layout title="Workspaces">
+	<main class="container mx-auto p-4">
+		<ul class="grid gap-2">
+			{
+				workspaces.map(workspace => (
+					<li>
+						<a href={`/blogs/${workspace.id}`} class="link">
+							{workspace.id}
+						</a>
+
+						<p>{workspace.preview}</p>
+					</li>
+				))
+			}
+		</ul>
+	</main>
+</Layout>
