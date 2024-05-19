@@ -77,7 +77,7 @@
 	/>
 
 	{#if focus}
-		<ul class="absolute w-full z-10 bg-white card menu" style={position}>
+		<ul class="absolute w-full z-10 card menu" style={position}>
 			{#each filtered as item (item.id)}
 				<li>{item.name}</li>
 			{/each}
@@ -92,7 +92,7 @@
 	}
 
 	li:first-child {
-		background-color: red;
+		text-decoration: underline;
 	}
 
 	input {
