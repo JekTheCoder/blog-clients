@@ -68,14 +68,14 @@
 </script>
 
 <main class="container mx-auto grid gap-4">
-	<BlogFrame {content} on:groupingChange={e => (grouping = e.detail)} class="min-w-0" />
+	<BlogFrame {content} class="min-w-0" />
 
 	<hr />
 
 	<WorkspaceImagePool {workspaceId} bind:images />
 
 	<form class="grid gap-4" on:submit|preventDefault={onSubmit}>
-		<BlogGroupingForm {categories} />
+		<BlogGroupingForm {categories} on:groupingChange={e => (grouping = e.detail)} />
 
 		<footer class="grid grid-cols-[1fr,auto]">
 			<div>
