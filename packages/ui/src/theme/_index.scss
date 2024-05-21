@@ -71,7 +71,8 @@
 	--inactive-color: theme('colors.gray.200');
 
 	--card-radius: 10px;
-	--card-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+	--card-shadow-color: rgb(255, 255, 255, 0.1);
+	--card-shadow: 0 0 10px var(-card-shadow-color);
 	--card-x-padding: 1rem;
 	--card-y-padding: 1rem;
 
@@ -98,3 +99,6 @@
 @mixin colors() {
 	@include dark();
 }
+
+// bg: #24272f
+// border: #353841
