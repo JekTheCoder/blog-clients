@@ -4,9 +4,9 @@
 	text-align: center;
 	padding: 8px 15px;
 
-	--color: var(--primary-text-color);
-	--hover-color: var(--primary-text-color);
-	--active-color: var(--primary-text-color);
+	--color: theme('colors.text');
+	--hover-color: theme('colors.text');
+	--active-color: theme('colors.text');
 
 	@include icon.icon {
 		font-size: 1.5rem;

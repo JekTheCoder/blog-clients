@@ -23,16 +23,16 @@
 }
 
 @mixin primary-solid() {
-	background-color: var(--primary-color);
-	color: theme('colors.white');
+	background-color: theme('colors.primary.DEFAULT');
+	color: theme('colors.text');
 }
 
 @mixin accent-solid() {
-	background-color: var(--accent-color);
+	background-color: theme('colors.accent.DEFAULT');
 	color: theme('colors.white');
 }
 
 @mixin warning-solid() {
-	background-color: var(--warn-color);
+	background-color: theme('colors.warning.500');
 	color: theme('colors.white');
 }

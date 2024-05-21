@@ -1,20 +1,20 @@
 .form-field.primary {
-	--active-color: var(--primary-color);
+	--active-color: theme('colors.primary.DEFAULT');
 }
 
 .form-field.accent {
-	--active-color: var(--accent-color);
+	--active-color: theme('colors.accent.DEFAULT');
 }
 
 .form-field {
-	--active-color: var(--accent-color);
-	--inactive-color: var(--primary-text-color);
+	--active-color: theme('colors.accent.DEFAULT');
+	--inactive-color: theme('colors.text');
 
 	input,
 	select,
 	textarea {
 		background-color: transparent;
-		color: var(--primary-text-color);
+		color: theme('colors.text');
 		border: none;
 		outline: none;
 	}

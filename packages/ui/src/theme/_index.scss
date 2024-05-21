@@ -5,11 +5,11 @@
 	--primary-light-color: theme('colors.violet.400');
 	--primary-disabled-color: theme('colors.violet.100');
 
-	--accent-color: theme('colors.ubuntu.500');
-	--accent-hover-color: theme('colors.ubuntu.400');
-	--accent-active-color: theme('colors.ubuntu.600');
-	--accent-light-color: theme('colors.ubuntu.400');
-	--accent-disabled-color: theme('colors.ubuntu.100');
+	--accent-color: theme('colors.accent.500');
+	--accent-hover-color: theme('colors.accent.400');
+	--accent-active-color: theme('colors.accent.600');
+	--accent-light-color: theme('colors.accent.400');
+	--accent-disabled-color: theme('colors.accent.100');
 
 	--disabled-color: theme('colors.gray.400');
 
@@ -40,7 +40,7 @@
 	--alter-secondary-text-color: theme('colors.gray.600');
 	--alter-secondary-disabled-text-color: theme('colors.gray.400');
 
-	--app-bg-color: theme('colors.bone');
+	--app-bg-color: theme('colors.background.500');
 	--header-bg-color: #fafafaaa;
 
 	--card-bg-color: theme('colors.white');
@@ -48,19 +48,76 @@
 
 // TODO: darkmode
 @mixin dark() {
-	--primary-color: theme('colors.violet.500');
-	--primary-hover-color: theme('colors.violet.600');
-	--primary-active-color: theme('colors.violet.700');
-	--primary-light-color: theme('colors.violet.400');
-	--primary-disabled-color: theme('colors.violet.100');
+	--text-rgb: 233 234 252;
+	--text: #e9eafc;
+	--text-secondary: rgb(var(--text-rgb) / 0.7);
 
-	--accent-color: theme('colors.ubuntu.400');
-	--accent-hover-color: theme('colors.ubuntu.300');
-	--accent-active-color: theme('colors.ubuntu.500');
-	--accent-light-color: theme('colors.ubuntu.300');
-	--accent-disabled-color: theme('colors.ubuntu.100');
+	--background-50: #f0f0f5;
+	--background-100: #e1e1ea;
+	--background-200: #c3c3d5;
+	--background-300: #a5a5c0;
+	--background-400: #8787ab;
+	--background-500: #696996;
+	--background-600: #545478;
+	--background-700: #3f3f5a;
+	--background-800: #2a2a3c;
+	--background-900: #15151e;
+	--background-950: #0a0a0f;
+	--background: #191924;
+	--background-850: #20202B;
 
-	--disabled-color: theme('colors.gray.400');
+	--primary-50: #efe9fc;
+	--primary-100: #ded3f8;
+	--primary-200: #bda7f1;
+	--primary-300: #9c7bea;
+	--primary-400: #7b4fe3;
+	--primary-500: #5a22dd;
+	--primary-600: #481cb0;
+	--primary-700: #361584;
+	--primary-800: #240e58;
+	--primary-900: #12072c;
+	--primary-950: #090316;
+	--primary: #5520cf;
+
+	--secondary-50: #f5f2ef;
+	--secondary-100: #ebe5e0;
+	--secondary-200: #d8cbc0;
+	--secondary-300: #c4b1a1;
+	--secondary-400: #b09782;
+	--secondary-500: #9d7d62;
+	--secondary-600: #7d644f;
+	--secondary-700: #5e4b3b;
+	--secondary-800: #3f3227;
+	--secondary-900: #1f1914;
+	--secondary-950: #100c0a;
+	--secondary: #493a2e;
+
+	--accent-50: #fcf6e9;
+	--accent-100: #f9eed2;
+	--accent-200: #f2dda6;
+	--accent-300: #eccb79;
+	--accent-400: #e6ba4c;
+	--accent-500: #dfa920;
+	--accent-600: #b38719;
+	--accent-700: #866513;
+	--accent-800: #59440d;
+	--accent-900: #2d2206;
+	--accent-950: #161103;
+	--accent: #e0ab24;
+
+	--primary-color: theme('colors.primary.DEFAULT');
+	--primary-hover-color: theme('colors.primary.600');
+	--primary-active-color: theme('colors.primary.700');
+	--primary-light-color: theme('colors.primary.400');
+	--primary-disabled-color: theme('colors.primary.100');
+
+	--accent-color: theme('colors.accent.DEFAULT');
+	--accent-hover-color: theme('colors.accent.300');
+	--accent-active-color: theme('colors.accent.500');
+	--accent-light-color: theme('colors.accent.300');
+	--accent-disabled-color: theme('colors.accent.100');
+
+	--disabled-color: var(--text-secondary);
 
 	--warn-color: theme('colors.red.500');
 	--warn-hover-color: theme('colors.red.600');
@@ -72,16 +129,15 @@
 
 	--card-radius: 10px;
 	--card-shadow-color: rgb(255, 255, 255, 0.1);
-	--card-shadow: 0 0 10px var(-card-shadow-color);
 	--card-x-padding: 1rem;
 	--card-y-padding: 1rem;
 
 	--button-radius: 40px;
 
-	--primary-text-color: #f0f0f0;
+	--primary-text-color: theme('colors.text');
 	--primary-disabled-text-color: theme('colors.gray.400');
 
-	--secondary-text-color: theme('colors.gray.400');
+	--secondary-text-color: var(--text-secondary);
 	--secondary-disabled-text-color: theme('colors.gray.400');
 
 	--alter-text-color: theme('colors.black');
@@ -90,15 +146,17 @@
 	--alter-secondary-text-color: theme('colors.gray.600');
 	--alter-secondary-disabled-text-color: theme('colors.gray.400');
 
-	--app-bg-color: #171717;
-	--header-bg-color: #171717aa;
+	--app-bg-color: theme('colors.background.DEFAULT');
+	--header-bg-color: theme('colors.background.DEFAULT');
 
-	--card-bg-color: #2d2d2d;
+	--card-bg-color: theme('colors.background.850');
 }
 
 @mixin colors() {
 	@include dark();
 }
+
+// 
 
 // bg: #24272f
 // border: #353841

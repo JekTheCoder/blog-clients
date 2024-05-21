@@ -1,8 +1,7 @@
 @mixin card {
 	background-color: var(--card-bg-color, white);
-	box-shadow: var(--card-shadow);
 	border-radius: var(--card-radius);
-	color: var(--primary-text-color);
+	color: theme('colors.text');
 }
 
 @mixin card-x-padding {

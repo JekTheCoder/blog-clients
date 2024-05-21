@@ -1,6 +1,6 @@
 .button.raised {
 	background: var(--color);
-	color: var(--alter-text-color);
+	color: theme('colors.text');
 	border-radius: var(--button-radius, 10%);
 
 	transition: transform 0.1s;
