@@ -74,6 +74,7 @@ $normal-font-size: 18px;
 		border: 1px solid var(--card-shadow-color);
 
 		margin-bottom: 1rem;
+		color: var(--primary-text-color);
 	}
 
 	// Code blocks
@@ -122,5 +123,11 @@ $normal-font-size: 18px;
 
 	leptos-island {
 		display: contents;
+	}
+
+	blockquote {
+		border-left: 3px solid var(--card-shadow-color);
+		padding-left: 1rem;
+		color: var(--secondary-text-color);
 	}
 }
