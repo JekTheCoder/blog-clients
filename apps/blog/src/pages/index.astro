@@ -39,7 +39,7 @@ function chunks<T>(array: T[], size: number): T[][] {
 ---
 
 <Layout title="MeBlog">
-	<main class="container mx-auto pt-6">
+	<main class="w-full md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto pt-6">
 		<h2>MeBlog</h2>
 
 		<hr class="mb-4" />
@@ -70,9 +70,9 @@ function chunks<T>(array: T[], size: number): T[][] {
 
 				{
 					chunks(bellowBlogs, LATEST_PAGE_SIZE).map((chunk, i) => (
-						<ul class="chunk grid grid-cols-3 gap-x-2 min-w-full">
+						<ul class="chunk grid sm:grid-cols-3 mx-16 sm:mx-0 gap-2">
 							{chunk.map(blog => (
-								<li>
+								<li class="min-w-0">
 									<VPostPreview post={blog} />
 								</li>
 							))}
@@ -105,9 +105,3 @@ function chunks<T>(array: T[], size: number): T[][] {
 		</style>
 	</noscript>
 </Layout>
-
-<style is:global>
-	.carousel-collapse {
-		display: flex;
-	}
-</style>

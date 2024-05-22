@@ -20,8 +20,8 @@ export default function Carousel({
 		<>
 			<div class="w-full overflow-hidden">
 				<div
-					class={`${className} transition-transform`}
-					style={`transform: translateX(-${page() * 100}%);`}
+					class={`${className} grid transition-transform`}
+					style={`transform: translateX(-${page() * 100/pages}%); width: ${pages * 100}%; grid-template-columns: repeat(${pages}, 1fr);`}
 				>
 					{children}
 				</div>
