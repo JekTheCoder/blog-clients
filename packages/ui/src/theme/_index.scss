@@ -105,15 +105,15 @@
 	--accent-950: #161103;
 	--accent: #e0ab24;
 
-	--primary-color: theme('colors.primary.DEFAULT');
-	--primary-hover-color: theme('colors.primary.600');
-	--primary-active-color: theme('colors.primary.700');
-	--primary-light-color: theme('colors.primary.400');
+	--primary-color: theme('colors.primary.400');
+	--primary-hover-color: theme('colors.primary.DEFAULT');
+	--primary-active-color: theme('colors.primary.600');
+	--primary-light-color: theme('colors.primary.300');
 	--primary-disabled-color: theme('colors.primary.100');
 
 	--accent-color: theme('colors.accent.DEFAULT');
-	--accent-hover-color: theme('colors.accent.300');
-	--accent-active-color: theme('colors.accent.500');
+	--accent-hover-color: theme('colors.accent.500');
+	--accent-active-color: theme('colors.accent.600');
 	--accent-light-color: theme('colors.accent.300');
 	--accent-disabled-color: theme('colors.accent.100');
 

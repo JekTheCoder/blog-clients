@@ -14,7 +14,7 @@ import { Icon } from 'ui/icon';
 		</nav>
 	</header>
 
-	<main class="container mx-auto mt-4 grid gap-4">
+	<main class="container mx-auto mt-4 grid gap-4 pb-10">
 		<article>
 			<h2>Button</h2>
 
@@ -26,11 +26,11 @@ import { Icon } from 'ui/icon';
 
 				<button class="button primary basic">Foo</button>
 				<button class="button primary icon">
-					<Icon icon="ic:baseline-home" />
+					<Icon client:only="svelte" icon="ic:baseline-home" />
 				</button>
 				<button class="button accent basic">Foo</button>
 				<button class="button accent icon">
-					<Icon icon="ic:baseline-home" />
+					<Icon client:only="svelte" icon="ic:baseline-home" />
 				</button>
 			</section>
 
@@ -42,15 +42,13 @@ import { Icon } from 'ui/icon';
 
 				<button class="button primary basic" disabled>Foo</button>
 				<button class="button primary icon" disabled>
-					<Icon icon="ic:baseline-home" />
+					<Icon client:only="svelte" icon="ic:baseline-home" />
 				</button>
 				<button class="button accent basic" disabled>Foo</button>
 				<button class="button accent icon" disabled>
-					<Icon icon="ic:baseline-home" />
+					<Icon client:only="svelte" icon="ic:baseline-home" />
 				</button>
 			</section>
-
-			<section></section>
 		</article>
 
 		<div class="flex gap-x-4">
@@ -86,5 +84,23 @@ import { Icon } from 'ui/icon';
 				<textarea cols="30" rows="10"></textarea>
 			</OutlineFormField>
 		</section>
+
+		<article>
+			<h2>Cards</h2>
+
+			<section class="grid gap-4">
+				<section class="card card-padding">
+					<p>
+						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae ad accusamus
+						voluptas ipsa distinctio adipisci? Eligendi dolor sit beatae reiciendis sint
+						error corporis velit dolorem? Provident?
+					</p>
+				</section>
+
+				<section class="card">
+					<header class="card-header"><h3>Foo</h3></header>
+				</section>
+			</section>
+		</article>
 	</main>
 </Layout>
