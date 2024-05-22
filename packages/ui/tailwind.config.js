@@ -1,5 +1,19 @@
 const colors = require('tailwindcss/colors');
 
+function createColor(name) {
+	return `rgb(var(--${name}) / <alpha-value>)`;
+}
+
+function createPalette(name) {
+	return {
+		de2: createColor(`${name}-de2`),
+		de1: createColor(`${name}-de1`),
+		DEFAULT: createColor(name),
+		el1: createColor(`${name}-el1`),
+		el2: createColor(`${name}-el2`),
+	};
+}
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./index.html', './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -10,65 +24,11 @@ export default {
 					...colors.red,
 					DEFAULT: 'theme("colors.red.500")',
 				},
-				text: 'var(--text)',
-				background: {
-					50: 'var(--background-50)',
-					100: 'var(--background-100)',
-					200: 'var(--background-200)',
-					300: 'var(--background-300)',
-					400: 'var(--background-400)',
-					500: 'var(--background-500)',
-					600: 'var(--background-600)',
-					700: 'var(--background-700)',
-					800: 'var(--background-800)',
-					850: 'var(--background-850)',
-					900: 'var(--background-900)',
-					950: 'var(--background-950)',
-					850: 'var(--background-850)',
-					DEFAULT: 'var(--background)',
-				},
-				primary: {
-					50: 'var(--primary-50)',
-					100: 'var(--primary-100)',
-					200: 'var(--primary-200)',
-					300: 'var(--primary-300)',
-					400: 'var(--primary-400)',
-					500: 'var(--primary-500)',
-					600: 'var(--primary-600)',
-					700: 'var(--primary-700)',
-					800: 'var(--primary-800)',
-					900: 'var(--primary-900)',
-					950: 'var(--primary-950)',
-					DEFAULT: 'var(--primary)',
-				},
-				secondary: {
-					50: 'var(--secondary-50)',
-					100: 'var(--secondary-100)',
-					200: 'var(--secondary-200)',
-					300: 'var(--secondary-300)',
-					400: 'var(--secondary-400)',
-					500: 'var(--secondary-500)',
-					600: 'var(--secondary-600)',
-					700: 'var(--secondary-700)',
-					800: 'var(--secondary-800)',
-					900: 'var(--secondary-900)',
-					950: 'var(--secondary-950)',
-					DEFAULT: 'var(--secondary)',
-				},
-				accent: {
-					50: 'var(--accent-50)',
-					100: 'var(--accent-100)',
-					200: 'var(--accent-200)',
-					300: 'var(--accent-300)',
-					400: 'var(--accent-400)',
-					500: 'var(--accent-500)',
-					600: 'var(--accent-600)',
-					700: 'var(--accent-700)',
-					800: 'var(--accent-800)',
-					900: 'var(--accent-900)',
-					950: 'var(--accent-950)',
-					DEFAULT: 'var(--accent)',
-				},
+				text: createColor('text'),
+				background: createPalette('background'),
+				primary: createPalette('primary'),
+				secondary: createPalette('secondary'),
+				accent: createPalette('accent'),
 			},
 		},
 	},

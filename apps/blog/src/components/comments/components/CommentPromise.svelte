@@ -42,9 +42,9 @@
 		switch (status) {
 			case PromiseStatus.Done:
 				return {
-					name: 'var(--primary-text-color)',
-					username: 'var(--secondary-text-color)',
-					content: 'var(--primary-text-color)'
+					name: 'var(--text)',
+					username: 'var(--text-secondary)',
+					content: 'var(--text)'
 				};
 			default:
 				return {
