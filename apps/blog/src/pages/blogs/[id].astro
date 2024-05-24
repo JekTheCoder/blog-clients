@@ -7,12 +7,12 @@ import BlogComments from '@/components/comments/smart/BlogComments.svelte';
 import { BlogFrame } from 'blog-frame';
 import { getOneBlog } from 'backend/blogs';
 
-const { content, title, comments, id } = await getOneBlog(Astro.params.id!).then(
+const { content, description, title, comments, id } = await getOneBlog(Astro.params.id!).then(
 	response => response.data,
 );
 ---
 
-<Layout title={`${title} - MeBlog`}>
+<Layout title={`${title} - MeBlog`} description={description}>
 	<main class="container px-4">
 		<div>
 			<a class="link" href="/blogs">Back</a>

@@ -9,7 +9,7 @@ export type BlogById = {
 	id: string;
 	title: string;
 	content: string;
-	preview: string;
+	description: string;
 	createdAt: Date;
 	comments: Comment[];
 	category: Category;

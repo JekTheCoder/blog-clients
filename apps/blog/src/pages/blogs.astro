@@ -9,7 +9,7 @@ import { load } from '@/components/svelte-pages/blogs-data';
 const data = await load(Astro.url);
 ---
 
-<Layout title="Blogs">
+<Layout title="Blogs" description="Search blogs and posts, from webdev to anything">
 	<main class="container mx-auto my-4">
 		<BlogsPage client:load url={Astro.url} serverData={data} />
 	</main>
